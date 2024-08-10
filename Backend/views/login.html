@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="stylesheets/style.css" />
+    <link rel="stylesheet" href="stylesheets/register.css" />
+    <link rel="stylesheet" href="stylesheets/productCart.css" />
+    <link rel="stylesheet" href="stylesheets/login.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <title>EleganceTimeShop</title>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <div class="logo"><a href="/">EleganceTimeShop</a></div>
+        <div class="icons">
+          <ul class="navbar-menu-desktop">
+            <a href="/">Inicio</a>
+            <a href="#">Productos</a>
+            <a href="#">Categorías</a>
+            <a href="#">Ofertas</a>
+          </ul>
+          <a href="/register"><i class="bx bxs-user"></i></a>
+          <i class="ri-menu-line" id="menu"></i>
+          <div class="cart-icon-container">
+            <a href="/productCart"><i class="bx bxs-shopping-bag"></i></a>
+            <span class="cart-count">1</span>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <section class="box-form">
+        <form action="">
+          <h1>Iniciar Sesión</h1>
+          <div>
+            <input type="email" name="email" id="email" placeholder="Email" />
+          </div>
+          <span class="error">Este campo es obligatorio.</span>
+          <div>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              placeholder="Contraseña"
+            />
+          </div>
+          <span class="error">Este campo es obligatorio.</span>
+          <div>
+            <input
+              type="password"
+              name="confirmPassword"
+              id="confirmPassword"
+              placeholder="Confirmar Contraseña"
+            />
+          </div>
+          <span class="error">La contraseñas no coinciden</span>
+          <div>
+            <label for="terms" class="terms-label">
+              <input type="checkbox" id="rememberMe" name="rememberMe" />
+              Recordarme
+            </label>          
+          </div>
+          <button type="submit" class="btn-register">Ingresar</button>
+          <p>
+            ¿No tienes cuenta?
+            <a href="/register" id="link-register">Crea tu cuenta</a> 
+          </p>
+        <p>
+            <a href="/forgot-password" id="link-forgot-password">Olvidaste tu contraseña?</a>
+          </p>
+        </form>
+      </section>
+      <section class="line-with-form">
+        <div class="line-form"></div>
+        <p>O</p>
+        <div class="line-form"></div>
+      </section>
+      <section class="box-invitado">
+        <h3>Ingresar como invitado</h3>
+        <button type="submit" class="btn-invitado-login">Entrar</button>
+      </section>
+    </main>
+    <footer>
+      <section class="container-servicios">
+        <div>Sobre Nosotros</div>
+        <div>Ayuda</div>
+        <div>Métodos de pago</div>
+      </section>
+      <section class="line-with-icons">
+        <div class="line"></div>
+        <div class="icons">
+          <i class="bx bxl-instagram"></i>
+          <i class="bx bxl-facebook"></i>
+          <i class="bx bxl-tiktok"></i>
+          <i class="bx bxl-youtube"></i>
+          <i class="bx bxl-pinterest"></i>
+        </div>
+        <div class="line"></div>
+      </section>
+      <div class="logo-Footer"><a href="/">EleganceTimeShop</a></div>
+      <p class="copy">
+        &copy; 2024 EleganceTimeShop. Todos los derechos reservados.
+      </p>
+    </footer>
+  </body>
+</html>

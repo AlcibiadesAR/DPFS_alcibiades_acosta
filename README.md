@@ -7,6 +7,7 @@
 - **Relojes de Lujo**: Selección de relojes de alta gama que destacan por su sofisticación, diseño refinado y materiales premium.
 - **Relojes Accesibles**: Opciones elegantes y de calidad a precios más accesibles, ideales para todos los presupuestos.
 - **Relojes para Todos los Estilos**: Desde modelos clásicos y atemporales hasta opciones modernas y deportivas.
+- **Relojes para Niños**: Relojes atractivos y funcionales diseñados especialmente para los más jóvenes, combinando estilo y durabilidad.
 
 Nuestro objetivo es proporcionar a los clientes una experiencia de compra que refleje tanto la exclusividad como la accesibilidad, garantizando que cada reloj en nuestra tienda cumpla con los más altos estándares de calidad y estilo.
 
@@ -17,6 +18,7 @@ Nuestro público objetivo incluye:
 - **Amantes de los Relojes de Lujo**: Personas que buscan relojes de alta gama con características premium y diseño exclusivo.
 - **Compradores de Relojes Accesibles**: Clientes interesados en relojes elegantes y de buena calidad que se ajusten a un rango de precios más amplio.
 - **Entusiastas del Estilo**: Individuos que valoran la estética y el estilo en sus accesorios diarios, desde modelos clásicos hasta opciones modernas.
+- **Padres y Tutores**: Aquellos que buscan relojes atractivos y funcionales para niños, combinando estilo y durabilidad para las necesidades diarias de los más jóvenes.
 
 **EleganceTimeShop** se esfuerza por ajustar nuestra oferta para satisfacer las diversas necesidades y preferencias de nuestros clientes, ofreciendo una experiencia de compra intuitiva y satisfactoria.
 
@@ -26,7 +28,7 @@ Hola, soy **Alcibiades Acosta**, el creador de **EleganceTimeShop**. Me encanta 
 
 Desarrollé **EleganceTimeShop** para ofrecer una **experiencia de compra** accesible y única, garantizando que el sitio sea **atractivo**, **fácil de usar**, **funcional** y entregue a tiempo.
 
-¡Gracias por visitar **EleganceTimeShop**!.
+¡Gracias por visitar mi página **EleganceTimeShop**!.
 
 # Referencias de Sitios Similares
 
@@ -46,5 +48,33 @@ Aquí muestro mi lista de sitios de referencia que he investigado para inspirarm
 
 5. **[World Time Store](https://worldtimestore.com/)**
    - **Por qué fue elegido**: World Time Store ofrece una gran variedad de relojes y presenta un diseño amigable para el usuario. Su enfoque en la categorización de productos y la facilidad de navegación son aspectos valiosos para mejorar la experiencia de compra.
+
+
+# Retrospectiva del Sprint 1
+
+## 1. Seguir Haciendo
+- Mantener la organización y el cumplimiento de plazos.
+- Aprender de los errores y corregirlos.
+
+## 2. Hacer Más
+- Usar herramientas de planificación (Trello, Asana).
+- Realizar pruebas de usabilidad y documentarme más.
+
+## 3. Hacer Menos
+- Reducir dependencia de métodos informales.
+- Evitar agregar funcionalidades innecesarias.
+
+## 4. Comenzar a Hacer
+- Adoptar herramientas de planificación y revisar el código.
+
+## 5. Dejar de Hacer
+- Evitar la multitarea y no obsesionarse con la perfección inicial.
+
+## Tablero de Trabajo
+Para organizarme de manera efectiva durante el desarrollo del proyecto, utilicé Trello. Esta herramienta me permite gestionar tareas, seguir el progreso y mantener el control sobre los distintos aspectos del proyecto.
+
+- [Tablero de Trello - EleganceTimeShop](https://trello.com/invite/b/66add0654360a21c3ee0576c/ATTI550dd1e39c6ac3a6898cb2ed5652da930AD5FCB5/desarrollo-elegancetimeshop)
+
+
 
 

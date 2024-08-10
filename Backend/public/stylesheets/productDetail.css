@@ -1,0 +1,180 @@
+.box-product{
+    width: 90%;
+    margin: 50px auto;
+}
+
+.box-product img{
+    display: flex;
+    margin: 10px auto;
+    width: 180px;
+}
+
+.box-detail{
+    padding: 10px;
+    text-align: left;
+}
+
+h2{
+   font-size: 14px;
+}
+.box-detail p{
+    font-size: 14px;
+}
+
+.box-detail p span{
+ font-size: 16px;
+ font-weight: 600;
+}
+
+.box-detail  p .span-price-original{
+    color: red;
+    font-size: 14px;
+    margin-right: 10px;
+}
+
+.box-detail p .stock{
+    color: #a78123;
+}
+
+.counter-button{
+    margin: 10px 0;
+    padding: 8px 14px;
+    background-color: #a78123;
+    color: #ffff;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    transition: .5s all ease;
+}
+
+.counter-button:hover{
+    background-color: #d8ad3f;
+}
+
+#counter{
+    margin: 0 10px;
+}
+
+.btn-cart{
+    padding: 10px;
+    margin-left: 20px;
+    border-radius: 3px;
+    border: none;
+    background-color: #a78123;
+    color: #ffff;
+    transition: .5s all ease;
+}
+
+.btn-cart:hover{
+    background-color: #d8ad3f;
+   }
+
+.Description{
+    font-size: 14px;
+}
+
+.box-products-relations{
+    font-size: 14px;
+    margin: 0 18px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+table, th, td {
+    border: 1px solid #ddd;
+}
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+.slider-item h4{
+    font-weight: 100;
+}
+
+.slider-item p{
+    color: #a78123;
+    font-weight: 600;
+}
+
+#slider-wrapper-products-relations{
+    gap: 40px
+}
+
+.slider-item .item-products{
+    height: 150px;
+}
+
+footer{
+    margin-top: 40px;
+}
+
+
+@media only screen and (min-width: 600px) {
+    .box-product img{
+        width: 200px;
+    }
+
+    .article-detail{
+        display: flex;
+        gap: 50px;
+        justify-content: center;
+        align-items: center;
+    }
+   
+    .box-detail{
+        padding-top: 30px;
+    }
+
+    h2{
+        font-size: 20px;
+     }
+
+    .Description{
+        margin: 40px 0;
+    }
+
+    footer{
+        margin-top: 48px;
+    }
+  }
+  
+  @media only screen and (min-width: 1024px) {
+
+    .box-product img{
+        width: 200px;
+    }
+
+    .article-detail{
+        display: flex;
+        gap: 160px;
+        justify-content: center;
+        align-items: center;
+    }
+   
+    .box-detail{
+        padding-top: 50px;
+    }
+
+    h2{
+        font-size: 20px;
+     }
+
+    .Description{
+        margin: 50px 0;
+    }
+
+    #slider-wrapper-products-relations{
+        gap: 60px
+    }
+
+    .box-product img{
+      width: 230px;
+     padding-top: 30px;
+    }
+  }
+  
