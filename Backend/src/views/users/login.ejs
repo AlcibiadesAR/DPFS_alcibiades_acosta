@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../partials/head', { pageTitle: title }) %>
+  </head>
+  <body>
+    <%- include('../partials/header') %>
+<main>
+  <section class="box-form">
+    <form action="">
+      <h1>Iniciar Sesión</h1>
+      <div>
+        <input type="email" name="email" id="email" placeholder="Email" />
+      </div>
+      <span class="error">Este campo es obligatorio.</span>
+      <div>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          placeholder="Contraseña"
+        />
+      </div>
+      <span class="error">Este campo es obligatorio.</span>
+      <div>
+        <input
+          type="password"
+          name="confirmPassword"
+          id="confirmPassword"
+          placeholder="Confirmar Contraseña"
+        />
+      </div>
+      <span class="error">La contraseñas no coinciden</span>
+      <div>
+        <label for="terms" class="terms-label">
+          <input type="checkbox" id="terms" name="rememberMe" />
+          Recordarme
+        </label>
+      </div>
+      <button type="submit" class="btn-register">Ingresar</button>
+      <p>
+        ¿No tienes cuenta?
+        <a href="/register" id="link-register">Crea tu cuenta</a>
+      </p>
+      <p>
+        <a href="/forgot-password" id="link-forgot-password"
+          >Olvidaste tu contraseña?</a
+        >
+      </p>
+    </form>
+  </section>
+  <section class="line-with-form">
+    <div class="line-form"></div>
+    <p>O</p>
+    <div class="line-form"></div>
+  </section>
+  <section class="box-invitado">
+    <h3>Ingresar como invitado</h3>
+    <button type="submit" class="btn-invitado-login">Entrar</button>
+  </section>
+</main>
+
+<%- include('../partials/footer') %>
+<script src="/javascripts/index.js"></script>
+</body>
+</html>
+

@@ -8,9 +8,15 @@
   "dependencies": {
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
+    "ejs": "^3.1.10",
     "express": "^4.19.2",
     "http-errors": "~1.6.3",
     "morgan": "~1.9.1",
     "nodemon": "^3.1.4"
+  },
+  "devDependencies": {
+    "eslint-plugin-html": "^8.1.1",
+    "htmlhint": "^1.1.4",
+    "prettier": "^2.8.8"
   }
 }

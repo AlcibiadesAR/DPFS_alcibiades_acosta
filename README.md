@@ -1,13 +1,14 @@
 # EleganceTimeShop
 
+**EleganceTimeShop** es un marketplace en línea dedicado a ofrecer una amplia variedad de relojes que combinan elegancia y precisión.
+
 ## Descripción del Mercado
 
-**EleganceTimeShop** es un marketplace en línea dedicado a ofrecer una amplia variedad de relojes que combinan elegancia y precisión. Nuestra oferta incluye:
+Nuestra oferta incluye:
 
-- **Relojes de Lujo**: Selección de relojes de alta gama que destacan por su sofisticación, diseño refinado y materiales premium.
-- **Relojes Accesibles**: Opciones elegantes y de calidad a precios más accesibles, ideales para todos los presupuestos.
-- **Relojes para Todos los Estilos**: Desde modelos clásicos y atemporales hasta opciones modernas y deportivas.
-- **Relojes para Niños**: Relojes atractivos y funcionales diseñados especialmente para los más jóvenes, combinando estilo y durabilidad.
+- **Relojes para Hombres**: Modelos sofisticados con diseño robusto y materiales premium.
+- **Relojes para Mujeres**: Opciones elegantes que combinan estilo y funcionalidad, diseñadas para la mujer moderna.
+- **Relojes para Niños**: Relojes atractivos y duraderos, especialmente diseñados para los más jóvenes, con opciones que combinan diversión y practicidad.
 
 Nuestro objetivo es proporcionar a los clientes una experiencia de compra que refleje tanto la exclusividad como la accesibilidad, garantizando que cada reloj en nuestra tienda cumpla con los más altos estándares de calidad y estilo.
 
@@ -15,14 +16,13 @@ Nuestro objetivo es proporcionar a los clientes una experiencia de compra que re
 
 Nuestro público objetivo incluye:
 
-- **Amantes de los Relojes de Lujo**: Personas que buscan relojes de alta gama con características premium y diseño exclusivo.
-- **Compradores de Relojes Accesibles**: Clientes interesados en relojes elegantes y de buena calidad que se ajusten a un rango de precios más amplio.
-- **Entusiastas del Estilo**: Individuos que valoran la estética y el estilo en sus accesorios diarios, desde modelos clásicos hasta opciones modernas.
+- **Hombres que buscan relojes elegantes**: Personas que buscan relojes que combinen sofisticación y funcionalidad.
+- **Mujeres que valoran el estilo en sus accesorios**: Clientes interesadas en relojes que reflejen su personalidad y estilo único.
 - **Padres y Tutores**: Aquellos que buscan relojes atractivos y funcionales para niños, combinando estilo y durabilidad para las necesidades diarias de los más jóvenes.
 
 **EleganceTimeShop** se esfuerza por ajustar nuestra oferta para satisfacer las diversas necesidades y preferencias de nuestros clientes, ofreciendo una experiencia de compra intuitiva y satisfactoria.
 
-## Descripción Personal
+# Descripción Personal
 
 Hola, soy **Alcibiades Acosta**, el creador de **EleganceTimeShop**. Me encanta aprender cosas nuevas cada día, **programar**, jugar **videojuegos** y ver **películas** y **anime**. El camino de aprendizaje en **desarrollo fullstack** ha sido un viaje apasionante y desafiante, y he disfrutado cada paso del proceso.
 
@@ -50,31 +50,22 @@ Aquí muestro mi lista de sitios de referencia que he investigado para inspirarm
    - **Por qué fue elegido**: World Time Store ofrece una gran variedad de relojes y presenta un diseño amigable para el usuario. Su enfoque en la categorización de productos y la facilidad de navegación son aspectos valiosos para mejorar la experiencia de compra.
 
 
-# Retrospectiva del Sprint 1
+## Retrospectiva del Sprint 2 
 
-## 1. Seguir Haciendo
-- Mantener la organización y el cumplimiento de plazos.
-- Aprender de los errores y corregirlos.
+## Qué Hice Bien
+- **Maquetación Completa**: Terminé la maquetación de las pantallas de home, detalles del producto, carrito, login y registro para el proyecto final, proporcionando una base sólida para el proyecto.
+- **Implementación de HTML y CSS**: Integré el diseño con HTML y CSS, asegurando que las secciones principales estuvieran listas para el siguiente sprint.
+- **Uso de Trello**: Utilicé Trello para organizar y seguir el progreso del proyecto, lo que facilitó la gestión de tareas y la visibilidad del estado del proyecto.
 
-## 2. Hacer Más
-- Usar herramientas de planificación (Trello, Asana).
-- Realizar pruebas de usabilidad y documentarme más.
+## Qué Puedo Mejorar
+- **Coincidencia con los Bocetos**: Algunos detalles en el diseño final no coincidieron con los bocetos iniciales. Necesito actualizar los bocetos para reflejar los cambios realizados y mantener la coherencia del proyecto.
+- **Planificación del Tiempo**: Hubo dificultades para ajustar el tiempo dedicado a cada tarea. Mejoraré la planificación para asegurarme de que cada actividad tenga el tiempo adecuado.
 
-## 3. Hacer Menos
-- Reducir dependencia de métodos informales.
-- Evitar agregar funcionalidades innecesarias.
+## Qué Debería Empezar a Hacer
+- **Actualizar Bocetos e Iniciar Sprint 3**: Dedicaré tiempo a actualizar los bocetos para reflejar los cambios realizados en el diseño y asegurar la coherencia. Además, comenzaré a planificar y ejecutar el Sprint 3, abordando las nuevas tareas y objetivos establecidos.
 
-## 4. Comenzar a Hacer
-- Adoptar herramientas de planificación y revisar el código.
+## Qué Debería Dejar de Hacer
+- **Avanzar Sin Actualizar Cambios**: Dejaré de avanzar en el proyecto sin actualizar los cambios realizados previamente. 
 
-## 5. Dejar de Hacer
-- Evitar la multitarea y no obsesionarse con la perfección inicial.
-
-## Tablero de Trabajo
-Para organizarme de manera efectiva durante el desarrollo del proyecto, utilicé Trello. Esta herramienta me permite gestionar tareas, seguir el progreso y mantener el control sobre los distintos aspectos del proyecto.
 
 - [Tablero de Trello - EleganceTimeShop](https://trello.com/invite/b/66add0654360a21c3ee0576c/ATTI550dd1e39c6ac3a6898cb2ed5652da930AD5FCB5/desarrollo-elegancetimeshop)
-
-
-
-

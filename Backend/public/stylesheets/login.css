@@ -10,7 +10,7 @@
 }
 
 .btn-invitado-login {
-  background-color: #a78123;
+  background-color: #bf930d;
   color: #fff;
   border: none;
   border-radius: 3px;
@@ -28,7 +28,7 @@
 
 #link-register,#link-forgot-password {
   padding-left: 10px;
-  color: #a78123;
+  color: #bf930d;
   text-decoration: none;
   cursor: pointer;
 }

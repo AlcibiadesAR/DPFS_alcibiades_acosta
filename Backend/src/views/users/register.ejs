@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../partials/head', { pageTitle: title }) %>
+  </head>
+  <body>
+    <%- include('../partials/header') %>
+    <main>
+      <section class="box-form">
+        <form action="">
+          <h1>Crea tu cuenta</h1>
+          <div>
+            <div class="box-error">
+              <input
+                type="text"
+                name="firtsName"
+                id="firtsName"
+                placeholder="Nombre"
+              />
+              <span class="error">Este campo es obligatorio.</span>
+            </div>
+            <div class="box-error">
+              <input
+                type="text"
+                name="lastName"
+                id="lastName"
+                placeholder="Apellido"
+              />
+              <span class="error">Este campo es obligatorio.</span>
+            </div>
+          </div>
+          <div>
+            <div class="box-error">
+              <input type="email" name="email" id="email" placeholder="Email" />
+              <span class="error">Este campo es obligatorio.</span>
+            </div>
+            <div class="box-error">
+              <input type="number" name="phone" id="phone" placeholder="Teléfono" />
+              <span class="error">Este campo es obligatorio.</span>
+            </div>
+          </div>
+          <div>
+            <div class="box-error">
+              <input
+                type="text"
+                name="shipping-address"
+                id="shipping-address"
+                placeholder="Dirección de envío"
+              />
+              <span class="error">Este campo es obligatorio.</span>
+            </div>
+            <div class="box-error">
+              <input
+                type="password"
+                name="password"
+                id="password"
+                placeholder="Contraseña"
+              />
+              <span class="error"
+                >La contraseña debe tener al menos 8 caracteres</span
+              >
+            </div>
+          </div>
+          <div>
+            <label for="terms" class="terms-label">
+              <input type="checkbox" id="terms" name="terms" required />
+              Acepto los
+              <a href="#" target="_blank">términos y condiciones</a>
+            </label>
+          </div>
+          <span class="error"
+            >Debes aceptar los términos y condiciones para registrarte.</span
+          >
+          <button type="submit" class="btn-register">Registrarse</button>
+          <p>
+            ¿Ya tienes cuenta?
+            <a href="/login" id="link-iniciarSesion">Inicia Sesión</a>
+          </p>
+        </form>
+      </section>
+      <section class="line-with-form">
+        <div class="line-form"></div>
+        <p>O</p>
+        <div class="line-form"></div>
+      </section>
+      <section class="box-invitado">
+        <form action="">
+          <h3>Continuar como invitado</h3>
+          <input type="email" name="email-invitado" id="email-invitado" placeholder="Email" />
+          <span class="error"
+            >Por favor, introduce una dirección de correo válida.</span
+          >
+        </form>
+      </section>
+    </main>
+    <%- include('../partials/footer') %>
+
+    <script src="/javascripts/index.js"></script>
+  </body>
+</html>
+

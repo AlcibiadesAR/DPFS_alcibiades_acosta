@@ -44,12 +44,12 @@ input {
 
 label a {
   text-decoration: none;
-  color: #a78123;
+  color: #bf930d;
   cursor: pointer;
 }
 
 .btn-register {
-  background-color: #a78123;
+  background-color: #bf930d;
   color: #fff;
   border: none;
   border-radius: 3px;
@@ -76,7 +76,7 @@ form p {
 
 #link-iniciarSesion {
   padding-left: 10px;
-  color: #a78123;
+  color: #bf930d;
   text-decoration: none;
   cursor: pointer;
 }
@@ -94,7 +94,7 @@ form p {
 }
 
 .line-form {
-  background-color: #a78123;
+  background-color: #bf930d;
   flex: 1;
   height: 1px;
   margin: 3px auto;
@@ -110,7 +110,6 @@ form p {
   font-size: 0.8em;
   margin-top: 4px;
   display: block;
-
 }
 
 @media only screen and (min-width: 600px) {

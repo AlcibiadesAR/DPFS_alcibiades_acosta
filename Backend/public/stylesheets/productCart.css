@@ -1,11 +1,11 @@
 h1 {
   margin-top: 100px;
-  font-size: 20px;
+  font-size: 24px;
   text-align: center;
 }
 
 .message-cart {
-  color: #a78123;
+  color: #bf930d;
   font-size: 12px;
   text-align: center;
 }
@@ -81,7 +81,7 @@ h1 {
 
 .continue-shopping,
 .clear-cart {
-  color: #a78123;
+  color: #bf930d;
   text-decoration: none;
   font-weight: 500;
 }
@@ -110,19 +110,18 @@ h1 {
 
 .summary-item span {
   font-weight: 600;
-  font-size: 18px;
+  font-size: 16px;
 }
 
 .btn-pago {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #a78123;
+  background-color: #bf930d;
   color: white;
   border: none;
   border-radius: 3px;
   padding: 10px 20px;
-  font-size: 14px;
   width: 100%;
   cursor: pointer;
   transition: 0.5s all ease;
@@ -138,7 +137,7 @@ h1 {
 
 .btn-pago span {
   margin-left: 20px;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 @media only screen and (min-width: 600px) {
@@ -156,12 +155,12 @@ h1 {
     width: 50%;
   }
 
-
   .box-resumen-product {
     width: 40%;
     margin: 20px 30px;
+    font-size: 14px;
   }
-
+  
   .remove{
     font-size: 18px;
   }
@@ -174,7 +173,7 @@ h1 {
   }
   
   .message-cart {
-    font-size: 14px;
+    font-size: 16px;
   }
 
   .cart-item, .product-details{
@@ -184,7 +183,7 @@ h1 {
 
   .cart-actions {
     justify-content: space-between;
-    font-size: 14px;
+    font-size: 16px;
   }
 
   .box-sections {
@@ -198,7 +197,15 @@ h1 {
 
   .product-info {
     margin: 0 20px;
+    font-size: 18px;
   }
+
+  .price,
+.quantity,
+.remove {
+  font-size: 18px;
+}
+
 
   .box-resumen-product {
     width: 35%;
