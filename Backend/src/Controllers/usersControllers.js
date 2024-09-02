@@ -1,28 +1,30 @@
 let usersControllers = {
-  pageCart: function (req, res) {
+  pageCart: (req, res) => {
     res.render("users/productCart", {
       title: "Tu Carrito de Compras / EleganceTimeShop",
     });
   },
 
-  pageRegister: function (req, res) {
+  pageRegister: (req, res) => {
     return res.render("users/register", {
       title: "Crea tu cuenta / EleganceTimeShop",
     });
   },
 
-  pageLogin: function (req, res) {
-    return res.render("users/login", { title: "Inicia Sesión / EleganceTimeShop" });
+  pageLogin: (req, res) => {
+    return res.render("users/login", {
+      title: "Inicia Sesión / EleganceTimeShop",
+    });
   },
 
-  pageForgotPassword: function (req, res) {
-    return res.render("users/forgot-password", {
+  pageForgotPassword: (req, res) => {
+    return res.render("users/forgotPassword", {
       title: "Recupera tu contraseña / EleganceTimeShop",
     });
   },
 
-  pageForgotNewPassword: function (req, res) {
-    return res.render("users/forgot-new-password", {
+  pageForgotNewPassword: (req, res) => {
+    return res.render("users/forgotNewPassword", {
       title: "Crea una nueva contraseña / EleganceTimeShop",
     });
   },

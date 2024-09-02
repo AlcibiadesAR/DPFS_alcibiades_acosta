@@ -3,18 +3,18 @@ var router = express.Router();
 const usersControllers = require("../Controllers/usersControllers");
 
 // Ruta para el carrito de compras
-router.get("/productCart", usersControllers.pageCart);
+router.get("/users/productCart", usersControllers.pageCart);
 
 // Ruta para el registro
-router.get("/register", usersControllers.pageRegister);
+router.get("/users/register", usersControllers.pageRegister);
 
 // Ruta para login
-router.get("/login", usersControllers.pageLogin);
+router.get("/users/login", usersControllers.pageLogin);
 
 // Ruta para recuperar contraseña
-router.get("/forgot-password", usersControllers.pageForgotPassword);
+router.get("/users/forgotPassword", usersControllers.pageForgotPassword);
 
 // Ruta para nueva contraseña
-router.get("/forgot-new-password", usersControllers.pageForgotNewPassword);
+router.get("/users/forgotNewPassword", usersControllers.pageForgotNewPassword);
 
 module.exports = router;

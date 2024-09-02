@@ -50,22 +50,22 @@ Aquí muestro mi lista de sitios de referencia que he investigado para inspirarm
    - **Por qué fue elegido**: World Time Store ofrece una gran variedad de relojes y presenta un diseño amigable para el usuario. Su enfoque en la categorización de productos y la facilidad de navegación son aspectos valiosos para mejorar la experiencia de compra.
 
 
-## Retrospectiva del Sprint 2 
+# Retrospectiva del Sprint 3
 
 ## Qué Hice Bien
-- **Maquetación Completa**: Terminé la maquetación de las pantallas de home, detalles del producto, carrito, login y registro para el proyecto final, proporcionando una base sólida para el proyecto.
-- **Implementación de HTML y CSS**: Integré el diseño con HTML y CSS, asegurando que las secciones principales estuvieran listas para el siguiente sprint.
-- **Uso de Trello**: Utilicé Trello para organizar y seguir el progreso del proyecto, lo que facilitó la gestión de tareas y la visibilidad del estado del proyecto.
+- **Integración de EJS**: Implementé con éxito EJS como motor de plantillas, lo que facilitó la reutilización de componentes comunes como el `header` y `footer`, y permitió que el contenido se mostrara de manera dinámica.
+- **Organización de Vistas**: Separé las vistas en carpetas dedicadas (`products` y `users`) y creé archivos parciales (`head.ejs`, `header.ejs`, `footer.ejs`). Esto hizo que la estructura del proyecto fuera mucho más organizada y fácil de manejar.
 
 ## Qué Puedo Mejorar
-- **Coincidencia con los Bocetos**: Algunos detalles en el diseño final no coincidieron con los bocetos iniciales. Necesito actualizar los bocetos para reflejar los cambios realizados y mantener la coherencia del proyecto.
-- **Planificación del Tiempo**: Hubo dificultades para ajustar el tiempo dedicado a cada tarea. Mejoraré la planificación para asegurarme de que cada actividad tenga el tiempo adecuado.
+- **Lógica de Actualización**: La implementación de la lógica para actualizar productos tomó más tiempo del previsto, pero finalmente se logró. Debo mejorar la planificación para evitar retrasos similares en el futuro.
+- **Estructura de CSS**: La organización de los archivos CSS necesita una mejora para tener una estructura más clara y eficiente. Esto ayudará a facilitar el mantenimiento y a asegurar una mejor integración con el diseño.
 
 ## Qué Debería Empezar a Hacer
-- **Actualizar Bocetos e Iniciar Sprint 3**: Dedicaré tiempo a actualizar los bocetos para reflejar los cambios realizados en el diseño y asegurar la coherencia. Además, comenzaré a planificar y ejecutar el Sprint 3, abordando las nuevas tareas y objetivos establecidos.
+- **Optimizar la Lógica de Actualización**: Mejorar el enfoque y la planificación de la implementación de la lógica de actualización para evitar problemas y retrasos innecesarios.
+- **Revisar y Mejorar la Estructura de CSS**: Dedicar tiempo a revisar y reorganizar los archivos CSS para lograr una estructura más clara y coherente, facilitando el trabajo en futuras actualizaciones y mejoras.
 
 ## Qué Debería Dejar de Hacer
-- **Avanzar Sin Actualizar Cambios**: Dejaré de avanzar en el proyecto sin actualizar los cambios realizados previamente. 
+- **Avanzar Sin Revisión**: Evitar pasar a nuevas tareas sin haber revisado y perfeccionado las tareas anteriores. Es importante asegurarse de que cada componente esté bien implementado y funcional antes de avanzar.
 
 
 - [Tablero de Trello - EleganceTimeShop](https://trello.com/invite/b/66add0654360a21c3ee0576c/ATTI550dd1e39c6ac3a6898cb2ed5652da930AD5FCB5/desarrollo-elegancetimeshop)

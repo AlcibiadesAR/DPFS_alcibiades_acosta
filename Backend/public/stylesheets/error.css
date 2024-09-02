@@ -1,55 +1,56 @@
-.error-500{
- width: 400px;
- padding-top: 100px;
- margin: 0 auto;
+.error-container {
+  display: block;
+  width: 90%;
+  margin: 0 auto;
+  text-align: center;
 }
 
-.title-error{
+.title-error {
+  font-size: 40px;
+}
+
+.error-container img {
+  width: 250px;
+  height: auto;
+}
+
+.error-container p {
+  font-size: 14px;
+}
+
+#btn-error {
+  width: 160px;
+  padding: 10px 20px;
+  font-size: 14px;
+  white-space: nowrap;
   margin-top: 20px;
-  color: #bf930d;
-  font-size: 30px;
 }
 
-.description-error{
-    font-size: 12px;
-    text-align: center;
-    margin: 0 40px;
+@media only screen and (min-width: 600px) {
+  .title-error {
+    font-size: 45px;
+  }
+
+  .error-container p {
+    font-size: 14px;
+  }
 }
 
-.error-continue-shopping{
-    text-align: center;
-    margin: 40px auto;
-    color: #bf930d;
-    text-decoration: none;
-    cursor: pointer;
-}
+@media only screen and (min-width: 1024px) {
+  .title-error {
+    font-size: 70px;
+  }
 
-@media only screen and (min-width: 600px){
-    
-    .description-error{
-        margin: 0 80px;
-    }
+  .error-container img {
+    width: 350px;
+  }
 
-    .error-500{
-        width: 600px;
-       }
-    
-}
+  .error-container p {
+    font-size: 18px;
+  }
 
-@media only screen and (min-width: 1024px){
-
-    .error-500{
-        width: 700px;
-       }
-    
-    .description-error{
-        margin: 0 150px;
-        font-size: 20px;
-    }
-
-    .error-continue-shopping{
-        font-size: 24px;
-    }
-    
-    
+  #btn-error {
+    width: 160px;
+    font-size: 16px;
+  }
 }

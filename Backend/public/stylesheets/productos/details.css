@@ -1,0 +1,173 @@
+.box-product {
+  width: 90%;
+  margin: 50px auto;
+}
+
+.box-product img {
+  display: flex;
+  width: 180px;
+  margin: 40px auto;
+  transition: transform 0.9s ease;
+}
+
+.box-product img:hover {
+  transform: scale(1.2);
+}
+
+.box-detail {
+  padding: 10px;
+  text-align: left;
+}
+
+.box-detail p {
+  font-size: 14px;
+}
+
+.box-detail p span {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.box-detail p .span-price-original {
+  font-size: 14px;
+  color: #000;
+  margin-right: 10px;
+}
+
+.box-detail p .stock {
+  color: #1f980a;
+}
+
+.counter-button {
+  padding: 5px 12px;
+  border: none;
+  color: #ffff;
+  background-color: #b7b4b4;
+  cursor: pointer;
+  transition: 0.5s all ease;
+  margin-top: 5px;
+  border-radius: 5px;
+}
+
+.counter-button:hover {
+  background-color: #800020;
+}
+
+#counter {
+  margin: 0 10px;
+}
+
+.Description {
+  font-size: 14px;
+}
+
+.box-products-relations {
+  margin: 0 18px;
+  font-size: 14px;
+}
+
+.table-details {
+  width: 100%;
+  font-size: 14px;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.table-details,
+.table-details th,
+.table-details td {
+  border: 1px solid #ddd;
+}
+
+.table-details th,
+.table-details td {
+  padding: 10px;
+  text-align: left;
+}
+
+@media only screen and (min-width: 600px) {
+  .box-product img {
+    width: 170px;
+  }
+
+  .article-detail {
+    display: flex;
+    gap: 50px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .box-detail {
+    padding-top: 30px;
+  }
+
+  .Description {
+    margin: 40px 0;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .box-product img {
+    width: 170px;
+  }
+  .box-product img {
+    width: 200px;
+  }
+
+  .article-detail {
+    display: flex;
+    gap: 160px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .box-detail {
+    padding-top: 50px;
+  }
+  .box-detail p,
+  .box-detail p span,
+  .box-detail p .span-price-original,
+  .box-detail p .stock {
+    font-size: 20px;
+  }
+
+  #counter {
+    font-size: 18px;
+  }
+
+  .counter-button {
+    padding: 10px 16px;
+    margin-top: 20px;
+  }
+
+  .title-detail {
+    font-size: 50px;
+  }
+
+  .Description {
+    margin: 50px 0;
+    font-size: 24px;
+  }
+
+  .Description p {
+    font-size: 20px;
+  }
+
+  .table-details {
+    font-size: 20px;
+  }
+
+  #slider-wrapper-products-relations {
+    gap: 60px;
+  }
+
+  .box-products-relations {
+    margin: 0 18px;
+    font-size: 18px;
+  }
+
+  .box-product img {
+    width: 230px;
+    padding-top: 30px;
+  }
+}

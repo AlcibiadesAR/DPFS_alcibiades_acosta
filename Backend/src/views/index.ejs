@@ -4,261 +4,220 @@
     <%- include('partials/head', { pageTitle: title }) %>
   </head>
   <body>
-    <%- include('partials/header') %>
+    <%- include('partials/header', { headerClass: headerClass}) %>
     <div class="box-header-home">
-        <p class="phrase">Donde la elegancia se une a la precisión en cada reloj</p>
-        <a class="link-collection" href="#">Explora nuestra colección</a>
-        <form action="/search" class="search-form" method="get">
-          <div class="search-container">
-            <input name="query" placeholder="Buscar..." type="text" />
-            <i class="bx bx-search-alt"></i>
-          </div>
-        </form>
+      <img
+        src="/images/banners/fondoHome.jpg"
+        alt="banner watch"
+        id="bannerHeader"
+      />
+      <p class="phrase">
+        Donde la elegancia se une a la precisión en cada reloj
+      </p>
+      <a class="link-collection" href="/products">
+        <span>Explora nuestra colección</span>
+        <i class="bx bx-right-arrow-alt"></i>
+      </a>
+      <form action="/search" class="search-form" method="get">
+        <div class="search-container">
+          <input name="query" placeholder="Buscar..." type="text" />
+          <i class="bx bx-search-alt"></i>
+        </div>
+      </form>
     </div>
+
     <main>
       <section class="container-marcas">
-        <h3>Nuestras Marcas Destacadas</h3>
-        <div class="slider-container">
-          <button class="nav-button nav-prev">
-            <i class="bx bxs-chevron-left"></i>
-          </button>
-          <div class="slider-wrapper">
-            <div class="slider-item">
-              <a href="#"><img alt="Rolex" src="/images/logos/rolex.png" /></a>
+        <h2>Nuestras Marcas Destacadas</h2>
+
+        <div class="slider">
+          <div class="logos">
+            <div class="logos-slide">
+              <img
+                src="/images/logos/Audemars_Piguet-logo.png"
+                alt="Audemars Piguet"
+              />
+              <img src="/images/logos/Citize.jpg" alt="Citize" />
+              <img src="/images/logos/Lacoste.png" alt="Lacoste" />
+              <img src="/images/logos/omega.png" alt="Omega" />
+              <img src="/images/logos/patekphilippe.png" alt="Patek Philippe" />
+              <img src="/images/logos/rolex.png" alt="Rolex" />
+              <img src="/images/logos/Seiko.jpg" alt="Seiko" />
+              <img src="/images/logos/Skagen.png" alt="Skagen" />
+              <img src="/images/logos/tagHever.png" alt="Tag Heuer" />
+              <img src="/images/logos/Tissot.png" alt="Tissot" />
             </div>
-            <div class="slider-item">
-              <a href="#"><img alt="Omega" src="/images/logos/omega.png" /></a>
-            </div>
-            <div class="slider-item">
-              <a href="#"
-                ><img
-                  alt="Patek Philippe"
-                  src="/images/logos/patekphilippe.png"
-              /></a>
-            </div>
-            <div class="slider-item">
-              <a href="#"><img alt="Seiko" src="/images/logos/Seiko.jpg" /></a>
-            </div>
-            <div class="slider-item">
-              <a href="#"
-                ><img alt="Citizen" src="/images/logos/Citize.jpg"
-              /></a>
-            </div>
-            <div class="slider-item">
-              <a href="#"
-                ><img alt="Tissot" src="/images/logos/Tissot.png"
-              /></a>
-            </div>
-            <div class="slider-item">
-              <a href="#"
-                ><img alt="Skagen" src="/images/logos/Skagen.png"
-              /></a>
-            </div>
-            <div class="slider-item">
-              <a href="#"
-                ><img alt="Lacoste" src="/images/logos/Lacoste.png"
-              /></a>
-            </div>
-            <div class="slider-item">
-              <a href="#"
-                ><img
-                  alt="Audemars Piguet"
-                  src="/images/logos/Audemars_Piguet-logo.png"
-              /></a>
-            </div>
-            <div class="slider-item">
-              <a href="#"
-                ><img alt="Tag Heuer" src="/images/logos/tagHever.png"
-              /></a>
+
+            <div class="logos-slide">
+              <img
+                src="/images/logos/Audemars_Piguet-logo.png"
+                alt="Audemars Piguet"
+              />
+              <img src="/images/logos/Citize.jpg" alt="Citize" />
+              <img src="/images/logos/Lacoste.png" alt="Lacoste" />
+              <img src="/images/logos/omega.png" alt="Omega" />
+              <img src="/images/logos/patekphilippe.png" alt="Patek Philippe" />
+              <img src="/images/logos/rolex.png" alt="Rolex" />
+              <img src="/images/logos/Seiko.jpg" alt="Seiko" />
+              <img src="/images/logos/Skagen.png" alt="Skagen" />
+              <img src="/images/logos/tagHever.png" alt="Tag Heuer" />
+              <img src="/images/logos/Tissot.png" alt="Tissot" />
             </div>
           </div>
-          <button class="nav-button nav-next">
-            <i class="bx bxs-chevron-right"></i>
-          </button>
         </div>
       </section>
+
       <section class="container-products">
-        <h3>Ofertas Exclusivas</h3>
+        <h2>Productos en Oferta</h2>
         <div class="grid-container">
+          <% for (let watchHome of offerProducts) { %>
           <article class="card">
-            <img
-              alt="Rolex Deepsea D-Blue 116660"
-              src="/images/productos/hombres/rolexDeepsea.jpg"
-            />
+            <div class="card-img">
+              <img alt="<%= watchHome.Name %>" src="<%= watchHome.Image %>" />
+            </div>
             <div class="card-content">
-              <h3>Rolex Deepsea D-Blue 116660</h3>
+              <h3><%= watchHome.Name %></h3>
               <p>
-                <span class="span-price-original">$19.666</span>
-                <span class="span-price--current">$17.699</span>
+                <span class="span-price-original">$<%= watchHome.Price %></span>
+                <% if (watchHome.DiscountPercentage > 0) { %>
+                <span class="span-DiscountPercentage"
+                  >% <%= watchHome.DiscountPercentage %></span
+                >
+                <% } %>
               </p>
             </div>
-            <a href="/productDetail" class="btn-outline">Ver Detalles</a>
-          </article>
-          <article class="card">
-            <img
-              alt="Omega Seamaster 007 - Titanio, Marrón"
-              src="/images/productos/hombres/omegaSeamaster.jpg"
-            />
-            <div class="card-content">
-              <h3>Omega Seamaster 007 - Titanio</h3>
-              <p>
-                <span class="span-price-original">$120.00</span>
-                <span class="span-price--current">$84.00</span>
-              </p>
+            <div class="btn-group">
+              <a href="/products/<%= watchHome.Id %>" class="btn-outline"
+                >Ver Detalles</a
+              >
+              <button class="btn-outline">
+                <i class="bx bxs-shopping-bag"></i> Añadir al carrito
+              </button>
             </div>
-            <a href="/productDetail" class="btn-outline">Ver Detalles</a>
           </article>
-          <article class="card">
-            <img
-              alt="Seiko Neo Classic SUR632P1"
-              src="/images/productos/mujeres/SeikoNeoClassic.jpg"
-            />
-            <div class="card-content">
-              <h3>Seiko Neo Classic SUR632P1</h3>
-              <p>
-                <span class="span-price-original">$204.00</span>
-                <span class="span-price--current">$195.00</span>
-              </p>
-            </div>
-            <a href="/productDetail" class="btn-outline">Ver Detalles</a>
-          </article>
-          <article class="card">
-            <img
-              alt="RelojCitizenEco-Drive"
-              src="/images/productos/mujeres/RelojCitizenEco-Drive.webp"
-            />
-            <div class="card-content">
-              <h3>Reloj Citizen Eco-Drive para hombre</h3>
-              <p>
-                <span class="span-price-original">$221.00</span>
-                <span class="span-price--current">$154.00</span>
-              </p>
-            </div>
-            <a href="/productDetail" class="btn-outline">Ver Detalles</a>
-          </article>
-          <article class="card">
-            <img
-              alt="Reloj clásico esfera azul para hombre Mathey Tissot "
-              src="/images/productos/hombres/RelojClasicoEsferaAzulTissot.webp"
-            />
-            <div class="card-content">
-              <h3>Reloj clásico esfera azul Mathey Tissot</h3>
-              <p>
-                <span class="span-price-original">$370.00</span>
-                <span class="span-price--current">$258.00</span>
-              </p>
-            </div>
-            <a href="/productDetail" class="btn-outline">Ver Detalles</a>
-          </article>
-          <article class="card">
-            <img
-              alt="Reloj para hombre Skagen multifunción "
-              src="/images/productos/hombres/RelojsSkagenMultifuncion.webp"
-            />
-            <div class="card-content">
-              <h3>Reloj para hombre Skagen multifunción</h3>
-              <p>
-                <span class="span-price-original">$133.00</span>
-                <span class="span-price--current">$120.00</span>
-              </p>
-            </div>
-            <a href="/productDetail" class="btn-outline">Ver Detalles</a>
-          </article>
+          <% } %>
         </div>
       </section>
+
       <section class="container-banner">
-        <a href="#"
-          ><img alt="bannerCartier" src="/images/banners/bannerNiños.png"
-        /></a>
+        <div class="container-category">
+          <img src="/images/banners/hombres.jpg" alt="" />
+          <h4 class="title-category">Hombres</h4>
+        </div>
+        <div class="container-category">
+          <img src="/images/banners/mujeres.jpg" alt="" />
+          <h4 class="title-category">Mujeres</h4>
+        </div>
+        <div class="container-category">
+          <img src="/images/banners/Niños.jpg" alt="" />
+          <h4 class="title-category">Niños</h4>
+        </div>
       </section>
-      <section>
-        <h3>Nuevos Lanzamientos para Niños</h3>
+
+      <section class="container-products">
+        <h2>Nuevos Lanzamientos para Niños</h2>
         <div class="grid-container">
+          <% for (let watchHome of kidsWatches) { %>
           <article class="card">
-            <img
-              alt="Reloj de cuarzo analógico Lacoste"
-              src="/images/productos/niños/relojCurzoanalógico.webp"
-            />
-            <div class="card-content">
-              <h3>Reloj de cuarzo analógico Lacoste</h3>
-              <p>$25.60</p>
+            <div class="card-img">
+              <img alt="<%= watchHome.Name %>" src="<%= watchHome.Image %>" />
             </div>
-            <a href="/productDetail" class="btn-outline">Ver Detalles</a>
-          </article>
-          <article class="card">
-            <img
-              alt="Reloj Disney Minnie Mouse"
-              src="/images/productos/niños/RelojMiniMouse.webp"
-            />
             <div class="card-content">
-              <h3>Reloj Disney Minnie Mouse</h3>
-              <p>$18.95</p>
+              <h3><%= watchHome.Name %></h3>
+              <p>
+                <span class="span-price-original">$<%= watchHome.Price %></span>
+                <% if (watchHome.DiscountPercentage > 0) { %>
+                <span class="span-DiscountPercentage"
+                  >% <%= watchHome.DiscountPercentage %></span
+                >
+                <% } %>
+              </p>
             </div>
-            <a href="/productDetail" class="btn-outline">Ver Detalles</a>
-          </article>
-          <article class="card">
-            <img
-              alt="Reloj Tikkers con tema de fútbol"
-              src="/images/productos/niños/RelojTikkersFultbol.webp"
-            />
-            <div class="card-content">
-              <h3>Reloj Tikkers con tema de fútbol</h3>
-              <p>$17.92</p>
+            <div class="btn-group">
+              <a href="/products/<%= watchHome.Id %>" class="btn-outline"
+                >Ver Detalles</a
+              >
+              <button class="btn-outline">
+                <i class="bx bxs-shopping-bag"></i> Añadir al carrito
+              </button>
             </div>
-            <a href="/productDetail" class="btn-outline">Ver Detalles</a>
           </article>
-          <article class="card">
-            <img
-              alt="Reloj Tikkers con brillo"
-              src="/images/productos/niños/relojTikkersConBrillo.webp"
-            />
-            <div class="card-content">
-              <h3>Reloj Tikkers para niños con brillo</h3>
-              <p>$20.65</p>
-            </div>
-            <a href="/productDetail" class="btn-outline">Ver Detalles</a>
-          </article>
-          <article class="card">
-            <img
-              alt="Relojes inteligentes impermeables"
-              src="/images/productos/niños/RelojImpermeable.webp"
-            />
-            <div class="card-content">
-              <h3>Relojes inteligentes impermeables</h3>
-              <p>$16.12</p>
-            </div>
-            <a href="/productDetail" class="btn-outline">Ver Detalles</a>
-          </article>
-          <article class="card">
-            <img
-              alt="Reloj inteligente con localizador GPS"
-              src="/images/productos/niños/RelojInteligenteConGPS.webp"
-            />
-            <div class="card-content">
-              <h3>Reloj inteligente con localizador GPS</h3>
-              <p>$17.57</p>
-            </div>
-            <a href="/productDetail" class="btn-outline">Ver Detalles</a>
-          </article>
+          <% } %>
         </div>
       </section>
-      <section class="container-bannerEntrega">
-        <img alt="banner de entrega" src="/images/banners/banner2.jpg" />
-        <div>
-          <i class="bx bxs-truck"></i>
-          <p>Envío Gratis</p>
-          <span>En compras mayores a $100</span>
+
+      <div class="comentarios">
+        <h2>Reseñas de nuestros clientes</h2>
+        <div class="comentarios-lista">
+          <div class="comentario">
+            <div class="avatar">
+              <img src="avatar1.jpg" alt="Avatar del cliente" />
+            </div>
+            <div class="contenido">
+              <h3>Muy recomendable</h3>
+              <p>
+                La experiencia en esta página web es excelente. La atención al
+                cliente es eficiente y la navegación es fluida. ¡Sin duda
+                volveré a comprar aquí!
+              </p>
+              <div class="calificacion">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+            </div>
+          </div>
+
+          <div class="comentario">
+            <div class="avatar">
+              <img src="avatar2.jpg" alt="Avatar del cliente" />
+            </div>
+            <div class="contenido">
+              <h3>Altamente recomendable</h3>
+              <p>
+                Comprar en esta página web ha sido una experiencia muy
+                satisfactoria. La plataforma es intuitiva y el servicio es muy
+                eficiente. ¡Volveré a utilizarla!
+              </p>
+              <div class="calificacion">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+            </div>
+          </div>
+
+          <div class="comentario">
+            <div class="avatar">
+              <img src="avatar3.jpg" alt="Avatar del cliente" />
+            </div>
+            <div class="contenido">
+              <h3>Excelente servicio</h3>
+              <p>
+                El sitio ofrece una experiencia de compra excepcional. La
+                navegación es fácil y los procesos son rápidos. La atención al
+                cliente es de primera calidad.
+              </p>
+              <div class="calificacion">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+            </div>
+          </div>
         </div>
-        <div>
-          <i class="bx bx-time"></i>
-          <p>Plazo de Entrega</p>
-          <span>Recibe en 24 horas</span>
-        </div>
-      </section>
+      </div>
     </main>
 
     <%- include('partials/footer') %>
 
-    <script src="/javascripts/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
   </body>
 </html>

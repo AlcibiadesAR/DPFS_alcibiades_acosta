@@ -1,0 +1,50 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: "Lora", serif;
+    font-weight: 200;
+    line-height: 1.6;
+  }
+  
+  html,
+  body {
+    height: 100%;
+  }
+  
+  .title-products {
+    margin: 12px 5px;
+    font-size: 30px;
+  }
+
+  .search-form-catalog {
+    margin: 20px 0 0 10px;
+    max-width: 600px;
+  }
+
+  @media only screen and (min-width: 600px){
+    .title-products {
+      margin: 12px;
+    }
+  }
+
+  @media only screen and (min-width: 1024px){
+    main{
+      width: 90%;
+      margin: 0 auto;
+    }
+
+    .title-products {
+      margin: 40px 5px;
+      font-size: 50px;
+    }
+
+    .search-form-catalog {
+      margin: 20px 0;
+    }
+  
+  }
+  

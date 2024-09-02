@@ -1,0 +1,33 @@
+input[type="text"],
+input[type="number"] {
+  width: 100%;
+  margin: 10px auto;
+  padding: 6px;
+}
+
+.terms-label a, .link-iniciarSesion a{
+  color: #800020;
+  font-size: 14px;
+}
+
+.link-iniciarSesion a{
+  margin-left: 10px;
+}
+
+.link-iniciarSesion {
+  margin-bottom: 40px;
+}
+
+
+@media only screen and (min-width: 1024px) {
+  input[type="text"],
+  input[type="number"] {
+    padding: 14px;
+    font-size: 20px;
+  }
+
+  .terms-label a, .link-iniciarSesion a{
+    color: #800020;
+    font-size: 20px;
+  }
+}

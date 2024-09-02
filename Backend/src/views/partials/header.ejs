@@ -1,29 +1,59 @@
-<header>
+<header class="<%= headerClass %>">
   <nav class="navbar">
     <div class="logo">
       <a href="/">EleganceTimeShop</a>
     </div>
+
     <div class="icons">
-      <div class="navbar-menu-desktop">
-        <a href="/">Inicio</a>
-        <a href="#">Productos</a>
-        <a href="#">Categorías</a>
-        <a href="#">Ofertas</a>
-      </div>
-      <i class="bx bxs-user" id="icon-menu-user"></i>
-      <div class="menu-user" id="menu-user">
-        <a href="/login">Iniciar Sesión</a>
-        <a href="/register">Registrarse</a>
-        <a href="#">Historial de compras</a>
-        <a href="/creacion">Creación de productos</a>
-        <a href="/edicion">Edición de productos</a>
-      </div>
       <i class="ri-menu-line" id="menu"></i>
+      <ul class="navbar-menu-desktop">
+        <li><a href="/">Inicio</a></li>
+        <li><a href="/products">Catálogo</a></li>
+        <li><a href="#">Marcas</a></li>
+
+        <li class="dropdown">
+          <a class="link-menu-categories" href="#" data-bs-toggle="dropdown">
+            Categorías
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a class="dropdown-item" href="/products/category/Hombres"
+                >Hombres</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" href="/products/category/Mujeres"
+                >Mujeres</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" href="/products/category/Niños">Niños</a>
+            </li>
+          </ul>
+        </li>
+
+        <li><a href="/products/offers" class="Offer-link">Ofertas</a></li>
+
+        <li class="dropdown">
+          <i class="bx bxs-user" data-bs-toggle="dropdown"></i>
+          <ul class="dropdown-menu">
+            <li>
+              <a class="dropdown-item" href="/users/login">Iniciar Sesión</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="/users/register">Registrarse</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="/admi/administrar">Administrar</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+
       <div class="cart-icon-container">
-        <a href="/productCart"><i class="bx bxs-shopping-bag"></i></a>
+        <a href="/users/productCart"><i class="bx bxs-shopping-bag"></i></a>
         <span class="cart-count">1</span>
       </div>
     </div>
   </nav>
-  </header>
-
+</header>

@@ -1,0 +1,16 @@
+/* general */
+@import url('general/base.css');
+@import url('general/layout.css');
+@import url('general/index.css');
+
+/* Productos */
+@import url('productos/details.css');
+@import url('productos/carts.css');
+
+/* Administración */
+@import url('users/admiPrincipal.css');
+@import url('users/login.css');
+@import url('users/register.css');
+
+/* Error */
+@import url('error.css');

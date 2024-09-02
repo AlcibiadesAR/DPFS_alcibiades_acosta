@@ -1,0 +1,259 @@
+.table-admi {
+  width: 95%;
+  margin: 10px auto 50px;
+  background-color: #fff;
+  border-collapse: collapse;
+}
+
+.table-admi,
+.table-admi .th-admi,
+.table-admi .td-admi {
+  border: 1px solid #ddd;
+  font-size: 13px;
+  text-align: center;
+  padding: 20px 10px;
+}
+
+.table-admi .th-admi {
+  padding: 10px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #800020;
+}
+
+#productTh {
+  width: 43%;
+  padding: 10px 20px;
+}
+
+.btn {
+  display: inline;
+  color: #fff;
+  cursor: pointer;
+  align-items: center;
+  text-decoration: none;
+}
+
+.btn i {
+  margin: 0 6px;
+}
+
+.btn-create-admi {
+  display: inline-block;
+  width: 80px;
+  margin: 10px;
+  padding: 2px 0;
+  text-align: center;
+  color: #ffffff;
+  background-color: #b7b4b4;
+  transition: background-color 0.3s ease;
+  border-radius: 2px;
+  text-decoration: none;
+}
+
+.btn-create-admi:hover {
+  background-color: #800020;
+}
+
+.btn-edit-admi,
+.btn-delete-admi,
+.btn-view-admi {
+  font-size: 16px;
+}
+
+.btn-edit-admi {
+  color: #1a7822;
+}
+
+.btn-delete-admi {
+  color: #6f1414;
+  cursor: pointer;
+}
+
+.btn-view-admi {
+  color: #91969c;
+}
+
+.btn-edit-admi:hover {
+  color: #2c9b35;
+}
+
+.btn-delete-admi:hover {
+  color: #a81b1b;
+}
+
+.btn-view-admi:hover {
+  color: #b7b4b4;
+}
+
+/*creación*/
+.box-form-admi {
+  display: flex;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  max-width: 599px;
+}
+
+.box-form-admi form {
+  width: 90%;
+}
+
+textarea {
+  width: 100%;
+}
+
+#description {
+  font-size: 15px;
+  padding: 10px;
+}
+
+label {
+  font-weight: bold;
+  margin: 10px auto;
+}
+
+input[type="file"]::-webkit-file-upload-button {
+  border: none;
+  color: #fff;
+  background-color: #800020;
+  padding: 8px;
+  font-size: 13px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type="file"]::-webkit-file-upload-button:hover {
+  background-color: #9e2442;
+}
+
+input[type="file"] {
+  font-size: 12px;
+}
+
+.btn-group-admi {
+  display: flex;
+  margin-bottom: 40px;
+}
+
+.btn-group-admi a {
+  display: flex;
+  align-items: center;
+}
+
+.image-edition {
+  width: 150px;
+  display: flex;
+}
+
+@media only screen and (min-width: 600px) {
+  .table-admi {
+    width: 96%;
+  }
+
+  .btn-edit-admi,
+  .btn-delete-admi,
+  .btn-view-admi {
+    font-size: 18px;
+  }
+
+  /*Creación*/
+  .box-form-admi {
+    max-width: 900px;
+  }
+
+  .box-form-admi form {
+    width: 80%;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .table-admi {
+    width: 100%;
+  }
+
+  .table-admi .th-admi,
+  .table-admi .td-admi {
+    padding: 16px;
+    font-size: 24px;
+  }
+
+  .btn i {
+    margin: 0 auto;
+  }
+
+  .btn-create-admi {
+    width: 150px;
+    font-size: 24px;
+    margin: 10px auto;
+  }
+
+  .btn-edit-admi,
+  .btn-delete-admi,
+  .btn-view-admi {
+    color: #fff;
+    padding: 10px 40px;
+    border-radius: 5px;
+  }
+
+  .btn-edit-admi {
+    background-color: #1a7822;
+  }
+
+  .btn-delete-admi {
+    background-color: #761414;
+  }
+
+  .btn-view-admi {
+    background-color: #91969c;
+  }
+
+  .btn-edit-admi:hover,
+  .btn-delete-admi:hover,
+  .btn-view-admi:hover {
+    color: #fff;
+  }
+
+  .btn-edit-admi:hover {
+    background-color: #2c9b35;
+  }
+
+  .btn-delete-admi:hover {
+    background-color: #a81b1b;
+  }
+
+  .btn-view-admi:hover {
+    background-color: #b7b4b4;
+  }
+
+  /* Creación-Escritorio*/
+  .box-form-admi {
+    max-width: 1024px;
+  }
+
+  .box-form-admi form {
+    width: 90%;
+  }
+
+  label {
+    font-size: 20px;
+  }
+
+  input[type="file"]::-webkit-file-upload-button {
+    padding: 14px;
+    font-size: 20px;
+  }
+
+  input[type="file"] {
+    font-size: 20px;
+  }
+  
+  .image-edition {
+    width: 250px;
+  }
+
+  #description {
+    font-size: 20px;
+  }
+}

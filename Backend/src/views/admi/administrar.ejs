@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <%- include('../partials/head', { pageTitle: title }) %>
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <%- include('../partials/header', { headerClass: 'header-black'}) %>
+    <main>
+      <h1 class="title-products">Administración</h1>
+      <a href="/admi/create" class="btn-create-admi">
+        <i class="bx bx-plus"></i> Crear
+      </a>
+      <table class="table-admi">
+        <thead>
+          <tr>
+            <th class="th-admi">ID</th>
+            <th class="th-admi" id="productTh">Nombre</th>
+            <th class="th-admi">Ver</th>
+            <th class="th-admi">Editar</th>
+            <th class="th-admi">Eliminar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% list.forEach(function(product) { %>
+          <tr>
+            <td class="td-admi"><%= product.Id %></td>
+            <td class="td-admi"><%= product.Name %></td>
+            <td class="td-admi">
+              <a href="/products/<%= product.Id %>" class="btn-view-admi">
+                <i class="bx bx-show"></i>
+              </a>
+            </td>
+            <td class="td-admi">
+              <a href="/admi/edit/<%= product.Id %>" class="btn-edit-admi">
+                <i class="bx bx-edit"></i>
+              </a>
+            </td>
+            <td class="td-admi">
+              <form
+                action="/admi/delete/<%= product.Id %>?_method=DELETE"
+                method="POST"
+              >
+                <button type="submit" style="display: none"></button>
+                <i
+                  class="bx bx-trash btn-delete-admi"
+                  onclick="this.parentElement.submit(); return confirm('¿Estás seguro de que deseas eliminar este producto?');"
+                ></i>
+              </form>
+            </td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </main>
+
+    <%- include('../partials/footer') %>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+  </body>
+</html>

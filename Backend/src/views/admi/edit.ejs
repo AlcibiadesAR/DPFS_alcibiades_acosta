@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <%- include('../partials/head', { pageTitle: title }) %>
+  </head>
+  <body>
+    <%- include('../partials/header', { headerClass: 'header-black'}) %>
+    <main>
+      <section class="box-form-admi">
+        <h1 class="title-products">Actualizar Producto</h1>
+        <form
+          action="/admi/edit/<%= edit.Id %>?_method=PUT"
+          method="POST"
+          class="form-admi"
+          enctype="multipart/form-data"
+        >
+          <label for="name">Nombre del Producto:</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            value="<%= edit.Name %>"
+            required
+          />
+
+          <label for="description">Descripción:</label>
+          <textarea
+            rows="6"
+            cols="50"
+            id="description"
+            name="description"
+            required
+          >
+           <%= edit.Description %></textarea
+          >
+          <label for="image">Imagen:</label>
+          <% if (edit.Image) { %>
+          <img
+            class="image-edition"
+            src="<%= edit.Image %>"
+            alt="Imagen del Producto"
+          />
+          <% } %>
+          <input type="hidden" name="oldImage" value="<%= edit.Image %>" />
+          <input type="file" id="image" name="image" />
+
+          <label for="category">Categoría:</label>
+          <input
+            type="text"
+            name="category"
+            id="category"
+            value="<%= edit.Category %>"
+            required
+          />
+
+          <label for="colors">Colores Disponibles:</label>
+          <input
+            type="text"
+            id="colors"
+            name="colors"
+            value="<%= edit.Colors %>"
+          />
+
+          <label for="price">Precio:</label>
+          <input
+            type="number"
+            id="price"
+            name="price"
+            step="0.01"
+            value="<%= edit.Price %>"
+            required
+          />
+
+          <label for="brand">Marca:</label>
+          <input
+            type="text"
+            id="brand"
+            name="brand"
+            value="<%= edit.Brand %>"
+            required
+          />
+
+          <label for="model">Modelo:</label>
+          <input
+            type="text"
+            id="model"
+            name="model"
+            value="<%= edit.Model %>"
+            required
+          />
+
+          <label for="box">Tipo de Caja:</label>
+          <input
+            type="text"
+            id="box"
+            name="box"
+            value="<%= edit.Box %>"
+            required
+          />
+
+          <label for="band">Banda:</label>
+          <input
+            type="text"
+            id="band"
+            name="band"
+            value="<%= edit.Band %>"
+            required
+          />
+
+          <label for="dial">Dial:</label>
+          <input
+            type="text"
+            id="dial"
+            name="dial"
+            value="<%= edit.Dial %>"
+            required
+          />
+
+          <label for="movement">Movimiento:</label>
+          <input
+            type="text"
+            id="movement"
+            name="movement"
+            value="<%= edit.Movement %>"
+            required
+          />
+
+          <label for="waterResistance">Resistencia al Agua:</label>
+          <input
+            type="text"
+            id="waterResistance"
+            name="waterResistance"
+            value="<%= edit.WaterResistance %>"
+            required
+          />
+
+          <label for="specialFeatures">Características Especiales:</label>
+          <input
+            type="text"
+            id="specialFeatures"
+            name="specialFeatures"
+            value="<%= edit.SpecialFeatures %>"
+          />
+
+          <label for="stock">Cantidad en Stock:</label>
+          <input
+            type="number"
+            id="stock"
+            name="stock"
+            value="<%= edit.Stock %>"
+            required
+          />
+
+          <div class="radio-group">
+            <label class="radio-label">Oferta:</label>
+            <div class="radio-option">
+              <input type="radio" id="offer-true" name="offer" value="true" <%=
+              edit.Offer ? 'checked' : '' %> />
+              <label for="offer-true">Sí</label>
+            </div>
+            <div class="radio-option">
+              <input type="radio" id="offer-false" name="offer" value="false"
+              <%= !edit.Offer ? 'checked' : '' %> />
+              <label for="offer-false">No</label>
+            </div>
+          </div>
+
+          <label for="discount">Descuento (%):</label>
+          <input
+            type="number"
+            id="discount"
+            name="discount"
+            min="0"
+            max="100"
+            value="<%= edit.DiscountPercentage %>"
+          />
+
+          <div class="btn-group-admi">
+            <a href="/admi/administrar" class="btn-outline">Volver</a>
+            <button type="submit" class="btn-submit">Actualizar</button>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <%- include('../partials/footer') %>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+  </body>
+</html>
