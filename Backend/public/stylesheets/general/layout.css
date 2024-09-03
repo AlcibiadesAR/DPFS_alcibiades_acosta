@@ -97,6 +97,23 @@ header {
   margin-right: 20px;
 }
 
+.offcanvas-body ul {
+  padding-left: 0;
+}
+.offcanvas-body li {
+  list-style: none;
+}
+.offcanvas-body a {
+  display: block;
+  padding: 10px 15px;
+  color: #800020;
+  text-decoration: none;
+}
+.offcanvas-body a:hover {
+  background-color: #800020;
+  color: #fff;
+}
+
 /*footer*/
 footer {
   width: 100%;

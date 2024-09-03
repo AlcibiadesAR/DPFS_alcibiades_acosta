@@ -1,112 +1,12 @@
 [
   {
     "id": 1,
-    "firstName": "David",
-    "lastName": "Smith",
-    "email": "david.smith0@bbb.org",
-    "password": "David43S#",
-    "type": "User",
-    "avatar": "/images/avatars/tostada.jpg",
-    "phone": "+1-555-1234",
-    "shippingAddress": "123 Main St, Springfield, IL, 62701"
-  },
-  {
-    "id": 2,
-    "firstName": "",
-    "lastName": "",
-    "email": "emily.johnson1@hatena.ne.jp",
-    "password": "",
-    "type": "Guest",
-    "avatar": "",
-    "phone": "",
-    "shippingAddress": ""
-  },
-  {
-    "id": 3,
-    "firstName": "Michael",
-    "lastName": "Williams",
-    "email": "michael.williams2@foxnews.com",
-    "password": "Michael21@W",
-    "type": "Admin",
-    "avatar": "/images/avatars/tostada.jpg",
-    "phone": "+1-555-5678",
-    "shippingAddress": "456 Elm St, Metropolis, IL, 62960"
-  },
-  {
-    "id": 4,
-    "firstName": "Jessica",
-    "lastName": "Brown",
-    "email": "jessica.brown3@skype.com",
-    "password": "Jessica99$B",
-    "type": "Admin",
-    "avatar": "/images/avatars/tostada.jpg",
-    "phone": "+1-555-8765",
-    "shippingAddress": "789 Oak St, Gotham, NY, 10001"
-  },
-  {
-    "id": 5,
-    "firstName": "Ryan",
-    "lastName": "Davis",
-    "email": "ryan.davis4@wired.com",
-    "password": "Ryan34!D",
-    "type": "Admin",
-    "avatar": "/images/avatars/polloCorazon.jpg",
-    "phone": "+1-555-4321",
-    "shippingAddress": "101 Pine St, Star City, CA, 90001"
-  },
-  {
-    "id": 6,
-    "firstName": "Sophia",
-    "lastName": "Miller",
-    "email": "sophia.miller5@marriott.com",
-    "password": "Sophia76@M",
-    "type": "User",
-    "avatar": "",
-    "phone": "+1-555-6789",
-    "shippingAddress": "202 Birch St, Smallville, KS, 66002"
-  },
-  {
-    "id": 7,
-    "firstName": "",
-    "lastName": "",
-    "email": "james.wilson6@europa.eu",
-    "password": "",
-    "type": "Guest",
-    "avatar": "",
-    "phone": "",
-    "shippingAddress": ""
-  },
-  {
-    "id": 8,
-    "firstName": "Olivia",
-    "lastName": "Moore",
-    "email": "olivia.moore7@reverbnation.com",
-    "password": "Olivia89@M",
-    "type": "User",
-    "avatar": "/images/avatars/jala.jpg",
-    "phone": "+1-555-9876",
-    "shippingAddress": "303 Cedar St, Riverdale, NY, 10002"
-  },
-  {
-    "id": 9,
-    "firstName": "Lucas",
-    "lastName": "Taylor",
-    "email": "lucas.taylor8@qq.com",
-    "password": "Lucas67#T",
-    "type": "User",
-    "avatar": "/images/avatars/kipa.jpg",
-    "phone": "+1-555-3456",
-    "shippingAddress": "404 Spruce St, Sunnydale, CA, 90002"
-  },
-  {
-    "id": 10,
-    "firstName": "",
-    "lastName": "",
-    "email": "ava.anderson9@blogtalkradio.com",
-    "password": "",
-    "type": "Guest",
-    "avatar": "",
-    "phone": "",
-    "shippingAddress": ""
+    "firstName": "Alcibiades",
+    "lastName": "Acosta",
+    "email": "alcibiadesacosta99@gmail.com",
+    "password": "$2a$10$QbFj8wj5OBYkj5Y2givJs.F5MxhFCfzbBleWqThYPi/1BdkpBXU5q",
+    "type": "Administrador",
+    "phone": "1234-5678",
+    "avatar": "/images/users/Acosta.png"
   }
 ]

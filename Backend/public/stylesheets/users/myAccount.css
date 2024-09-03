@@ -1,0 +1,117 @@
+.account-info {
+  display: block;
+  width: 100%;
+  height: 100vh;
+}
+
+.title-greeting {
+  margin: 20px;
+  font-size: 16px;
+  text-align: center;
+}
+
+#imgCase {
+  text-align: center;
+}
+
+#circular-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
+
+.profile-picture {
+  position: relative;
+  display: block;
+  font-size: small;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.edit-icon {
+  position: absolute;
+  top: 120px;
+  left: 95px;
+  background-color: #b7b4b4;
+  color: white;
+  padding: 10px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.edit-icon:hover {
+  background-color: #800020;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  box-shadow: 0 0 5px #b7b4b4;
+  border-color: #800020;
+  outline: none;
+}
+
+#edit-icon {
+  cursor: pointer;
+  color: #000000;
+}
+
+#btn-cerrarSesion {
+  background-color: #800020;
+  transition: all 0.5s ease;
+}
+
+#btn-cerrarSesion:hover {
+  background-color: #9e2442;
+}
+
+.btn-group-profile {
+  display: flex;
+  gap: 20px;
+}
+
+@media only screen and (min-width: 600px) {
+  .title-greeting {
+    margin: 30px auto;
+    font-size: 20px;
+    text-align: start;
+  }
+
+  #imgCase {
+    text-align: start;
+  }
+
+  #circular-image {
+    width: 200px;
+    height: 200px;
+  }
+
+  .edit-icon {
+    top: 160px;
+    left: 45px;
+  }
+
+  .profile-picture {
+    margin-bottom: 20px;
+    text-align: start;
+  }
+  
+}
+
+@media only screen and (min-width: 1024px) {
+  .title-greeting {
+    margin: 30px auto;
+    font-size: 35px;
+  }
+
+  #circular-image {
+    width: 270px;
+    height: 270px;
+  }
+
+  .edit-icon {
+    position: absolute;
+    top: 240px;
+    left: 50px;
+  }
+}

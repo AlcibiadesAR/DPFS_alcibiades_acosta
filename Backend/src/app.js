@@ -3,6 +3,8 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 const methodOverride = require("method-override");
+const session = require('express-session');
+require('dotenv').config();
 
 var indexRouter = require("./routes/index");
 let productsRouter = require("./routes/products");
@@ -21,6 +23,22 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "../public")));
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride("_method"));
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false } 
+}));
+
+function authMiddleware(req, res, next) {
+  if (req.session.user && req.session.user.role !== 'guest') {
+    next(); 
+  } else {
+    res.redirect('/login'); 
+  }
+}
+
+module.exports = authMiddleware;
 
 // Rutas
 app.use("/", indexRouter);

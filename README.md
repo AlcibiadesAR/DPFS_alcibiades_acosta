@@ -49,23 +49,22 @@ Aquí muestro mi lista de sitios de referencia que he investigado para inspirarm
 5. **[World Time Store](https://worldtimestore.com/)**
    - **Por qué fue elegido**: World Time Store ofrece una gran variedad de relojes y presenta un diseño amigable para el usuario. Su enfoque en la categorización de productos y la facilidad de navegación son aspectos valiosos para mejorar la experiencia de compra.
 
-
-# Retrospectiva del Sprint 3
+# Retrospectiva del Sprint 4
 
 ## Qué Hice Bien
-- **Integración de EJS**: Implementé con éxito EJS como motor de plantillas, lo que facilitó la reutilización de componentes comunes como el `header` y `footer`, y permitió que el contenido se mostrara de manera dinámica.
-- **Organización de Vistas**: Separé las vistas en carpetas dedicadas (`products` y `users`) y creé archivos parciales (`head.ejs`, `header.ejs`, `footer.ejs`). Esto hizo que la estructura del proyecto fuera mucho más organizada y fácil de manejar.
+- **Integración de Productos y Usuarios**: Implementé la funcionalidad para mostrar productos y usuarios de manera dinámica a través de archivos JSON. Esto permitió que el sitio web comenzara a cobrar vida y ofreciera interacciones más realistas.
+- **Implementación de CRUD**: Desarrollé las operaciones CRUD (Crear, Leer, Actualizar, Borrar) para productos, lo que permite una gestión completa de los datos de productos.
+- **Organizar la estructura CSS**: Organize un poco mejor la estructura del css por carpetas asi pude encontrar mas rápidos mi estilos que queria mejorar.
 
 ## Qué Puedo Mejorar
-- **Lógica de Actualización**: La implementación de la lógica para actualizar productos tomó más tiempo del previsto, pero finalmente se logró. Debo mejorar la planificación para evitar retrasos similares en el futuro.
-- **Estructura de CSS**: La organización de los archivos CSS necesita una mejora para tener una estructura más clara y eficiente. Esto ayudará a facilitar el mantenimiento y a asegurar una mejor integración con el diseño.
+- **Optimización de la Lógica de CRUD**: Algunas operaciones CRUD podrían beneficiarse de una optimización adicional para mejorar la eficiencia y reducir tiempos de respuesta. Debería considerar mejorar el rendimiento en la manipulación de datos.
 
 ## Qué Debería Empezar a Hacer
-- **Optimizar la Lógica de Actualización**: Mejorar el enfoque y la planificación de la implementación de la lógica de actualización para evitar problemas y retrasos innecesarios.
-- **Revisar y Mejorar la Estructura de CSS**: Dedicar tiempo a revisar y reorganizar los archivos CSS para lograr una estructura más clara y coherente, facilitando el trabajo en futuras actualizaciones y mejoras.
+- **Implementar una Base de Datos**: Comenzar a utilizar una base de datos en lugar de archivos JSON para gestionar productos y usuarios. Esto facilitará el manejo de datos, mejorará la eficiencia y permitirá consultas más avanzadas.
+- **Revisar y Mejorar el Código de CRUD**: Analizar el código de las operaciones CRUD y realizar mejoras para asegurar que sean eficientes y fáciles de mantener.
 
 ## Qué Debería Dejar de Hacer
-- **Avanzar Sin Revisión**: Evitar pasar a nuevas tareas sin haber revisado y perfeccionado las tareas anteriores. Es importante asegurarse de que cada componente esté bien implementado y funcional antes de avanzar.
+- **Dependencia Exclusiva de Archivos JSON**: Evitar depender únicamente de archivos JSON para la gestión de datos. Implementar una base de datos para una gestión de datos más robusta y escalable.
 
 
 - [Tablero de Trello - EleganceTimeShop](https://trello.com/invite/b/66add0654360a21c3ee0576c/ATTI550dd1e39c6ac3a6898cb2ed5652da930AD5FCB5/desarrollo-elegancetimeshop)

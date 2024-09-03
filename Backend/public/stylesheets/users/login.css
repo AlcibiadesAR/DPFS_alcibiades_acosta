@@ -16,6 +16,18 @@
   text-align: center;
 }
 
+input {
+  border: 1px solid #aeadad; 
+  padding: 8px;
+  border-radius: 4px; 
+}
+
+input:focus {
+  border: 2px solid #aeadad;
+  outline: none; 
+}
+
+
 input[type="email"],
 input[type="password"], input[type="file"]  {
   width: 100%;
@@ -23,8 +35,27 @@ input[type="password"], input[type="file"]  {
   padding: 6px;
 }
 
+#eye-icon {
+  position: relative;
+  top: -40px;
+  right: 10px;
+  float: right;
+  font-size: 15px;
+  color: #aeadad;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+
+#eye-icon:hover {
+  color: rgb(61, 59, 59);
+}
+
 input[type="checkbox"] {
   cursor: pointer;
+}
+
+.terms-label{
+  font-weight: 400;
 }
 
 .btn-submit {
@@ -36,6 +67,7 @@ input[type="checkbox"] {
   background-color: #b7b4b4;
   cursor: pointer;
   border-radius: 5px;
+  transition: all .5s ease;
 }
 
 .btn-submit:hover {
@@ -60,11 +92,48 @@ input[type="checkbox"] {
   text-align: center;
 }
 
-.error {
+label {
   display: block;
-  margin: 5px auto;
-  font-size: 12px;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.upload-button {
+  background-color: #ccc; 
+  border: none; 
+  color: #333; 
+  padding: 10px 20px; 
+  border-radius: 5px; 
+  cursor: pointer; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+}
+
+.upload-button i {
+  margin-right: 5px;
+}
+
+.upload-button span {
+  font-size: 14px; 
+}
+
+.upload-button:hover {
+  background-color: #800020; 
+  color: #fff;
+}
+
+.upload-button:active {
+  background-color: #bbb; 
+}
+
+.error-input {
+  border-color: red;
+}
+
+.error {
   color: red;
+  font-size: 12px;
 }
 
 /*recuperación de contraseña*/
@@ -97,10 +166,25 @@ input[type="checkbox"] {
     width: 70%;
   }
 
+  input:focus {
+    border: 4px solid #aeadad;
+  }
+
   input[type="email"],
   input[type="password"] {
     padding: 14px;
     font-size: 20px;
+  }
+
+  #eye-icon {
+    position: relative;
+    top: -50px;
+    right: 10px;
+    float: right;
+    font-size: 18px;
+    color: #aeadad;
+    cursor: pointer;
+    transition: all 0.5s ease;
   }
 
   input[type="checkbox"] {
@@ -116,7 +200,11 @@ input[type="checkbox"] {
     font-size: 20px;
   }
 
-  .error {
+  .link-forgot-password{
+    margin-bottom: 70px;
+  }
+
+  .error-input {
     font-size: 16px;
   }
 }

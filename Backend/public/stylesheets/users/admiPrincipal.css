@@ -117,7 +117,7 @@ label {
 input[type="file"]::-webkit-file-upload-button {
   border: none;
   color: #fff;
-  background-color: #800020;
+  background-color: #b7b4b4;
   padding: 8px;
   font-size: 13px;
   border-radius: 4px;
@@ -241,8 +241,8 @@ input[type="file"] {
   }
 
   input[type="file"]::-webkit-file-upload-button {
-    padding: 14px;
-    font-size: 20px;
+    padding: 10px;
+    font-size: 18px;
   }
 
   input[type="file"] {
