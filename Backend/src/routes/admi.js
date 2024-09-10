@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const admiController = require("../Controllers/admiController");
-const authMiddlewareControllers = require("../Controllers/authMiddlewareControllers");
+const authMiddlewareControllers = require("../middleware/authMiddleware");
 const path = require("path");
 const multer = require("multer");
 
@@ -19,6 +19,9 @@ const upload = multer({ storage: storage });
 //get rutas
 // Ruta para la página principal de administración de los productos
 router.get("/admi/administrar", authMiddlewareControllers.MiddlewareAuth, admiController.pageAdministrar);
+
+// Ruta para buscar productos
+router.get("/admi/search", authMiddlewareControllers.MiddlewareAuth, admiController.searchProducts);
 
 // Ruta para la página de creación del producto
 router.get("/admi/create", authMiddlewareControllers.MiddlewareAuth, admiController.pageCreate);

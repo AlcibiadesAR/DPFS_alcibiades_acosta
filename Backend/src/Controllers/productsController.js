@@ -1,97 +1,198 @@
-const productDB = require("../../data/products.json");
+const DB = require("../../database/models");
+const getProductsWithImages = require("../middleware/imageMiddleware");
+const getCategoryIdByName = require("../middleware/categoryMiddleware");
+const Product = DB.Product;
+const op = DB.Sequelize.Op;
+
+const capitalizeFirstLetter = (string) => {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+};
 
 const Products = {
-  // Página del catálogo de productos
   pageProducts: (req, res) => {
-    try {
-      let listOfWatches = productDB;
-      return res.render("products/products", {
-        title: "Nuestros Relojes / EleganceTimeShop",
-        lista: listOfWatches,
+    const searchTerm = req.query.query || "";
+    getProductsWithImages(searchTerm)
+      .then((products) => {
+        if (products.length > 0) {
+          return res.render("products/products", {
+            title: "Nuestros Relojes / EleganceTimeShop",
+            lista: products,
+            query: searchTerm,
+          });
+        } else {
+          return res.render("products/products", {
+            title: "Nuestros Relojes / EleganceTimeShop",
+            lista: [],
+            query: searchTerm,
+            message:
+              "No se encontraron productos que coincidan con su búsqueda.",
+          });
+        }
+      })
+      .catch((error) => {
+        console.error("Error al cargar los productos:", error);
+        return res.status(500).render("error", {
+          title: "Error",
+          message: "Hubo un problema al cargar los productos.",
+        });
       });
-    } catch (error) {
-      console.error("Error al cargar el catálogo de productos:", error);
-      return res.status(500).render("error", {
-        title: "Error",
-        message: "Hubo un problema al cargar los productos.",
-      });
-    }
   },
 
-  // Página de ofertas
   pageOffer: (req, res, next) => {
-    try {
-      let offerProducts = productDB.filter((product) => product.Offer === true);
+    const searchTerm = req.query.query || "";
 
-      if (offerProducts.length > 0) {
+    getProductsWithImages(searchTerm)
+      .then((products) => {
+        const offerProducts = products.filter(
+          (product) => product.discount_percentage > 0
+        );
+
+        if (offerProducts.length > 0) {
+          return res.render("products/offer", {
+            title: "Nuestras Ofertas / EleganceTimeShop",
+            lista: offerProducts,
+            query: searchTerm,
+          });
+        } else {
+          return res.render("products/offer", {
+            title: "Nuestras Ofertas / EleganceTimeShop",
+            lista: [],
+            query: searchTerm,
+            message:
+              "No se encontraron productos en oferta para el término de búsqueda proporcionado.",
+          });
+        }
+      })
+      .catch((error) => {
+        console.error("Error al obtener ofertas:", error);
         return res.render("products/offer", {
-          title: "Nuestras Ofertas / EleganceTimeShop",  
-          lista: offerProducts,
+          title: "Nuestras Ofertas / EleganceTimeShop",
+          lista: [],
+          query: searchTerm,
+          message:
+            "Hubo un problema al buscar productos. Por favor, intente nuevamente.",
+        });
+      });
+  },
+
+  pageCategory: (req, res, next) => {
+    const category = req.params.category.toLowerCase();
+
+    getCategoryIdByName(category)
+      .then((categoryId) => {
+        if (!categoryId) {
+          return res.status(404).render("error", {
+            title: "Error 404",
+            message: `Categoría ${capitalizeFirstLetter(
+              category
+            )} no encontrada.`,
+          });
+        }
+
+        return Product.findAll({
+          include: [
+            {
+              association: "images",
+              where: { image_type: "product" },
+            },
+          ],
+          where: { category_id: categoryId },
+        });
+      })
+      .then((products) => {
+        if (products.length > 0) {
+          return res.render("products/category", {
+            title: `Relojes para ${capitalizeFirstLetter(
+              category
+            )} / EleganceTimeShop`,
+            lista: products,
+            TitleH1Category: `Relojes para ${capitalizeFirstLetter(category)}`,
+          });
+        } else {
+          return res.status(404).render("error", {
+            title: "Error 404",
+            message: `No hay relojes para la categoría ${capitalizeFirstLetter(
+              category
+            )}`,
+          });
+        }
+      })
+      .catch((error) => {
+        console.error("Error al obtener productos:", error);
+        return next(new Error("Hubo un problema al cargar los productos."));
+      });
+  },
+
+  pageDetails: (req, res, next) => {
+    const id = parseInt(req.params.id);
+
+    Product.findByPk(id, {
+      include: [
+        { association: "images" },
+        { association: "category" },
+        { association: "color" },
+        { association: "brand" },
+        { association: "model" },
+        { association: "box" },
+        { association: "dial" },
+        { association: "movement" },
+        { association: "band" },
+        { association: "waterResistance" },
+      ],
+    })
+      .then((pageDetailsID) => {
+        if (pageDetailsID) {
+          return Product.findAll({
+            where: { id: { [op.ne]: id } },
+            limit: 6,
+            include: [{ association: "images" }],
+          }).then((relatedProducts) => {
+            return res.render("products/productDetail", {
+              title: "Detalle del producto / EleganceTimeShop",
+              details: pageDetailsID,
+              relatedProducts: relatedProducts,
+            });
+          });
+        } else {
+          return res.status(404).render("error", {
+            title: "Error 404",
+            message: "Producto no encontrado.",
+          });
+        }
+      })
+      .catch(next);
+  },
+
+  pageBrand: (req, res, next) => {
+    const brandName = req.params.brand;
+  
+    Product.findAll({
+      include: [
+        { 
+          association: 'images' 
+        },
+        { 
+          association: 'brand', 
+          where: { name: brandName }
+        }
+      ]
+    })
+    .then(products => {
+      if (products.length > 0) {
+        res.render('products/brand', {
+          title: `${brandName}`,
+          lista: products
         });
       } else {
-        let err = new Error("No hay relojes en oferta");
-        err.status = 404;
-        return next(err);
-      }
-    } catch (error) {
-      console.error("Error al obtener ofertas:", error);
-      let err = new Error("Hubo un problema al cargar las ofertas.");
-      err.status = 500;
-      return next(err);
-    }
-  },
-
-  pageCategory: (req, res) => {
-    try {
-      const category = req.params.category.toLowerCase();
-      const categoryProducts = productDB.filter((product) => {
-        return product.Category && product.Category.toLowerCase() === category;
-      });
-
-      if (categoryProducts.length) {
-        return res.render("products/category", {
-          title: `Relojes para ${
-            category.charAt(0).toUpperCase() + category.slice(1)
-          } / EleganceTimeShop`,
-          
-          lista: categoryProducts,
-          TitleH1Category: `Relojes para ${
-            category.charAt(0).toUpperCase() + category.slice(1)
-          }`,
+        res.render('products/brand', {
+          title: `Productos de ${brandName}`,
+          lista: [],
+          message: 'No se encontraron productos para esta marca.'
         });
       }
-      return res.status(404).render("error", {
-        title: "Error 404",
-        message: `No hay relojes para la categoría ${
-          category.charAt(0).toUpperCase() + category.slice(1)
-        }`,
-      });
-    } catch (error) {
-      console.error("Error al cargar la categoría:", error);
-      return res.status(500).render("error", {
-        title: "Error",
-        message: "Hubo un problema al cargar la categoría.",
-      });
-    }
-  },
-
-  // Página de detalles del producto
-  pageDetails: (req, res, next) => {
-    let id = parseInt(req.params.id);
-    let pageDetailsID = productDB.find((watch) => watch.Id === id);
-
-    if (pageDetailsID) {
-      let relatedProducts = productDB
-        .filter((watch) => watch.Id !== id)
-        .slice(0, 6);
-
-      return res.render("products/productDetail", {
-        title: "Detalle del producto / EleganceTimeShop",
-        details: pageDetailsID,
-        relatedProducts: relatedProducts,
-      });
-    }
-  },
+    })
+    .catch(next);
+  }
 };
 
 module.exports = Products;

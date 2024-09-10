@@ -3,13 +3,15 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 const methodOverride = require("method-override");
-const session = require('express-session');
-require('dotenv').config();
+const session = require("express-session");
+require("dotenv").config();
+const addBrandsToLocals = require("./middleware/brandMiddleware");
 
 var indexRouter = require("./routes/index");
 let productsRouter = require("./routes/products");
 let usersRouter = require("./routes/users");
 let admiRouter = require("./routes/admi");
+let admiUsersRouter = require("./routes/admiUsers");
 
 var app = express();
 
@@ -21,30 +23,31 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "../public")));
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(session({
-  secret: process.env.SESSION_SECRET,
+  secret: 'Proyecto final',
   resave: false,
-  saveUninitialized: true,
-  cookie: { secure: false } 
+  saveUninitialized: false,
+  cookie: {
+    httpOnly: true,
+    secure: false, 
+    maxAge: 30 * 24 * 60 * 60 * 1000 
+  }
 }));
 
-function authMiddleware(req, res, next) {
-  if (req.session.user && req.session.user.role !== 'guest') {
-    next(); 
-  } else {
-    res.redirect('/login'); 
-  }
-}
-
-module.exports = authMiddleware;
+app.use(addBrandsToLocals);
+app.use((req, res, next) => {
+  res.locals.user = req.session.user; 
+  next();
+});
 
 // Rutas
 app.use("/", indexRouter);
 app.use("/", productsRouter);
 app.use("/", usersRouter);
 app.use("/", admiRouter);
+app.use("/", admiUsersRouter);
 
 // Captura 404 y envía al manejador de errores
 app.use(function (req, res, next) {
@@ -58,7 +61,7 @@ app.use(function (req, res, next) {
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).render("error", {
-    title: "Error 500",  
+    title: "Error 500",
     message: "Error interno del servidor",
   });
 });

@@ -9,17 +9,17 @@
       <section class="box-product">
         <article class="article-detail">
           <div>
-            <img src="<%= details.Image %>" alt="<%= details.Name %>" />
+            <img src="<%= details.images[0].url %>" alt="<%= details.name %>" />
           </div>
           <div class="box-detail">
-            <h1 class="title-detail"><%= details.Name %></h1>
+            <h1 class="title-detail"><%= details.name %></h1>
             <p>
               Precio:
               <span class="span-price-original" id="span-price-details"
-                >$<%= details.Price %></span
+                >$<%= details.price %></span
               >
             </p>
-            <% if (details.Stock > 0) { %>
+            <% if (details.stock > 0) { %>
             <p>Disponibilidad: <span class="stock">Artículo en Stock</span></p>
             <% } else { %>
             <p>Disponibilidad: <span class="stock">No Disponible</span></p>
@@ -37,37 +37,37 @@
         </article>
         <div class="Description">
           <h3>Descripción</h3>
-          <p><%= details.Description %></p>
+          <p><%= details.description %></p>
         </div>
         <h3 class="title-table">Resumen del Producto</h3>
         <table class="table-details">
           <tr>
             <th>Marca</th>
-            <td><%= details.Brand %></td>
+            <td><%= details.brand.name %></td>
           </tr>
           <tr>
             <th>Modelo</th>
-            <td><%= details.Model %></td>
+            <td><%= details.model.name %></td>
           </tr>
           <tr>
             <th>Caja</th>
-            <td><%= details.Box %></td>
+            <td><%= details.box.description %></td>
           </tr>
           <tr>
             <th>Banda</th>
-            <td><%= details.Band %></td>
+            <td><%= details.band.description%></td>
           </tr>
           <tr>
             <th>Dial</th>
-            <td><%= details.Dial %></td>
+            <td><%= details.dial.description%></td>
           </tr>
           <tr>
             <th>Movimiento</th>
-            <td><%= details.Movement %></td>
+            <td><%= details.movement.description %></td>
           </tr>
           <tr>
             <th>Resistencia al agua</th>
-            <td><%= details.WaterResistance %></td>
+            <td><%= details.waterResistance.description %></td>
           </tr>
         </table>
       </section>

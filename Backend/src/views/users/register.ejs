@@ -72,20 +72,6 @@
 
           <div class="form-group">
             <input
-              type="text"
-              name="shippingAddress"
-              id="shipping-address"
-              placeholder="Dirección de envío"
-              value="<%= formData.shippingAddress || '' %>"
-              class="<%= errors.shippingAddress ? 'error-input' : '' %>"
-            />
-            <% if (errors.shippingAddress) { %>
-            <span class="error"><%= errors.shippingAddress.msg %></span>
-            <% } %>
-          </div>
-
-          <div class="form-group">
-            <input
               type="password"
               name="password"
               id="password"

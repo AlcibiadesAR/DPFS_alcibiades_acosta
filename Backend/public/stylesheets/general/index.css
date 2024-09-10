@@ -92,6 +92,35 @@
   vertical-align: middle;
 }
 
+.no-results-container {
+  display: flex;
+  height: 400px;
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.no-results-icon {
+  margin: 10px;
+  font-size: 80px;
+  color: #999;
+}
+
+.message-productNull {
+  margin: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.message-productNull span {
+  display: block;
+  font-size: 14px;
+  font-weight: 400;
+  color: #333;
+}
+
 /* Estilos para el contenedor de marcas */
 .container-marcas h2 {
   font-size: 18px;
@@ -141,7 +170,7 @@
 
 .logos-slide {
   display: inline-block;
-  animation: 35s slide infinite linear;
+  animation: 45s slide infinite linear;
 }
 
 .logos-slide img {
@@ -152,7 +181,7 @@
 /* Estilos para los productos */
 .container-products h2 {
   font-size: 18px;
-  margin-left: 10px;
+  margin-left: 15px;
 }
 
 .container-products {
@@ -165,6 +194,13 @@
   margin: 0 auto;
   grid-template-columns: repeat(auto-fit, minmax(195px, 1fr));
   gap: 6px;
+}
+
+.few-products-container {
+  display: grid;
+  width: 90%;
+  margin: 0 auto;
+  grid-template-columns: repeat(auto-fill, 280px);
 }
 
 .card {
@@ -218,7 +254,7 @@
   border-radius: 5px;
 }
 
-.btn-group{
+.btn-group {
   display: flex;
   margin: 0 10px;
 }
@@ -342,8 +378,7 @@
 
 /* Tablet */
 @media only screen and (min-width: 600px) {
-
-  .phrase{
+  .phrase {
     font-size: 16px;
   }
 
@@ -357,14 +392,32 @@
     font-size: 16px;
   }
 
+  .no-results-icon {
+    font-size: 80px;
+  }
+
+  .message-productNull {
+    font-size: 30px;
+  }
+
+  .message-productNull span {
+    font-size: 16px;
+  }
+
   .logos-slide img {
     height: 60px;
     margin: 0 40px;
   }
 
   .grid-container {
-    width: 95%;
+    width: 90%;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+
+  .few-products-container {
+    width: 90%;
+    grid-template-columns: repeat(auto-fill, 260px);
+    gap: 20px;
   }
 
   .container-category img {
@@ -411,11 +464,27 @@
   }
 
   .search-container i {
-    top: 16px;
+    top: 25px;
     right: 12px;
   }
-  
+
   .bx.bx-search-alt {
+    font-size: 24px;
+  }
+
+  .no-results-container {
+    height: 700px;
+  }
+
+  .no-results-icon {
+    font-size: 100px;
+  }
+
+  .message-productNull {
+    font-size: 40px;
+  }
+
+  .message-productNull span {
     font-size: 24px;
   }
 
@@ -427,12 +496,19 @@
 
   .logos-slide img {
     height: 90px;
-    margin: 0 20px;
+    margin: 0 80px;
   }
 
   .grid-container {
     width: 100%;
-    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(430px, 1fr));
+    gap: 40px;
+  }
+
+  .few-products-container {
+    width: 100%;
+    grid-template-columns: repeat(auto-fill, 400px);
+    gap: 20px;
   }
 
   .card img {

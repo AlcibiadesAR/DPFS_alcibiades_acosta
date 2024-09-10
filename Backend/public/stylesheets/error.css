@@ -6,6 +6,7 @@
 }
 
 .title-error {
+  margin-top: 50px;
   font-size: 40px;
 }
 
@@ -19,11 +20,7 @@
 }
 
 #btn-error {
-  width: 160px;
-  padding: 10px 20px;
-  font-size: 14px;
-  white-space: nowrap;
-  margin-top: 20px;
+  margin-bottom: 100px;
 }
 
 @media only screen and (min-width: 600px) {

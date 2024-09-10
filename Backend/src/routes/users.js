@@ -1,7 +1,7 @@
-var express = require("express");
-var router = express.Router();
+let express = require("express");
+let router = express.Router();
 const usersControllers = require("../Controllers/usersControllers");
-const authMiddlewareControllers = require("../Controllers/authMiddlewareControllers");
+const authMiddlewareControllers = require("../middleware/authMiddleware");
 const path = require("path");
 const multer = require("multer");
 
@@ -16,33 +16,30 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-// Ruta para el carrito de compras
+// Rutas GET
 router.get(
   "/users/productCart",
-  authMiddlewareControllers.MiddlewareAuth,
+  authMiddlewareControllers.MiddlewareAuth, 
   usersControllers.pageCart
 );
 
-// Ruta para el registro
 router.get("/users/register", usersControllers.pageRegister);
 
-// Ruta para login
 router.get("/users/login", usersControllers.pageLogin);
 
-// Ruta para recuperar contraseña
 router.get("/users/forgotPassword", usersControllers.pageForgotPassword);
 
-// Ruta para nueva contraseña
 router.get("/users/forgotNewPassword", usersControllers.pageForgotNewPassword);
 
-// Ruta para la cuenta del usuario
 router.get(
-  "/users/myAccount",
+  "/users/Account",
   authMiddlewareControllers.MiddlewareAuth,
   usersControllers.pageMyAccount
 );
 
-//Rutas POST
+router.get('/users/logout', usersControllers.logout);
+
+// Rutas POST
 router.post(
   "/users/register",
   upload.single("avatar"),
@@ -55,5 +52,14 @@ router.post(
   usersControllers.validacionesFormLogin,
   usersControllers.procesarFormLogin
 );
+
+router.post(
+  "/users/updateProfile",
+  authMiddlewareControllers.MiddlewareAuth, 
+  upload.single("profileImage"), 
+  usersControllers.updateProfile
+);
+
+
 
 module.exports = router;

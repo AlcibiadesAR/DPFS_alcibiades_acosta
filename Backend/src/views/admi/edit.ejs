@@ -9,7 +9,7 @@
       <section class="box-form-admi">
         <h1 class="title-products">Actualizar Producto</h1>
         <form
-          action="/admi/edit/<%= edit.Id %>?_method=PUT"
+          action="/admi/edit/<%= edit.id %>?_method=PUT"
           method="POST"
           class="form-admi"
           enctype="multipart/form-data"
@@ -19,7 +19,7 @@
             type="text"
             id="name"
             name="name"
-            value="<%= edit.Name %>"
+            value="<%= edit.name %>"
             required
           />
 
@@ -31,17 +31,17 @@
             name="description"
             required
           >
-           <%= edit.Description %></textarea
+           <%= edit.description %></textarea
           >
           <label for="image">Imagen:</label>
-          <% if (edit.Image) { %>
+          <% if (edit.images[0].url) { %>
           <img
             class="image-edition"
-            src="<%= edit.Image %>"
+            src="<%= edit.images[0].url%>"
             alt="Imagen del Producto"
           />
           <% } %>
-          <input type="hidden" name="oldImage" value="<%= edit.Image %>" />
+          <input type="hidden" name="oldImage" value="<%= edit.images[0].url %>" />
           <input type="file" id="image" name="image" />
 
           <label for="category">Categoría:</label>
@@ -49,16 +49,16 @@
             type="text"
             name="category"
             id="category"
-            value="<%= edit.Category %>"
+            value="<%= edit.category.name %>"
             required
           />
 
-          <label for="colors">Colores Disponibles:</label>
+          <label for="colors">Color:</label>
           <input
             type="text"
             id="colors"
             name="colors"
-            value="<%= edit.Colors %>"
+            value="<%= edit.color.name %>"
           />
 
           <label for="price">Precio:</label>
@@ -67,7 +67,7 @@
             id="price"
             name="price"
             step="0.01"
-            value="<%= edit.Price %>"
+            value="<%= edit.price %>"
             required
           />
 
@@ -76,7 +76,7 @@
             type="text"
             id="brand"
             name="brand"
-            value="<%= edit.Brand %>"
+            value="<%= edit.brand.name %>"
             required
           />
 
@@ -85,7 +85,7 @@
             type="text"
             id="model"
             name="model"
-            value="<%= edit.Model %>"
+            value="<%= edit.model.name %>"
             required
           />
 
@@ -94,7 +94,7 @@
             type="text"
             id="box"
             name="box"
-            value="<%= edit.Box %>"
+            value="<%= edit.box.description %>"
             required
           />
 
@@ -103,7 +103,7 @@
             type="text"
             id="band"
             name="band"
-            value="<%= edit.Band %>"
+            value="<%= edit.band.description %>"
             required
           />
 
@@ -112,7 +112,7 @@
             type="text"
             id="dial"
             name="dial"
-            value="<%= edit.Dial %>"
+            value="<%= edit.dial.description%>"
             required
           />
 
@@ -121,7 +121,7 @@
             type="text"
             id="movement"
             name="movement"
-            value="<%= edit.Movement %>"
+            value="<%= edit.movement.description %>"
             required
           />
 
@@ -130,16 +130,8 @@
             type="text"
             id="waterResistance"
             name="waterResistance"
-            value="<%= edit.WaterResistance %>"
+            value="<%= edit.waterResistance.description%>"
             required
-          />
-
-          <label for="specialFeatures">Características Especiales:</label>
-          <input
-            type="text"
-            id="specialFeatures"
-            name="specialFeatures"
-            value="<%= edit.SpecialFeatures %>"
           />
 
           <label for="stock">Cantidad en Stock:</label>
@@ -147,7 +139,7 @@
             type="number"
             id="stock"
             name="stock"
-            value="<%= edit.Stock %>"
+            value="<%= edit.stock %>"
             required
           />
 
@@ -172,7 +164,7 @@
             name="discount"
             min="0"
             max="100"
-            value="<%= edit.DiscountPercentage %>"
+            value="<%= edit.discount_percentage %>"
           />
 
           <div class="btn-group-admi">

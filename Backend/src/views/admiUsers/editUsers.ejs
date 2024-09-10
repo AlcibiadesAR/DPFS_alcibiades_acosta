@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../partials/head', { pageTitle: 'Editar Usuario' }) %>
+  </head>
+  <body>
+    <%- include('../partials/header', { headerClass: 'header-black' }) %>
+    <main>
+      <section class="my-account container mt-5">
+        <h1 class="title-users">Editar Usuario</h1>
+        <form
+          action="/admiUsers/editUsers/<%= user.id %>"
+          method="POST"
+          class="row g-3 mt-4"
+        >
+          <div class="col-md-6">
+            <label for="inputFirstName" class="form-label">Nombre</label>
+            <input
+              type="text"
+              id="inputFirstName"
+              name="firstName"
+              value="<%= user.first_name %>"
+              class="form-control"
+              required
+            />
+          </div>
+
+          <div class="col-md-6">
+            <label for="inputLastName" class="form-label">Apellido</label>
+            <input
+              type="text"
+              id="inputLastName"
+              name="lastName"
+              value="<%= user.last_name %>"
+              class="form-control"
+              required
+            />
+          </div>
+
+          <div class="col-md-6">
+            <label for="inputEmail" class="form-label">Correo Electrónico</label>
+            <input
+              type="email"
+              id="inputEmail"
+              name="email"
+              value="<%= user.email %>"
+              class="form-control"
+              required
+            />
+          </div>
+
+          <div class="col-md-6">
+            <label for="inputPhone" class="form-label">Teléfono</label>
+            <input
+              type="text"
+              id="inputPhone"
+              name="phone"
+              value="<%= user.phone %>"
+              class="form-control"
+              required
+            />
+          </div>
+
+          <div class="col-md-12">
+            <label for="inputType" class="form-label">Tipo de Usuario</label>
+            <input
+              type="text"
+              id="inputType"
+              name="type"
+              value="<%= user.type %>"
+              class="form-control"
+              required
+            />
+          </div>
+
+          <div class="btn-group-profile">
+            <button type="submit" class="btn-submit">Guardar Cambios</button>
+            <a href="/admiUsers/administrarUsers" class="btn-submit"  id="btn-redirect">volver</a>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <%- include('../partials/footer') %>
+
+    <script src="/javascripts/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+  </body>
+</html>

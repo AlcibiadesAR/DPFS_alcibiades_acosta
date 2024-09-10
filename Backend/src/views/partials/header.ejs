@@ -9,9 +9,32 @@
 
       <!-- Menú para pantallas de escritorio -->
       <ul class="navbar-menu-desktop">
-        <li><a href="/">Inicio</a></li>
         <li><a href="/products">Catálogo</a></li>
-        <li><a href="#">Marcas</a></li>
+        <li>
+          <a href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Marcas</a>
+        </li>
+
+        <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Marcas Disponibles</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <ul class="list-unstyled" id="marcas-list-unstyled">
+              <% if (marcas && marcas.length > 0) { %>
+                <% marcas.forEach(brand => { %>
+                  <li>
+                    <a class="nav-link" href="/products/brands/<%= brand.replace(/\s+/g, '-').toLowerCase() %>">
+                      <%= brand %>
+                    </a>
+                  </li>
+                <% }); %>
+              <% } else { %>
+                <li>No hay marcas disponibles</li>
+              <% } %>
+            </ul>
+          </div>
+          </div>
 
         <li class="dropdown">
           <a class="link-menu-categories" href="#" data-bs-toggle="dropdown">
@@ -29,10 +52,11 @@
         <li class="dropdown">
           <i class="bx bxs-user" data-bs-toggle="dropdown"></i>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="/users/login">Iniciar Sesión</a></li>
-            <li><a class="dropdown-item" href="/users/register">Registrarse</a></li>
-            <li><a class="dropdown-item" href="/users/myAccount">Mi Cuenta</a></li>
-            <li><a class="dropdown-item" href="/admi/administrar">Administrar</a></li>
+              <li><a class="dropdown-item" href="/users/login">Iniciar Sesión</a></li>
+              <li><a class="dropdown-item" href="/users/register">Registrarse</a></li>
+              <li><a class="dropdown-item" href="/users/Account">Mi Cuenta</a></li>
+              <li><a class="dropdown-item" href="/admi/administrar">Gestión de Productos</a></li>
+              <li><a class="dropdown-item" href="/admiUsers/administrarUsers">Gestión de Usuarios</a></li>
           </ul>
         </li>
       </ul>
@@ -45,7 +69,7 @@
   </nav>
 </header>
 
-<!--Menu para pantallas móviles -->
+<!-- Menú para pantallas móviles -->
 <div class="offcanvas offcanvas-start offcanvas-custom" tabindex="-1" id="offcanvasMenu" aria-labelledby="offcanvasMenuLabel">
   <div class="offcanvas-header">
     <h5 class="offcanvas-title" id="offcanvasMenuLabel">Menú</h5>
@@ -53,11 +77,18 @@
   </div>
   <div class="offcanvas-body">
     <ul class="list-unstyled">
-      <li><a href="/" class="nav-link">Inicio</a></li>
       <li><a href="/products" class="nav-link">Catálogo</a></li>
-      <li><a href="#" class="nav-link">Marcas</a></li>
-      
-      <li class="dropdown">
+      <li>
+        <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#collapseUsers" aria-expanded="false" aria-controls="collapseUsers">Usuario</a>
+        <ul id="collapseUsers" class="collapse list-unstyled">
+          <li><a href="/users/login" class="nav-link">Iniciar Sesión</a></li>
+          <li><a href="/users/register" class="nav-link">Registrarse</a></li>
+          <li><a href="/users/Account" class="nav-link">Mi Cuenta</a></li>
+          <li><a href="/admi/administrar" class="nav-link">Gestión de Productos</a></li>
+          <li><a href="/admiUsers/administrarUsers" class="nav-link">Gestión de Usuarios</a></li>
+        </ul>
+      </li>
+      <li>
         <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#collapseCategories" aria-expanded="false" aria-controls="collapseCategories">Categorías</a>
         <ul id="collapseCategories" class="collapse list-unstyled">
           <li><a href="/products/category/Hombres" class="nav-link">Hombres</a></li>
@@ -65,22 +96,10 @@
           <li><a href="/products/category/Niños" class="nav-link">Niños</a></li>
         </ul>
       </li>
-
       <li><a href="/products/offers" class="nav-link">Ofertas</a></li>
-
-      <li class="dropdown">
-        <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#collapseUsers" aria-expanded="false" aria-controls="collapseUsers">Usuario</a>
-        <ul id="collapseUsers" class="collapse list-unstyled">
-          <li><a href="/users/login" class="nav-link">Iniciar Sesión</a></li>
-          <li><a href="/users/register" class="nav-link">Registrarse</a></li>
-          <li><a href="/users/myAccount" class="nav-link">Mi Cuenta</a></li>
-          <li><a href="/admi/administrar" class="nav-link">Administrar</a></li>
-        </ul>
-      </li>
     </ul>
   </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.3/js/bootstrap.min.js"></script>
-

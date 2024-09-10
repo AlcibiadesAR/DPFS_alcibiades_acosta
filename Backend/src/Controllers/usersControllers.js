@@ -1,29 +1,27 @@
 const { check, validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
-const fs = require("fs");
 const path = require("path");
-const { title } = require("process");
+const db = require("../../database/models");
+const fs = require("fs");
 
-const userDBPath = path.resolve(__dirname, process.env.DB_PATH);
-
+// Validaciones para el formulario de login
 const validacionesFormLogin = [
   check("email").exists().isEmail().withMessage("Debe ser un email válido"),
   check("password").notEmpty().withMessage("La contraseña es requerida"),
 ];
 
+// Validaciones para el formulario de registro
 const validacionesFormRegister = [
   ...validacionesFormLogin,
 
   check("firstName")
-    .not()
-    .isEmpty()
+    .notEmpty()
     .withMessage("El nombre es requerido")
     .isAlpha()
     .withMessage("El nombre debe contener solo letras"),
 
   check("lastName")
-    .not()
-    .isEmpty()
+    .notEmpty()
     .withMessage("El apellido es requerido")
     .isAlpha()
     .withMessage("El apellido debe contener solo letras"),
@@ -75,7 +73,7 @@ const usersControllers = {
 
   validacionesFormRegister,
 
-  procesarFormRegister: (req, res) => {
+  procesarFormRegister: async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.render("users/register", {
@@ -88,15 +86,19 @@ const usersControllers = {
     try {
       const { firstName, lastName, email, phone, password, userType } =
         req.body;
-
-      let users = [];
-      if (fs.existsSync(userDBPath)) {
-        const data = fs.readFileSync(userDBPath);
-        users = JSON.parse(data);
+      if (!firstName || !lastName) {
+        return res.render("users/register", {
+          title: "Crea tu cuenta / EleganceTimeShop",
+          formData: req.body,
+          errors: {
+            general: {
+              msg: "Por favor, complete todos los campos obligatorios.",
+            },
+          },
+        });
       }
 
-      // Verificar si el correo electrónico ya está registrado
-      const existingUser = users.find((user) => user.email === email);
+      const existingUser = await db.User.findOne({ where: { email } });
       if (existingUser) {
         return res.render("users/register", {
           title: "Crea tu cuenta / EleganceTimeShop",
@@ -105,27 +107,25 @@ const usersControllers = {
         });
       }
 
-      const newUserId = users.length ? users[users.length - 1].id + 1 : 1;
       const hashedPassword = bcrypt.hashSync(password, 10);
-
+      const imageUrl = req.file
+        ? `http://localhost:3000/images/users/${req.file.filename}`
+        : null;
       const newUser = {
-        id: newUserId,
-        firstName,
-        lastName,
+        first_name: firstName,
+        last_name: lastName,
         email,
         password: hashedPassword,
         type: userType,
         phone,
-        avatar: req.file ? `/images/users/${req.file.filename}` : null,
+        url: imageUrl, 
       };
 
-      users.push(newUser);
-
-      fs.writeFileSync(userDBPath, JSON.stringify(users, null, 2));
+      await db.User.create(newUser);
 
       res.redirect("/users/login");
     } catch (error) {
-      console.error(error);
+      console.error("Error al procesar el registro:", error);
       res
         .status(500)
         .json({ message: "Ocurrió un error al procesar el formulario" });
@@ -133,7 +133,7 @@ const usersControllers = {
   },
 
   pageLogin: (req, res) => {
-    const rememberedEmail = req.cookies.rememberedEmail || ""; 
+    const rememberedEmail = req.cookies.rememberedEmail || "";
     return res.render("users/login", {
       title: "Inicia Sesión / EleganceTimeShop",
       formData: { email: rememberedEmail },
@@ -143,7 +143,7 @@ const usersControllers = {
 
   validacionesFormLogin,
 
-  procesarFormLogin: (req, res) => {
+  procesarFormLogin: async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.render("users/login", {
@@ -152,18 +152,11 @@ const usersControllers = {
         errors: errors.mapped(),
       });
     }
-  
-    const { email, password, rememberMe } = req.body; // Asegúrate de capturar rememberMe
-  
+
+    const { email, password, rememberMe } = req.body;
+
     try {
-      let users = [];
-      if (fs.existsSync(userDBPath)) {
-        const data = fs.readFileSync(userDBPath);
-        users = JSON.parse(data);
-      }
-  
-      const user = users.find((user) => user.email === email);
-  
+      const user = await db.User.findOne({ where: { email } });
       if (!user) {
         return res.render("users/login", {
           title: "Inicia Sesión / EleganceTimeShop",
@@ -171,9 +164,8 @@ const usersControllers = {
           errors: { email: { msg: "El email no está registrado" } },
         });
       }
-  
+
       const match = bcrypt.compareSync(password, user.password);
-  
       if (!match) {
         return res.render("users/login", {
           title: "Inicia Sesión / EleganceTimeShop",
@@ -181,20 +173,21 @@ const usersControllers = {
           errors: { password: { msg: "La contraseña es incorrecta" } },
         });
       }
-  
-      // Lógica para "Recordarme"
+
       if (rememberMe) {
-        res.cookie('rememberedEmail', email, { maxAge: 30 * 24 * 60 * 60 * 1000 }); 
-        req.session.cookie.maxAge = 30 * 24 * 60 * 60 * 1000; 
+        res.cookie("rememberedEmail", email, {
+          maxAge: 30 * 24 * 60 * 60 * 1000,
+        });
+        req.session.cookie.maxAge = 30 * 24 * 60 * 60 * 1000;
       } else {
-        res.clearCookie('rememberedEmail'); 
-        req.session.cookie.expires = false; 
+        res.clearCookie("rememberedEmail");
+        req.session.cookie.expires = false;
       }
-  
+
       req.session.user = user;
       res.redirect("/");
     } catch (error) {
-      console.error(error);
+      console.error("Error al procesar el login:", error);
       res
         .status(500)
         .json({ message: "Ocurrió un error al procesar el formulario" });
@@ -213,13 +206,91 @@ const usersControllers = {
     });
   },
 
-  pageMyAccount: (req, res) => {
-    const user = req.session.user;
-    return res.render("users/myAccount", {
-      title: "Mi Cuenta / EleganceTimeShop",
-      user,
-    });
+  pageMyAccount: async (req, res) => {
+    try {
+      const userId = req.session.user.id;
+      const user = await db.User.findOne({
+        where: { id: userId },
+      });
+
+      if (!user) {
+        return res
+          .status(404)
+          .render("404", { title: "Usuario no encontrado" });
+      }
+
+      return res.render("users/Account", {
+        title: "Mi Cuenta / EleganceTimeShop",
+        user,
+      });
+    } catch (error) {
+      console.error("Error al cargar la cuenta del usuario:", error);
+      res
+        .status(500)
+        .json({ message: "Ocurrió un error al cargar la cuenta del usuario" });
+    }
   },
+
+  updateProfile: async (req, res) => {
+    try {
+      const userId = req.session.user.id;
+      const imageUrl = req.file
+        ? `http://localhost:3000/images/users/${req.file.filename}`
+        : null;
+  
+      const user = await db.User.findByPk(userId);
+  
+      if (!user) {
+        return res.status(404).json({ message: "Usuario no encontrado" });
+      }
+  
+      // Actualizar la imagen si existe
+      if (req.file) {
+        if (user.url) {
+          const oldImagePath = path.join(
+            __dirname,
+            "../../public",
+            user.url.replace("http://localhost:3000", "")
+          );
+          if (fs.existsSync(oldImagePath)) {
+            fs.unlinkSync(oldImagePath);
+          }
+        }
+  
+        await user.update({ url: imageUrl });
+      }
+  
+      await user.update({
+        first_name: req.body.firstName || user.first_name,
+        last_name: req.body.lastName || user.last_name,
+        phone: req.body.phone || user.phone,
+        email: req.body.email || user.email 
+      });
+  
+      req.session.user.email = req.body.email;
+  
+      res.redirect('/users/Account');
+    } catch (error) {
+      console.error("Error al actualizar el perfil:", error);
+      res
+        .status(500)
+        .json({ message: "Ocurrió un error al actualizar el perfil" });
+    }
+  },
+
+  logout: (req, res) => {
+    console.log('Logout function called');
+    req.session.destroy((err) => {
+      if (err) {
+        console.error('Error al cerrar sesión:', err);
+        return res.status(500).json({ message: 'Error al cerrar sesión' });
+      }
+      console.log('Session destroyed');
+      res.clearCookie('connect.sid', { path: '/' }); // Clear the session cookie
+      console.log('Cookie cleared');
+      res.redirect('/users/login');    
+    });
+  }
 };
 
 module.exports = usersControllers;

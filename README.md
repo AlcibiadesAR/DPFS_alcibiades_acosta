@@ -35,36 +35,45 @@ Desarrollé **EleganceTimeShop** para ofrecer una **experiencia de compra** acce
 Aquí muestro mi lista de sitios de referencia que he investigado para inspirarme en el desarrollo de **EleganceTimeShop**. Estos sitios fueron elegidos por su enfoque en relojes, su audiencia objetivo, estética y funcionalidades:
 
 1. **[Chrono24](https://www.chrono24.com)**
+
    - **Por qué fue elegido**: Chrono24 es uno de los marketplaces más grandes y especializados en relojes de lujo. Su diseño enfocado en la presentación de relojes de alta gama y sus detalladas fichas de producto ofrecen una referencia excelente para la curaduría y visualización de productos.
 
 2. **[Hodinkee Shop](https://shop.hodinkee.com)**
+
    - **Por qué fue elegido**: Hodinkee es una plataforma que combina contenido editorial con una tienda de relojes. Su enfoque en la calidad de las imágenes, la narrativa alrededor de los relojes y la experiencia de compra son muy valiosos para crear una experiencia de usuario atractiva y educativa.
 
 3. **[Watches of Switzerland](https://www.watches-of-switzerland.co.uk)**
+
    - **Por qué fue elegido**: Este sitio se especializa en relojes de lujo y presenta una estética elegante y sofisticada. Su diseño intuitivo y la forma en que organiza sus productos por marcas y categorías sirven como excelente referencia para un mercado de lujo.
 
 4. **[Jomashop](https://www.jomashop.com)**
+
    - **Por qué fue elegido**: Jomashop ofrece una amplia gama de relojes de diferentes marcas y rangos de precios. Su sitio es un buen ejemplo de cómo presentar relojes de lujo y accesibles en un solo lugar, con una experiencia de usuario eficiente y clara.
 
 5. **[World Time Store](https://worldtimestore.com/)**
    - **Por qué fue elegido**: World Time Store ofrece una gran variedad de relojes y presenta un diseño amigable para el usuario. Su enfoque en la categorización de productos y la facilidad de navegación son aspectos valiosos para mejorar la experiencia de compra.
 
-# Retrospectiva del Sprint 4
+# Retrospectiva del Sprint 5
 
 ## Qué Hice Bien
-- **Integración de Productos y Usuarios**: Implementé la funcionalidad para mostrar productos y usuarios de manera dinámica a través de archivos JSON. Esto permitió que el sitio web comenzara a cobrar vida y ofreciera interacciones más realistas.
-- **Implementación de CRUD**: Desarrollé las operaciones CRUD (Crear, Leer, Actualizar, Borrar) para productos, lo que permite una gestión completa de los datos de productos.
-- **Organizar la estructura CSS**: Organize un poco mejor la estructura del css por carpetas asi pude encontrar mas rápidos mi estilos que queria mejorar.
+
+- **Usuarios**: Implementé la estructura para manejar usuarios, incluyendo rutas, controladores, vistas y el directorio para imágenes de perfil. Todo está bien organizado para facilitar su gestión.
+- **Registro**: El formulario de registro está funcionando correctamente. Los usuarios pueden registrarse, subir una imagen de perfil, y sus contraseñas están encriptadas.
+- **Login**: El sistema de login ya funciona. Valida las credenciales y redirige a los usuarios según su estado de autenticación.
+- **Rutas de Autenticación**: Se han separado las rutas para huéspedes y usuarios, con redirección adecuada según si el usuario está logueado o no.
 
 ## Qué Puedo Mejorar
-- **Optimización de la Lógica de CRUD**: Algunas operaciones CRUD podrían beneficiarse de una optimización adicional para mejorar la eficiencia y reducir tiempos de respuesta. Debería considerar mejorar el rendimiento en la manipulación de datos.
+
+- **Manejo de Errores**: Mejorar la forma en que se manejan los errores en el registro y login para asegurar una experiencia de usuario más fluida.
+- **Validaciones**: Asegurar que las validaciones en los formularios sean completas y cubran más casos para evitar problemas.
 
 ## Qué Debería Empezar a Hacer
-- **Implementar una Base de Datos**: Comenzar a utilizar una base de datos en lugar de archivos JSON para gestionar productos y usuarios. Esto facilitará el manejo de datos, mejorará la eficiencia y permitirá consultas más avanzadas.
-- **Revisar y Mejorar el Código de CRUD**: Analizar el código de las operaciones CRUD y realizar mejoras para asegurar que sean eficientes y fáciles de mantener.
+
+- **Migrar de JSON a Base de Datos**: Empezar la transición de archivos JSON a una base de datos para una gestión de datos más eficiente.
+- **Recuperación de contraseña**: Implementar una lógica para ayudar a los usuarios a recuperar su contraseña en caso de olvidarla.
 
 ## Qué Debería Dejar de Hacer
-- **Dependencia Exclusiva de Archivos JSON**: Evitar depender únicamente de archivos JSON para la gestión de datos. Implementar una base de datos para una gestión de datos más robusta y escalable.
+- **Dependencia Exclusiva de Archivos JSON**: Dejar de depender únicamente de archivos JSON para la gestión de datos. La transición a una base de datos permitirá una gestión eficiente de los datos.
 
 
 - [Tablero de Trello - EleganceTimeShop](https://trello.com/invite/b/66add0654360a21c3ee0576c/ATTI550dd1e39c6ac3a6898cb2ed5652da930AD5FCB5/desarrollo-elegancetimeshop)

@@ -57,11 +57,6 @@ header {
   text-decoration: none;
 }
 
-.dropdown-menu li a:hover {
-  color: #fff;
-  background-color: #800020;
-}
-
 .icons {
   display: flex;
   font-size: 20px;
@@ -286,7 +281,8 @@ footer {
   }
 
   .navbar-menu-desktop a:hover {
-    color: #9e2442;
+    color: #fff;
+    background-color: #800020;
   }
 
   #menu {
@@ -295,6 +291,14 @@ footer {
 
   .dropdown-menu a {
     font-size: 16px;
+  }
+
+  #marcas-list-unstyled li a{
+    color: #000;
+  }
+
+  #marcas-list-unstyled li a:hover{
+    color: #fff;
   }
 
   .cart-count {

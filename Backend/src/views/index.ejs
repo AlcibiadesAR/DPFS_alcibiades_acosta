@@ -18,10 +18,10 @@
         <span>Explora nuestra colección</span>
         <i class="bx bx-right-arrow-alt"></i>
       </a>
-      <form action="/search" class="search-form" method="get">
+      <form action="/products" class="search-form" method="get">
         <div class="search-container">
           <input name="query" placeholder="Buscar..." type="text" />
-          <i class="bx bx-search-alt"></i>
+          <i class="bx bx-search-alt search-icon" id="search-icon-2"></i>
         </div>
       </form>
     </div>
@@ -29,43 +29,28 @@
     <main>
       <section class="container-marcas">
         <h2>Nuestras Marcas Destacadas</h2>
-
+    
         <div class="slider">
-          <div class="logos">
-            <div class="logos-slide">
-              <img
-                src="/images/logos/Audemars_Piguet-logo.png"
-                alt="Audemars Piguet"
-              />
-              <img src="/images/logos/Citize.jpg" alt="Citize" />
-              <img src="/images/logos/Lacoste.png" alt="Lacoste" />
-              <img src="/images/logos/omega.png" alt="Omega" />
-              <img src="/images/logos/patekphilippe.png" alt="Patek Philippe" />
-              <img src="/images/logos/rolex.png" alt="Rolex" />
-              <img src="/images/logos/Seiko.jpg" alt="Seiko" />
-              <img src="/images/logos/Skagen.png" alt="Skagen" />
-              <img src="/images/logos/tagHever.png" alt="Tag Heuer" />
-              <img src="/images/logos/Tissot.png" alt="Tissot" />
+            <div class="logos">
+                <div class="logos-slide">
+                    <img src="/images/logos/lorus.png" alt="lorus" />
+                    <img src="/images/logos/Longines.png" alt="Longines" />
+                    <img src="/images/logos/IWC.png" alt="IWC" />
+                    <img src="/images/logos/JaegerLeCoultre.png" alt="Jaeger Le Coultre" />
+                    <img src="/images/logos/Bvlgari.png" alt="Bvlgari" />
+                    <img src="/images/logos/Cartier.png" alt="Cartier" />
+                    <img src="/images/logos/Timex.png" alt="Timex" />
+                    <img src="/images/logos/Lacoste.png" alt="Lacoste" />
+                    <img src="/images/logos/Hermes.jpg" alt="Hermes" />
+                    <img src="/images/logos/omega.png" alt="Omega" />
+                    <img src="/images/logos/patekphilippe.png" alt="Patek Philippe" />
+                    <img src="/images/logos/tagHever.png" alt="Tag Heuer" />
+                    <img src="/images/logos/Hermes.jpg" alt="Hermes" />
+                    <img src="/images/logos/rolex.png" alt="Rolex" />
+                </div>
             </div>
-
-            <div class="logos-slide">
-              <img
-                src="/images/logos/Audemars_Piguet-logo.png"
-                alt="Audemars Piguet"
-              />
-              <img src="/images/logos/Citize.jpg" alt="Citize" />
-              <img src="/images/logos/Lacoste.png" alt="Lacoste" />
-              <img src="/images/logos/omega.png" alt="Omega" />
-              <img src="/images/logos/patekphilippe.png" alt="Patek Philippe" />
-              <img src="/images/logos/rolex.png" alt="Rolex" />
-              <img src="/images/logos/Seiko.jpg" alt="Seiko" />
-              <img src="/images/logos/Skagen.png" alt="Skagen" />
-              <img src="/images/logos/tagHever.png" alt="Tag Heuer" />
-              <img src="/images/logos/Tissot.png" alt="Tissot" />
-            </div>
-          </div>
         </div>
-      </section>
+    </section>
 
       <section class="container-products">
         <h2>Productos en Oferta</h2>
@@ -73,21 +58,21 @@
           <% for (let watchHome of offerProducts) { %>
           <article class="card">
             <div class="card-img">
-              <img alt="<%= watchHome.Name %>" src="<%= watchHome.Image %>" />
+              <img alt="<%= watchHome.name %>" src="<%= watchHome.images[0].url %>" />
             </div>
             <div class="card-content">
-              <h3><%= watchHome.Name %></h3>
+              <h3><%= watchHome.name %></h3>
               <p>
-                <span class="span-price-original">$<%= watchHome.Price %></span>
-                <% if (watchHome.DiscountPercentage > 0) { %>
+                <span class="span-price-original">$<%= watchHome.price %></span>
+                <% if (watchHome.discount_percentage > 0) { %>
                 <span class="span-DiscountPercentage"
-                  >% <%= watchHome.DiscountPercentage %></span
+                  >% <%= watchHome.discount_percentage %></span
                 >
                 <% } %>
               </p>
             </div>
             <div class="btn-group">
-              <a href="/products/<%= watchHome.Id %>" class="btn-outline"
+              <a href="/products/<%= watchHome.id %>" class="btn-outline"
                 >Ver Detalles</a
               >
               <button class="btn-outline">
@@ -120,21 +105,21 @@
           <% for (let watchHome of kidsWatches) { %>
           <article class="card">
             <div class="card-img">
-              <img alt="<%= watchHome.Name %>" src="<%= watchHome.Image %>" />
+              <img alt="<%= watchHome.name %>" src="<%= watchHome.images[0].url %>" />
             </div>
             <div class="card-content">
-              <h3><%= watchHome.Name %></h3>
+              <h3><%= watchHome.name %></h3>
               <p>
-                <span class="span-price-original">$<%= watchHome.Price %></span>
-                <% if (watchHome.DiscountPercentage > 0) { %>
+                <span class="span-price-original">$<%= watchHome.price %></span>
+                <% if (watchHome.discount_percentage > 0) { %>
                 <span class="span-DiscountPercentage"
-                  >% <%= watchHome.DiscountPercentage %></span
+                  >% <%= watchHome.discount_percentage %></span
                 >
                 <% } %>
               </p>
             </div>
             <div class="btn-group">
-              <a href="/products/<%= watchHome.Id %>" class="btn-outline"
+              <a href="/products/<%= watchHome.id %>" class="btn-outline"
                 >Ver Detalles</a
               >
               <button class="btn-outline">
@@ -217,6 +202,8 @@
 
     <%- include('partials/footer') %>
 
+    <script src="/javascripts/script.js"></script>
+    <script src="/javascripts/slider.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
   </body>

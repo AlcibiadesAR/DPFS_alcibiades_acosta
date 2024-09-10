@@ -56,12 +56,14 @@ select:focus {
   color: #000000;
 }
 
-#btn-cerrarSesion {
+#btn-cerrarSesion, #btn-redirect {
   background-color: #800020;
   transition: all 0.5s ease;
+  text-decoration: none;
+  text-align: center;
 }
 
-#btn-cerrarSesion:hover {
+#btn-cerrarSesion:hover, #btn-redirect:hover{
   background-color: #9e2442;
 }
 
@@ -69,6 +71,7 @@ select:focus {
   display: flex;
   gap: 20px;
 }
+
 
 @media only screen and (min-width: 600px) {
   .title-greeting {

@@ -1,138 +1,359 @@
+const DB = require("../../database/models");
+const Product = DB.Product;
+const ProductImage = DB.ProductImage;
 const path = require("path");
 const fs = require("fs");
 
 const Administrar = {
+  // Página para administrar productos
   pageAdministrar: (req, res) => {
-    const productos = JSON.parse(
-      fs.readFileSync(path.resolve(__dirname, "../../data/products.json"))
-    );
-
-    res.render("admi/administrar", {
-      title: "Administrar",
-      list: productos,
-    });
+    Product.findAll()
+      .then((productos) => {
+        res.render("admi/administrar", {
+          title: "Administrar",
+          list: productos,
+        });
+      })
+      .catch((error) => {
+        console.error("Error al cargar los productos:", error);
+        res.status(500).render("error", {
+          title: "Error",
+          message: "Hubo un problema al cargar los productos.",
+        });
+      });
   },
 
+  searchProducts: (req, res) => {
+    const query = req.query.query;
+    if (!query) {
+      DB.Product.findAll()
+        .then((products) => {
+          res.render("admi/administrar", {
+            title: "Administrar Productos",
+            list: products,
+            searchId: query,
+            message:
+              products.length === 0 ? "No se encontraron productos." : "",
+          });
+        })
+        .catch((error) => {
+          console.error("Error al buscar productos:", error);
+          res.status(500).render("admi/administrar", {
+            title: "Administrar Productos",
+            list: [],
+            searchId: query,
+            error: "Hubo un problema al buscar los productos.",
+          });
+        });
+    } else {
+      // Buscar productos por ID o nombre
+      DB.Product.findAll({
+        where: {
+          [DB.Sequelize.Op.or]: [
+            { id: query },
+            { name: { [DB.Sequelize.Op.like]: `%${query}%` } },
+          ],
+        },
+      })
+        .then((products) => {
+          res.render("admi/administrar", {
+            title: "Administrar Productos",
+            list: products,
+            searchId: query,
+            message:
+              products.length === 0 ? "No se encontraron productos." : "",
+          });
+        })
+        .catch((error) => {
+          console.error("Error al buscar productos:", error);
+          res.status(500).render("admi/administrar", {
+            title: "Administrar Productos",
+            list: [],
+            searchId: query,
+            error: "Hubo un problema al buscar los productos.",
+          });
+        });
+    }
+  },
+
+  // Página de creación de producto
   pageCreate: (req, res) => {
     res.render("admi/create", {
       title: "Creación de productos",
     });
   },
 
-  createProduct: (req, res) => {
-    const reloj = JSON.parse(
-      fs.readFileSync(path.resolve(__dirname, "../../data/products.json"))
-    );
+  createProduct: async (req, res) => {
+    try {
+      const info = req.body;
+      const offerValue = info.offer === "true" ? 1 : 0;
+      const discountPercentage = parseInt(info.discount, 10) || 0;
 
-    let ultimoReloj = reloj.pop();
-    reloj.push(ultimoReloj);
+      const newProduct = await DB.Product.create({
+        name: info.name,
+        description: info.description,
+        price: parseFloat(info.price),
+        stock: parseInt(info.stock, 10),
+        offer: offerValue,
+        discount_percentage: discountPercentage,
+      });
 
-    // Datos del producto
-    const newProduct = {
-      Id: ultimoReloj.Id + 1,
-      Name: req.body.name,
-      Description: req.body.description,
-      Category: req.body.category,
-      Image: `/images/productos/${req.file.filename}`,
-      Colors: req.body.colors,
-      Price: parseFloat(req.body.price),
-      Brand: req.body.brand,
-      Model: req.body.model,
-      Box: req.body.box,
-      Band: req.body.band,
-      Dial: req.body.dial,
-      Movement: req.body.movement,
-      WaterResistance: req.body.waterResistance,
-      Stock: parseInt(req.body.stock),
-      Offer: req.body.offer === "true",
-      DiscountPercentage: parseFloat(req.body.discount) || 0,
-    };
+      const associations = [
+        {
+          model: DB.Category,
+          key: "category",
+          column: "name",
+          method: "setCategory",
+        },
+        { model: DB.Color, key: "colors", column: "name", method: "setColor" },
+        { model: DB.Brand, key: "brand", column: "name", method: "setBrand" },
+        { model: DB.Model, key: "model", column: "name", method: "setModel" },
+        { model: DB.Box, key: "box", column: "description", method: "setBox" },
+        {
+          model: DB.Band,
+          key: "band",
+          column: "description",
+          method: "setBand",
+        },
+        {
+          model: DB.Dial,
+          key: "dial",
+          column: "description",
+          method: "setDial",
+        },
+        {
+          model: DB.Movement,
+          key: "movement",
+          column: "description",
+          method: "setMovement",
+        },
+        {
+          model: DB.WaterResistance,
+          key: "waterResistance",
+          column: "description",
+          method: "setWaterResistance",
+        },
+      ];
 
-    // Agrega el nuevo producto
-    reloj.push(newProduct);
-    let newProductSave = JSON.stringify(reloj, null, 2);
-    fs.writeFileSync(
-      path.resolve(__dirname, "../../data/products.json"),
-      newProductSave
-    );
+      for (const association of associations) {
+        let entity = await association.model.findOne({
+          where: { [association.column]: info[association.key] },
+        });
 
-    res.redirect("/admi/administrar");
+        if (!entity) {
+          entity = await association.model.create({
+            [association.column]: info[association.key],
+          });
+        }
+        await newProduct[association.method](entity.id);
+      }
+
+      if (req.file) {
+        const imageUrl = `http://localhost:3000/images/productos/${req.file.filename}`;
+        await DB.ProductImage.create({
+          product_id: newProduct.id,
+          image_type: "product",
+          url: imageUrl,
+        });
+      }
+
+      res.redirect("/admi/administrar");
+    } catch (error) {
+      console.error("Error al crear el producto:", error);
+      res.status(500).render("error", {
+        title: "Error",
+        message: "Hubo un problema al crear el producto.",
+      });
+    }
   },
 
   // Página de edición de producto
   pageEditing: (req, res) => {
-    const reloj = JSON.parse(
-      fs.readFileSync(path.resolve(__dirname, "../../data/products.json"))
-    );
-    const relojId = parseInt(req.params.id);
-    const relojEditar = reloj.find((relojes) => relojes.Id === relojId);
-    res.render("admi/edit", {
-      title: "Edición de Productos",
-      edit: relojEditar,
-    });
+    const id = req.params.id;
+
+    Product.findByPk(id, {
+      include: [
+        { association: "images" },
+        { association: "category" },
+        { association: "color" },
+        { association: "brand" },
+        { association: "model" },
+        { association: "box" },
+        { association: "dial" },
+        { association: "movement" },
+        { association: "band" },
+        { association: "waterResistance" },
+      ],
+    })
+      .then((producto) => {
+        console.log("Producto:", producto);
+        if (producto) {
+          res.render("admi/edit", {
+            title: "Edición de Productos",
+            edit: producto,
+          });
+        } else {
+          res.status(404).render("error", {
+            title: "Error 404",
+            message: "Producto no encontrado.",
+          });
+        }
+      })
+      .catch((error) => {
+        console.error("Error al cargar el producto para edición:", error);
+        res.status(500).render("error", {
+          title: "Error",
+          message: "Hubo un problema al cargar el producto para edición.",
+        });
+      });
   },
 
-  //actualizar producto
-  updateProduct: (req, res) => {
-    const relojPath = path.resolve(__dirname, "../../data/products.json");
-    const reloj = JSON.parse(fs.readFileSync(relojPath));
-    const currentProduct = reloj.find(
-      (relojes) => relojes.Id === parseInt(req.params.id)
-    );
+  // Actualizar producto
+  updateProduct: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const info = req.body;
+      const product = await DB.Product.findByPk(id);
 
-    const updatedProduct = {
-      Id: parseInt(req.params.id),
-      Name: req.body.name,
-      Description: req.body.description,
-      Image: req.file
-        ? `/images/productos/${req.file.filename}`
-        : req.body.Image,
-      Category: req.body.category,
-      Colors: req.body.colors,
-      Price: parseFloat(req.body.price),
-      Brand: req.body.brand,
-      Model: req.body.model,
-      Box: req.body.box,
-      Band: req.body.band,
-      Dial: req.body.dial,
-      Movement: req.body.movement,
-      WaterResistance: req.body.waterResistance,
-      Stock: parseInt(req.body.stock, 10),
-      Offer: req.body.offer === "true",
-      DiscountPercentage: parseFloat(req.body.discount) || 0,
-    };
-
-    if (req.file && currentProduct.Image) {
-      const oldImagePath = path.resolve(
-        __dirname,
-        `../../public${currentProduct.Image}`
-      );
-      if (fs.existsSync(oldImagePath)) {
-        fs.unlinkSync(oldImagePath);
+      if (!product) {
+        return res.status(404).render("error", {
+          title: "Producto no encontrado",
+          message: "El producto que intentas actualizar no existe.",
+        });
       }
+
+      const offerValue = info.offer === "true" ? 1 : 0;
+      const discountPercentage = parseInt(info.discount, 10) || 0;
+
+      await product.update({
+        name: info.name,
+        description: info.description,
+        price: parseFloat(info.price),
+        stock: parseInt(info.stock, 10),
+        offer: offerValue,
+        discount_percentage: discountPercentage,
+      });
+
+      console.log("Producto actualizado:", product);
+
+      const associations = [
+        {
+          model: DB.Category,
+          key: "category",
+          column: "name",
+          method: "setCategory",
+        },
+        { model: DB.Color, key: "colors", column: "name", method: "setColor" },
+        { model: DB.Brand, key: "brand", column: "name", method: "setBrand" },
+        { model: DB.Model, key: "model", column: "name", method: "setModel" },
+        { model: DB.Box, key: "box", column: "description", method: "setBox" },
+        {
+          model: DB.Band,
+          key: "band",
+          column: "description",
+          method: "setBand",
+        },
+        {
+          model: DB.Dial,
+          key: "dial",
+          column: "description",
+          method: "setDial",
+        },
+        {
+          model: DB.Movement,
+          key: "movement",
+          column: "description",
+          method: "setMovement",
+        },
+        {
+          model: DB.WaterResistance,
+          key: "waterResistance",
+          column: "description",
+          method: "setWaterResistance",
+        },
+      ];
+
+      for (const association of associations) {
+        let entity = await association.model.findOne({
+          where: { [association.column]: info[association.key] },
+        });
+
+        if (!entity) {
+          entity = await association.model.create({
+            [association.column]: info[association.key],
+          });
+        }
+
+        console.log(`Asociando ${association.key} con ID:`, entity.id);
+        await product[association.method](entity.id);
+      }
+
+      if (req.file) {
+        const existingImage = await DB.ProductImage.findOne({
+          where: { product_id: product.id },
+        });
+
+        if (existingImage) {
+          const imageUrl = `http://localhost:3000/images/productos/${req.file.filename}`;
+          await existingImage.update({ url: imageUrl });
+        } else {
+          const imageUrl = `http://localhost:3000/images/productos/${req.file.filename}`;
+          await DB.ProductImage.create({
+            product_id: product.id,
+            image_type: "product",
+            url: imageUrl,
+          });
+        }
+
+        console.log("Imagen actualizada/creada con URL:", imageUrl);
+      }
+
+      res.redirect("/admi/administrar");
+    } catch (error) {
+      res.status(500).render("error", {
+        title: "Error",
+        message: "Hubo un problema al actualizar el producto.",
+      });
     }
-
-    const relojUpdate = reloj.map((relojes) =>
-      relojes.Id === updatedProduct.Id ? updatedProduct : relojes
-    );
-
-    fs.writeFileSync(relojPath, JSON.stringify(relojUpdate, null, 2));
-
-    res.redirect("/admi/administrar");
   },
 
-  deleteProduct: (req, res) => {
-    const productsPath = path.resolve(__dirname, "../../data/products.json");
-    const products = JSON.parse(fs.readFileSync(productsPath));
-    const productIdToDelete = req.params.id;
+  // Eliminar producto
+  deleteProduct: async (req, res) => {
+    try {
+      const product = await Product.findByPk(req.params.id, {
+        include: [{ association: "images" }],
+      });
 
-    const updatedProducts = products.filter(
-      (product) => product.Id != productIdToDelete
-    );
+      if (!product) {
+        throw new Error("Producto no encontrado.");
+      }
 
-    fs.writeFileSync(productsPath, JSON.stringify(updatedProducts, null, 2));
+      if (product.images && product.images.length > 0) {
+        product.images.forEach((image) => {
+          const oldImagePath = path.resolve(
+            __dirname,
+            `../../public/images/productos/${image.url.split("/").pop()}`
+          );
+          if (fs.existsSync(oldImagePath)) {
+            fs.unlinkSync(oldImagePath);
+          }
+        });
+      }
+      await ProductImage.destroy({
+        where: { product_id: product.id },
+      });
+      await Product.destroy({
+        where: { id: req.params.id },
+      });
 
-    res.redirect("/admi/administrar");
+      res.redirect("/admi/administrar");
+    } catch (error) {
+      console.error("Error al eliminar el producto:", error);
+      res.status(500).render("error", {
+        title: "Error",
+        message: "Hubo un problema al eliminar el producto.",
+      });
+    }
   },
 };
 

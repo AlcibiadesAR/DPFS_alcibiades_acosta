@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../partials/head', { pageTitle: 'Crear Usuario' }) %>
+</head>
+<body>
+  <%- include('../partials/header', { headerClass: 'header-black' }) %>
+  <main>
+    <section class="my-account container mt-5">
+      <h1 class="title-users">Crear Usuario</h1>
+
+      <form
+        action="/admiUsers/createUsers"
+        method="POST"
+        enctype="multipart/form-data"
+        class="row g-3 mt-4"
+      >
+        <div class="col-md-6">
+          <label for="inputFirstName" class="form-label">Nombre</label>
+          <input
+            type="text"
+            id="inputFirstName"
+            name="firstName"
+            value="<%= formData.firstName || '' %>"
+            class="form-control <%= errors.firstName ? 'is-invalid' : '' %>"
+          />
+          <% if (errors.firstName) { %>
+          <div class="invalid-feedback"><%= errors.firstName.msg %></div>
+          <% } %>
+        </div>
+
+        <div class="col-md-6">
+          <label for="inputLastName" class="form-label">Apellido</label>
+          <input
+            type="text"
+            id="inputLastName"
+            name="lastName"
+            value="<%= formData.lastName || '' %>"
+            class="form-control <%= errors.lastName ? 'is-invalid' : '' %>"
+          />
+          <% if (errors.lastName) { %>
+          <div class="invalid-feedback"><%= errors.lastName.msg %></div>
+          <% } %>
+        </div>
+
+        <div class="col-md-6">
+          <label for="inputEmail" class="form-label">Email</label>
+          <input
+            type="email"
+            id="inputEmail"
+            name="email"
+            value="<%= formData.email || '' %>"
+            class="form-control <%= errors.email ? 'is-invalid' : '' %>"
+          />
+          <% if (errors.email) { %>
+          <div class="invalid-feedback"><%= errors.email.msg %></div>
+          <% } %>
+        </div>
+
+        <div class="col-md-6">
+          <label for="inputPhone" class="form-label">Teléfono</label>
+          <input
+            type="text"
+            id="inputPhone"
+            name="phone"
+            value="<%= formData.phone || '' %>"
+            class="form-control <%= errors.phone ? 'is-invalid' : '' %>"
+          />
+          <% if (errors.phone) { %>
+          <div class="invalid-feedback"><%= errors.phone.msg %></div>
+          <% } %>
+        </div>
+
+        <div class="col-md-6">
+          <label for="inputPassword" class="form-label">Contraseña</label>
+          <input
+            type="password"
+            id="inputPassword"
+            name="password"
+            class="form-control <%= errors.password ? 'is-invalid' : '' %>"
+          />
+          <% if (errors.password) { %>
+          <div class="invalid-feedback"><%= errors.password.msg %></div>
+          <% } %>
+        </div>
+
+        <div class="col-md-6">
+          <label for="file-upload" class="form-label">Incluya una foto</label>
+          <input type="file" id="file-upload" name="avatar" class="form-control"/>
+        </div>
+
+        <div class="col-md-12">
+          <label for="userType" class="form-label">Tipo de Usuario</label>
+          <select id="userType" name="userType" class="form-select">
+            <option value="Registrado">Registrado</option>
+            <option value="Administrador">Administrador</option>
+          </select>
+        </div>
+
+        <div class="col-md-12">
+          <label for="terms" class="terms-label">
+            <input type="checkbox" id="terms" name="terms" <%= formData.terms ? 'checked' : '' %> /> Acepto los
+            <a href="#">términos y condiciones</a>
+          </label>
+          <% if (errors.terms) { %>
+          <span class="error"><%= errors.terms.msg %></span>
+          <% } %>
+        </div>
+
+        <div class="col-md-12 btn-group-profile">
+          <button type="submit" class="btn-submit">Crear Usuario</button>
+          <a href="/admiUsers/administrarUsers" class="btn-submit" id="btn-redirect">volver</a>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <%- include('../partials/footer') %>
+
+  <script src="/javascripts/script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
