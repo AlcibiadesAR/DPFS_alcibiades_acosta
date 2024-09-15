@@ -6,12 +6,15 @@ const methodOverride = require("method-override");
 const session = require("express-session");
 require("dotenv").config();
 const addBrandsToLocals = require("./middleware/brandMiddleware");
+const cors = require('cors');
 
 var indexRouter = require("./routes/index");
 let productsRouter = require("./routes/products");
 let usersRouter = require("./routes/users");
 let admiRouter = require("./routes/admi");
 let admiUsersRouter = require("./routes/admiUsers");
+let cartRoutes = require("./routes/cart");
+let apisRoutes = require("./routes/apis");
 
 var app = express();
 
@@ -25,20 +28,23 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "../public")));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
-app.use(session({
-  secret: 'Proyecto final',
-  resave: false,
-  saveUninitialized: false,
-  cookie: {
-    httpOnly: true,
-    secure: false, 
-    maxAge: 30 * 24 * 60 * 60 * 1000 
-  }
-}));
+app.use(
+  session({
+    secret: "Proyecto final",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      httpOnly: true,
+      secure: false,
+      maxAge: 30 * 24 * 60 * 60 * 1000,
+    },
+  })
+);
 
 app.use(addBrandsToLocals);
+app.use(cors());
 app.use((req, res, next) => {
-  res.locals.user = req.session.user; 
+  res.locals.user = req.session.user;
   next();
 });
 
@@ -48,6 +54,8 @@ app.use("/", productsRouter);
 app.use("/", usersRouter);
 app.use("/", admiRouter);
 app.use("/", admiUsersRouter);
+app.use("/", cartRoutes);
+app.use("/", apisRoutes);
 
 // Captura 404 y envía al manejador de errores
 app.use(function (req, res, next) {

@@ -31,7 +31,7 @@ router.get("/admi/edit/:id", authMiddlewareControllers.MiddlewareAuth, admiContr
 
 //Post rutas
 // Ruta para enviar formulario de creacion de productos
-router.post("/admi", upload.single("image"), authMiddlewareControllers.MiddlewareAuth, admiController.createProduct);
+router.post("/admi/admiProducts", upload.single("image"), authMiddlewareControllers.MiddlewareAuth, admiController.createProduct);
 
 // PUT ruta para actualizar un producto
 router.put(

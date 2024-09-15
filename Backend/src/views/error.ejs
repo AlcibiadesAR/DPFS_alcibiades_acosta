@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <%- include('partials/head', { pageTitle: title }) %>
-</head>
-<body>
-  
-  <%- include('partials/header', { headerClass: 'header-black' }) %>
-  
-  <main>
-    <div class="error-container">
-      <h1 class="title-error"><%= title %></h1>
-      <img src="/images/error/relojRoto.jpg" alt="Error Image" />
-      <p><%= message %></p>
-      <a href="/" class="btn btn-secondary" id="btn-error">Volver al inicio</a>
-    </div>
-  </main>
-  <%- include('partials/footer') %>
-</body>
+  <head>
+    <%- include('partials/head', { pageTitle: title }) %>
+  </head>
+  <body>
+    <%- include('partials/header', { headerClass: 'header-black' }) %>
+
+    <main>
+      <div class="error-container">
+        <h1 class="title-error"><%= title %></h1>
+        <img src="/images/error/relojRoto.jpg" alt="Error Image" />
+        <p><%= message %></p>
+        <a href="/" class="btn btn-secondary" id="btn-error"
+          >Volver al inicio</a
+        >
+      </div>
+    </main>
+    <%- include('partials/footer') %>
+  </body>
 </html>

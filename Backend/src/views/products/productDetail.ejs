@@ -3,8 +3,9 @@
   <head>
     <%- include('../partials/head', { pageTitle: title }) %>
   </head>
+
   <body>
-    <%- include('../partials/header', { headerClass: 'header-black'}) %>
+    <%- include('../partials/header', { headerClass: 'header-black' }) %>
     <main>
       <section class="box-product">
         <article class="article-detail">
@@ -19,20 +20,20 @@
                 >$<%= details.price %></span
               >
             </p>
-            <% if (details.stock > 0) { %>
+            <% if (details.stock> 0) { %>
             <p>Disponibilidad: <span class="stock">Artículo en Stock</span></p>
             <% } else { %>
             <p>Disponibilidad: <span class="stock">No Disponible</span></p>
             <% } %>
             <p>Cantidad</p>
-            <button id="decrement" class="counter-button">-</button>
-            <span id="counter">1</span>
-            <button id="increment" class="counter-button">+</button>
-            <div class="btn-group">
-              <button class="btn-outline">
+            <form action="/cart/add" method="POST" class="add-to-cart-form">
+              <input type="hidden" name="productId" value="<%= details.id %>">
+              <input type="hidden" id="quantity-<%= details.id %>" name="quantity" value="1">
+              <button class="btn-submit" type="submit">
                 <i class="bx bxs-shopping-bag"></i> Añadir al carrito
               </button>
-            </div>
+            </form>
+            
           </div>
         </article>
         <div class="Description">
@@ -74,6 +75,7 @@
     </main>
 
     <%- include('../partials/footer') %>
+
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
   </body>

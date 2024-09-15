@@ -1,0 +1,48 @@
+
+
+
+.user-details-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    text-align: center;
+    height: 100vh;
+    color: #fff;
+  }
+  
+  .user-details-title {
+    margin-bottom: 20px;
+    font-size: 2rem;
+  }
+  
+  .user-details-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .user-details-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    object-fit: cover;
+  }
+  
+  .user-details-info {
+    font-size: 1.2rem;
+  }
+  
+  @media only screen and (min-width: 600px){
+
+  }
+
+  @media only screen and (min-width: 1024px){
+    .user-details-image{
+        width: 400px;
+        height: 400px;
+    }
+  }

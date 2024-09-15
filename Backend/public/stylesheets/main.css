@@ -5,13 +5,15 @@
 
 /* Productos */
 @import url("productos/details.css");
-@import url("productos/carts.css");
 
 /* Users */
 @import url("users/admiPrincipal.css");
 @import url("users/login.css");
 @import url("users/register.css");
 @import url("users/myAccount.css");
+
+/*Carrito */
+@import url("cart/carts.css");
 
 /* Error */
 @import url("error.css");

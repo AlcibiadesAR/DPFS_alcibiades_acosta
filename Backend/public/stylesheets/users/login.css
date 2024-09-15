@@ -16,6 +16,12 @@
   text-align: center;
 }
 
+.title-users-forgotPassword{
+  margin-top: 50px;
+  text-align: center;
+  font-size: 20px;
+}
+
 input {
   border: 1px solid #aeadad; 
   padding: 8px;
@@ -35,9 +41,9 @@ input[type="password"], input[type="file"]  {
   padding: 6px;
 }
 
-#eye-icon {
+.eye-icon {
   position: relative;
-  top: -40px;
+  top: -50px;
   right: 10px;
   float: right;
   font-size: 15px;
@@ -46,7 +52,7 @@ input[type="password"], input[type="file"]  {
   transition: all 0.5s ease;
 }
 
-#eye-icon:hover {
+.eye-icon:hover {
   color: rgb(61, 59, 59);
 }
 
@@ -58,7 +64,7 @@ input[type="checkbox"] {
   font-weight: 400;
 }
 
-.btn-submit {
+.btn-submit{
   width: 100%;
   margin: 20px auto;
   padding: 6px;
@@ -72,6 +78,11 @@ input[type="checkbox"] {
 
 .btn-submit:hover {
   background-color: #800020;
+}
+
+#btn-return{
+  text-align: center;
+  text-decoration: none;
 }
 
 #link-register {
@@ -136,15 +147,8 @@ label {
   font-size: 12px;
 }
 
-/*recuperación de contraseña*/
-#form-forgot-password,
-#form-forgot-New-password {
-  margin-top: 100px;
-}
-
-#btn-forgot-password,
-#btn-forgot-New-password {
-  margin-bottom: 160px;
+#btn-resetPassword{
+  margin-bottom: 100px;
 }
 
 @media only screen and (min-width: 600px) {
@@ -155,9 +159,22 @@ label {
   .box-form form {
     width: 70%;
   }
+
+  .title-users-forgotPassword{
+    font-size: 24px;
+  }
 }
 
 @media only screen and (min-width: 1024px) {
+
+  .title-users-forgotPassword{
+    font-size: 40px;
+  }
+
+  #btn-resetPassword{
+    margin-bottom: 200px;
+  }
+  
   .box-form {
     max-width: 1024px;
   }
@@ -206,6 +223,6 @@ label {
 
   .error {
     color: red;
-    font-size: 16px;
+    font-size: 15px;
   }
 }

@@ -1,68 +1,15 @@
-const { check, validationResult } = require("express-validator");
+const { validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
 const path = require("path");
 const db = require("../../database/models");
 const fs = require("fs");
-
-// Validaciones para el formulario de login
-const validacionesFormLogin = [
-  check("email").exists().isEmail().withMessage("Debe ser un email válido"),
-  check("password").notEmpty().withMessage("La contraseña es requerida"),
-];
-
-// Validaciones para el formulario de registro
-const validacionesFormRegister = [
-  ...validacionesFormLogin,
-
-  check("firstName")
-    .notEmpty()
-    .withMessage("El nombre es requerido")
-    .isAlpha()
-    .withMessage("El nombre debe contener solo letras"),
-
-  check("lastName")
-    .notEmpty()
-    .withMessage("El apellido es requerido")
-    .isAlpha()
-    .withMessage("El apellido debe contener solo letras"),
-
-  check("phone")
-    .optional()
-    .matches(/^\d{4}-\d{4}$/)
-    .withMessage("El número de teléfono debe tener el formato 1234-6780"),
-
-  check("userType")
-    .isIn(["Registrado", "Administrador"])
-    .withMessage("Tipo de usuario inválido"),
-
-  check("avatar")
-    .optional()
-    .custom((value, { req }) => {
-      if (
-        req.file &&
-        ![".jpg", ".jpeg", ".png"].includes(
-          path.extname(req.file.originalname).toLowerCase()
-        )
-      ) {
-        throw new Error(
-          "El archivo debe ser una imagen en formato JPG, JPEG o PNG."
-        );
-      }
-      return true;
-    }),
-
-  check("terms")
-    .equals("on")
-    .withMessage("Debes aceptar los términos y condiciones"),
-];
+const User = db.User;
+const {
+  validacionesFormLogin,
+  validacionesFormRegister,
+} = require("../middleware/userValidations");
 
 const usersControllers = {
-  pageCart: (req, res) => {
-    res.render("users/productCart", {
-      title: "Tu Carrito de Compras / EleganceTimeShop",
-    });
-  },
-
   pageRegister: (req, res) => {
     return res.render("users/register", {
       title: "Crea tu cuenta / EleganceTimeShop",
@@ -76,16 +23,17 @@ const usersControllers = {
   procesarFormRegister: async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
+      console.log("Errores de validación:", errors.mapped());
       return res.render("users/register", {
         title: "Crea tu cuenta / EleganceTimeShop",
         formData: req.body,
         errors: errors.mapped(),
       });
     }
-
+  
     try {
-      const { firstName, lastName, email, phone, password, userType } =
-        req.body;
+      const { firstName, lastName, email, phone, password, userType } = req.body;
+  
       if (!firstName || !lastName) {
         return res.render("users/register", {
           title: "Crea tu cuenta / EleganceTimeShop",
@@ -97,7 +45,7 @@ const usersControllers = {
           },
         });
       }
-
+  
       const existingUser = await db.User.findOne({ where: { email } });
       if (existingUser) {
         return res.render("users/register", {
@@ -106,11 +54,14 @@ const usersControllers = {
           errors: { email: { msg: "El email ya está registrado" } },
         });
       }
-
+  
       const hashedPassword = bcrypt.hashSync(password, 10);
+      console.log("Contraseña hasheada:", hashedPassword);
       const imageUrl = req.file
         ? `http://localhost:3000/images/users/${req.file.filename}`
         : null;
+      console.log("URL de la imagen:", imageUrl);
+  
       const newUser = {
         first_name: firstName,
         last_name: lastName,
@@ -118,11 +69,10 @@ const usersControllers = {
         password: hashedPassword,
         type: userType,
         phone,
-        url: imageUrl, 
+        url: imageUrl,
       };
-
+  
       await db.User.create(newUser);
-
       res.redirect("/users/login");
     } catch (error) {
       console.error("Error al procesar el registro:", error);
@@ -131,7 +81,7 @@ const usersControllers = {
         .json({ message: "Ocurrió un error al procesar el formulario" });
     }
   },
-
+  
   pageLogin: (req, res) => {
     const rememberedEmail = req.cookies.rememberedEmail || "";
     return res.render("users/login", {
@@ -197,13 +147,39 @@ const usersControllers = {
   pageForgotPassword: (req, res) => {
     return res.render("users/forgotPassword", {
       title: "Recupera tu contraseña / EleganceTimeShop",
+      formData: {},
+      errors: {},
     });
   },
 
-  pageForgotNewPassword: (req, res) => {
-    return res.render("users/forgotNewPassword", {
-      title: "Crea una nueva contraseña / EleganceTimeShop",
-    });
+  processForgotPassword: async (req, res) => {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.render("users/forgotPassword", {
+        title: "Recupera tu contraseña",
+        formData: { email: req.body.email },
+        errors: errors.mapped(),
+      });
+    }
+
+    const { email } = req.body;
+
+    try {
+      const user = await User.findOne({ where: { email } });
+
+      if (!user) {
+        return res.render("users/forgotPassword", {
+          title: "Recupera tu contraseña",
+          formData: { email },
+        });
+      }
+
+       res.redirect(`/users/resetPassword?email=${encodeURIComponent(email)}`);
+    } catch (error) {
+      console.error(error);
+      res.status(500).send("Error al procesar la solicitud.");
+    }
   },
 
   pageMyAccount: async (req, res) => {
@@ -237,14 +213,13 @@ const usersControllers = {
       const imageUrl = req.file
         ? `http://localhost:3000/images/users/${req.file.filename}`
         : null;
-  
+
       const user = await db.User.findByPk(userId);
-  
+
       if (!user) {
         return res.status(404).json({ message: "Usuario no encontrado" });
       }
-  
-      // Actualizar la imagen si existe
+
       if (req.file) {
         if (user.url) {
           const oldImagePath = path.join(
@@ -256,20 +231,20 @@ const usersControllers = {
             fs.unlinkSync(oldImagePath);
           }
         }
-  
+
         await user.update({ url: imageUrl });
       }
-  
+
       await user.update({
         first_name: req.body.firstName || user.first_name,
         last_name: req.body.lastName || user.last_name,
         phone: req.body.phone || user.phone,
-        email: req.body.email || user.email 
+        email: req.body.email || user.email,
       });
-  
+
       req.session.user.email = req.body.email;
-  
-      res.redirect('/users/Account');
+
+      res.redirect("/users/myAccount");
     } catch (error) {
       console.error("Error al actualizar el perfil:", error);
       res
@@ -278,19 +253,67 @@ const usersControllers = {
     }
   },
 
-  logout: (req, res) => {
-    console.log('Logout function called');
-    req.session.destroy((err) => {
-      if (err) {
-        console.error('Error al cerrar sesión:', err);
-        return res.status(500).json({ message: 'Error al cerrar sesión' });
-      }
-      console.log('Session destroyed');
-      res.clearCookie('connect.sid', { path: '/' }); // Clear the session cookie
-      console.log('Cookie cleared');
-      res.redirect('/users/login');    
+  pageResetPassword: (req, res) => {
+    const { email } = req.query;
+  
+    res.render('users/resetPassword', {
+      title: 'Crear una nueva contraseña',
+      email,
+      password: '',
+      confirmPassword: '',
+      errors: {}
     });
-  }
+  },
+
+  processResetPassword: async (req, res) => {
+    const errors = validationResult(req);
+  
+    // Si hay errores de validación, renderiza el formulario de restablecimiento con los errores
+    if (!errors.isEmpty()) {
+      return res.render('users/resetPassword', {
+        title: 'Crear una nueva contraseña',
+        email: req.body.email,
+        password: req.body.password,
+        confirmPassword: req.body.confirmPassword,
+        errors: errors.mapped(),
+      });
+    }
+  
+    const { email, password, confirmPassword } = req.body;
+  
+    try {
+      // Buscar al usuario por correo electrónico
+      const user = await User.findOne({ where: { email } });
+  
+      if (!user) {
+        return res.render('users/resetPassword', {
+          title: 'Crear una nueva contraseña',
+          email,
+          password,
+          confirmPassword,
+          errors: {
+            email: { msg: 'No se encontró un usuario con ese correo electrónico.' },
+          },
+        });
+      }
+  
+      // Actualizar la contraseña del usuario
+      user.password = await bcrypt.hash(password, 10);
+      await user.save();
+  
+      res.redirect('/users/login');
+    } catch (error) {
+      console.error('Error al restablecer la contraseña:', error);
+      res.status(500).send('Error al procesar la solicitud.');
+    }
+  },
+
+  logout: (req, res) => {
+    req.session.destroy(() => {
+      res.clearCookie("rememberedEmail");
+      res.redirect("/users/login");
+    });
+  },
 };
 
 module.exports = usersControllers;

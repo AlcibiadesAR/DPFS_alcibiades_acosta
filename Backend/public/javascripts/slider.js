@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
+
+  // slider
     const logosSlide = document.querySelector('.logos-slide');
 
     const logos = logosSlide.innerHTML;

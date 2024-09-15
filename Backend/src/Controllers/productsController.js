@@ -163,7 +163,7 @@ const Products = {
       .catch(next);
   },
 
-  pageBrand: (req, res, next) => {
+  pageBrand: (req, res, next) => {  
     const brandName = req.params.brand;
   
     Product.findAll({

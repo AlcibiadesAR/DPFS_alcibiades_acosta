@@ -26,9 +26,12 @@
                 </div>
                 <div class="btn-group">
                   <a href="/products/<%= product.id %>" class="btn-outline">Ver Detalles</a>
-                  <button class="btn-outline">
-                    <i class="bx bxs-shopping-bag"></i> Añadir al carrito
-                  </button>
+                   <form action="/cart/add" method="POST" class="add-to-cart-form">
+                <input type="hidden" name="productId" value="<%= product.id %>">
+                <button class="btn-outline" type="submit">
+                  <i class="bx bxs-shopping-bag"></i> Añadir al carrito
+                </button>
+              </form>
                 </div>
               </article>
             <% }) %>

@@ -21,7 +21,7 @@
       <form action="/products" class="search-form" method="get">
         <div class="search-container">
           <input name="query" placeholder="Buscar..." type="text" />
-          <i class="bx bx-search-alt search-icon" id="search-icon-2"></i>
+          <i class="bx bx-search-alt search-icon" id="search-icon-3"></i>
         </div>
       </form>
     </div>
@@ -29,28 +29,31 @@
     <main>
       <section class="container-marcas">
         <h2>Nuestras Marcas Destacadas</h2>
-    
+
         <div class="slider">
-            <div class="logos">
-                <div class="logos-slide">
-                    <img src="/images/logos/lorus.png" alt="lorus" />
-                    <img src="/images/logos/Longines.png" alt="Longines" />
-                    <img src="/images/logos/IWC.png" alt="IWC" />
-                    <img src="/images/logos/JaegerLeCoultre.png" alt="Jaeger Le Coultre" />
-                    <img src="/images/logos/Bvlgari.png" alt="Bvlgari" />
-                    <img src="/images/logos/Cartier.png" alt="Cartier" />
-                    <img src="/images/logos/Timex.png" alt="Timex" />
-                    <img src="/images/logos/Lacoste.png" alt="Lacoste" />
-                    <img src="/images/logos/Hermes.jpg" alt="Hermes" />
-                    <img src="/images/logos/omega.png" alt="Omega" />
-                    <img src="/images/logos/patekphilippe.png" alt="Patek Philippe" />
-                    <img src="/images/logos/tagHever.png" alt="Tag Heuer" />
-                    <img src="/images/logos/Hermes.jpg" alt="Hermes" />
-                    <img src="/images/logos/rolex.png" alt="Rolex" />
-                </div>
+          <div class="logos">
+            <div class="logos-slide">
+              <img src="/images/logos/lorus.png" alt="lorus" />
+              <img src="/images/logos/Longines.png" alt="Longines" />
+              <img src="/images/logos/IWC.png" alt="IWC" />
+              <img
+                src="/images/logos/JaegerLeCoultre.png"
+                alt="Jaeger Le Coultre"
+              />
+              <img src="/images/logos/Bvlgari.png" alt="Bvlgari" />
+              <img src="/images/logos/Cartier.png" alt="Cartier" />
+              <img src="/images/logos/Timex.png" alt="Timex" />
+              <img src="/images/logos/Lacoste.png" alt="Lacoste" />
+              <img src="/images/logos/Hermes.jpg" alt="Hermes" />
+              <img src="/images/logos/omega.png" alt="Omega" />
+              <img src="/images/logos/patekphilippe.png" alt="Patek Philippe" />
+              <img src="/images/logos/tagHever.png" alt="Tag Heuer" />
+              <img src="/images/logos/Hermes.jpg" alt="Hermes" />
+              <img src="/images/logos/rolex.png" alt="Rolex" />
             </div>
+          </div>
         </div>
-    </section>
+      </section>
 
       <section class="container-products">
         <h2>Productos en Oferta</h2>
@@ -58,7 +61,10 @@
           <% for (let watchHome of offerProducts) { %>
           <article class="card">
             <div class="card-img">
-              <img alt="<%= watchHome.name %>" src="<%= watchHome.images[0].url %>" />
+              <img
+                alt="<%= watchHome.name %>"
+                src="<%= watchHome.images[0].url %>"
+              />
             </div>
             <div class="card-content">
               <h3><%= watchHome.name %></h3>
@@ -75,9 +81,12 @@
               <a href="/products/<%= watchHome.id %>" class="btn-outline"
                 >Ver Detalles</a
               >
-              <button class="btn-outline">
-                <i class="bx bxs-shopping-bag"></i> Añadir al carrito
-              </button>
+              <form action="/cart/add" method="POST" class="add-to-cart-form">
+                <input type="hidden" name="productId" value="<%= watchHome.id %>">
+                <button class="btn-outline" type="submit">
+                  <i class="bx bxs-shopping-bag"></i> Añadir al carrito
+                </button>
+              </form>
             </div>
           </article>
           <% } %>
@@ -105,7 +114,10 @@
           <% for (let watchHome of kidsWatches) { %>
           <article class="card">
             <div class="card-img">
-              <img alt="<%= watchHome.name %>" src="<%= watchHome.images[0].url %>" />
+              <img
+                alt="<%= watchHome.name %>"
+                src="<%= watchHome.images[0].url %>"
+              />
             </div>
             <div class="card-content">
               <h3><%= watchHome.name %></h3>
@@ -122,86 +134,22 @@
               <a href="/products/<%= watchHome.id %>" class="btn-outline"
                 >Ver Detalles</a
               >
-              <button class="btn-outline">
-                <i class="bx bxs-shopping-bag"></i> Añadir al carrito
-              </button>
+               <form action="/cart/add" method="POST" class="add-to-cart-form">
+                <input type="hidden" name="productId" value="<%= watchHome.id %>">
+                <button class="btn-outline" type="submit">
+                  <i class="bx bxs-shopping-bag"></i> Añadir al carrito
+                </button>
+              </form>
             </div>
           </article>
           <% } %>
         </div>
       </section>
-
-      <div class="comentarios">
-        <h2>Reseñas de nuestros clientes</h2>
-        <div class="comentarios-lista">
-          <div class="comentario">
-            <div class="avatar">
-              <img src="avatar1.jpg" alt="Avatar del cliente" />
-            </div>
-            <div class="contenido">
-              <h3>Muy recomendable</h3>
-              <p>
-                La experiencia en esta página web es excelente. La atención al
-                cliente es eficiente y la navegación es fluida. ¡Sin duda
-                volveré a comprar aquí!
-              </p>
-              <div class="calificacion">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-              </div>
-            </div>
-          </div>
-
-          <div class="comentario">
-            <div class="avatar">
-              <img src="avatar2.jpg" alt="Avatar del cliente" />
-            </div>
-            <div class="contenido">
-              <h3>Altamente recomendable</h3>
-              <p>
-                Comprar en esta página web ha sido una experiencia muy
-                satisfactoria. La plataforma es intuitiva y el servicio es muy
-                eficiente. ¡Volveré a utilizarla!
-              </p>
-              <div class="calificacion">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-              </div>
-            </div>
-          </div>
-
-          <div class="comentario">
-            <div class="avatar">
-              <img src="avatar3.jpg" alt="Avatar del cliente" />
-            </div>
-            <div class="contenido">
-              <h3>Excelente servicio</h3>
-              <p>
-                El sitio ofrece una experiencia de compra excepcional. La
-                navegación es fácil y los procesos son rápidos. La atención al
-                cliente es de primera calidad.
-              </p>
-              <div class="calificacion">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </main>
 
     <%- include('partials/footer') %>
 
+    <script src="/javascripts/cart.js"></script>
     <script src="/javascripts/script.js"></script>
     <script src="/javascripts/slider.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>

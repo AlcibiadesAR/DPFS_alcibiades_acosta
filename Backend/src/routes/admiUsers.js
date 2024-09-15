@@ -5,17 +5,33 @@ const authMiddlewareControllers = require("../middleware/authMiddleware");
 const path = require("path");
 const multer = require("multer");
 
-// Configuración de Multer para subir imágenes
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, path.resolve(__dirname, "../../public/images/users"));
   },
   filename: function (req, file, cb) {
-    cb(null, Date.now() + path.extname(file.originalname));
+    cb(null, Date.now() + path.extname(file.originalname).toLowerCase());
   },
 });
 
-const upload = multer({ storage: storage });
+const fileFilter = (req, file, cb) => {
+  const allowedExtensions = [".jpg", ".jpeg", ".png", ".gif"];
+  const ext = path.extname(file.originalname).toLowerCase();
+  if (allowedExtensions.includes(ext)) {
+    cb(null, true);
+  } else {
+    cb(new Error("El archivo debe ser una imagen en formato JPG, JPEG, PNG o GIF."), false);
+  }
+};
+
+const upload = multer({
+  storage: storage,
+  fileFilter: fileFilter,
+  limits: { fileSize: 5 * 1024 * 1024 },
+});
+
+module.exports = upload;
+
 
 // Ruta para la página de administración de los usuarios
 router.get(
@@ -43,7 +59,6 @@ router.get(
 // Ruta para ver el detalle del usuario
 router.get(
   "/admiUsers/detailsUsers/:id",
-  authMiddlewareControllers.MiddlewareAuth,
   usersAdmiControllers.pageUserDetails
 );
 

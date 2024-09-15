@@ -9,52 +9,72 @@
     <main>
       <% if (lista.length > 0) { %>
       <h1 class="title-products">Nuestros Relojes</h1>
-      <form action="/products" method="get" class="search-form-catalog" id="search-form">
+      <form
+        action="/products"
+        method="get"
+        class="search-form-catalog"
+        id="search-form"
+      >
         <div class="search-container">
-          <input name="query" placeholder="Buscar..." type="text" value="<%= query %>" />
-          <i class="bx bx-search-alt search-icon" id="search-icon-2"></i>
+          <input
+            name="query"
+            placeholder="Buscar..."
+            type="text"
+            value="<%= query %>"
+          />
+          <i class="bx bx-search-alt search-icon" id="search-icon-2" onclick="submitSearchForm()"></i>
         </div>
       </form>
       <% } %>
-
       <section class="container-products">
-          <% if (lista.length > 0) { %>
-            <div class="<%= lista.length > 2 ? 'grid-container' : 'few-products-container' %>">
-            <% lista.forEach(watch => { %>
-              <article class="card">
-                <img alt="<%= watch.name %>" src="<%= watch.images[0].url %>" />
-                <div class="card-content">
-                  <h3><%= watch.name %></h3>
-                  <p>
-                    <span class="span-price-original">$<%= watch.price %></span>
-                    <% if (watch.discount_percentage > 0) { %>
-                      <span class="span-DiscountPercentage">% <%= watch.discount_percentage %></span>
-                    <% } %>
-                  </p>
-                </div>
-                <div class="btn-group">
-                  <a href="/products/<%= watch.id %>" class="btn-outline">Ver Detalles</a>
-                  <button class="btn-outline">
-                    <i class="bx bxs-shopping-bag"></i> Añadir al carrito
-                  </button>
-                </div>
-              </article>
-            <% }) %>
-          <% } else { %>
-            <div class="no-results-container">
-              <i class="bx bx-search-alt-2 no-results-icon"></i>
-              <p class="message-productNull">
-                No se encontraron productos
-                <span>para el término de búsqueda "<%= query %>".</span>
+        <% if (lista.length > 0) { %>
+        <div
+          class="<%= lista.length > 2 ? 'grid-container' : 'few-products-container' %>"
+        >
+          <% lista.forEach(watch => { %>
+          <article class="card">
+            <img alt="<%= watch.name %>" src="<%= watch.images[0].url %>" />
+            <div class="card-content">
+              <h3><%= watch.name %></h3>
+              <p>
+                <span class="span-price-original">$<%= watch.price %></span>
+                <% if (watch.discount_percentage > 0) { %>
+                <span class="span-DiscountPercentage"
+                  >% <%= watch.discount_percentage %></span
+                >
+                <% } %>
               </p>
-              <a href="/products" class="btn btn-secondary">Revisa el catálogo</a>
             </div>
+            <div class="btn-group">
+              <a href="/products/<%= watch.id %>" class="btn-outline"
+                >Ver Detalles</a
+              >
+              <form action="/cart/add" method="POST" class="add-to-cart-form" >
+                <input type="hidden" name="productId" value="<%= watch.id %>" />
+                <button class="btn-outline" type="submit" id="add-to-cart"  data-product-id="123" data-quantity="1">
+                  <i class="bx bxs-shopping-bag"></i> Añadir al carrito
+                </button>
+              </form>
+            </div>
+          </article>
+          <% }) %> <% } else { %>
+          <div class="no-results-container">
+            <i class="bx bx-search-alt-2 no-results-icon"></i>
+            <p class="message-productNull">
+              No se encontraron productos
+              <span>para el término de búsqueda "<%= query %>".</span>
+            </p>
+            <a href="/products" class="btn btn-secondary">Revisa el catálogo</a>
+          </div>
           <% } %>
         </div>
       </section>
     </main>
     <%- include('../partials/footer') %>
+
     <script src="/javascripts/script.js"></script>
+    <script src="/javascripts/search.js"></script>
+    <script src="/javascripts/cart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
   </body>

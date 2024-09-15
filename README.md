@@ -53,27 +53,25 @@ Aquí muestro mi lista de sitios de referencia que he investigado para inspirarm
 5. **[World Time Store](https://worldtimestore.com/)**
    - **Por qué fue elegido**: World Time Store ofrece una gran variedad de relojes y presenta un diseño amigable para el usuario. Su enfoque en la categorización de productos y la facilidad de navegación son aspectos valiosos para mejorar la experiencia de compra.
 
-# Retrospectiva del Sprint 5
+# Retrospectiva del Sprint 8
 
 ## Qué Hice Bien
 
-- **Usuarios**: Implementé la estructura para manejar usuarios, incluyendo rutas, controladores, vistas y el directorio para imágenes de perfil. Todo está bien organizado para facilitar su gestión.
-- **Registro**: El formulario de registro está funcionando correctamente. Los usuarios pueden registrarse, subir una imagen de perfil, y sus contraseñas están encriptadas.
-- **Login**: El sistema de login ya funciona. Valida las credenciales y redirige a los usuarios según su estado de autenticación.
-- **Rutas de Autenticación**: Se han separado las rutas para huéspedes y usuarios, con redirección adecuada según si el usuario está logueado o no.
+- **Desarrollo de APIs**: Implementé las APIs para usuarios y productos, incluyendo los endpoints para listar y obtener detalles de usuarios y productos. Esto facilita la gestión y el acceso a la información en la aplicación.
+- **Dashboard en React**: Comencé a construir el dashboard en React
 
 ## Qué Puedo Mejorar
 
-- **Manejo de Errores**: Mejorar la forma en que se manejan los errores en el registro y login para asegurar una experiencia de usuario más fluida.
-- **Validaciones**: Asegurar que las validaciones en los formularios sean completas y cubran más casos para evitar problemas.
+-**Optimizar y Comentar el Código**: Necesito optimizar mi código para mejorar el rendimiento y agregar comentarios para hacerlo más legible y fácil de mantener.
 
 ## Qué Debería Empezar a Hacer
 
-- **Migrar de JSON a Base de Datos**: Empezar la transición de archivos JSON a una base de datos para una gestión de datos más eficiente.
-- **Recuperación de contraseña**: Implementar una lógica para ayudar a los usuarios a recuperar su contraseña en caso de olvidarla.
+- **Paginación en APIs**: Implementar la paginación en los endpoints de usuarios y productos para manejar grandes volúmenes de datos de manera más eficiente.
+- **Funcionalidades Adicionales en el Dashboard**: Considerar añadir funcionalidades adicionales opcionales en el dashboard, como el total de productos vendidos, los últimos productos vendidos, y opciones de administración para productos.
 
 ## Qué Debería Dejar de Hacer
-- **Dependencia Exclusiva de Archivos JSON**: Dejar de depender únicamente de archivos JSON para la gestión de datos. La transición a una base de datos permitirá una gestión eficiente de los datos.
+
+- **Solo Validar desde el Backend**: Dejar de depender únicamente de las validaciones del backend y comenzar a implementar validaciones en el front-end para mejorar la experiencia del usuario y prevenir errores antes de enviar los datos al servidor.
 
 
 - [Tablero de Trello - EleganceTimeShop](https://trello.com/invite/b/66add0654360a21c3ee0576c/ATTI550dd1e39c6ac3a6898cb2ed5652da930AD5FCB5/desarrollo-elegancetimeshop)

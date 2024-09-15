@@ -38,6 +38,11 @@
   color: #1f980a;
 }
 
+
+.input-quantity{
+  width: 265px;
+ }
+
 .counter-button {
   padding: 5px 12px;
   border: none;
@@ -90,6 +95,10 @@
     width: 170px;
   }
 
+  .input-quantity{
+    width: 300px;
+   }
+
   .article-detail {
     display: flex;
     gap: 50px;
@@ -138,6 +147,10 @@
   .counter-button {
     padding: 10px 16px;
     margin-top: 20px;
+  }
+
+  .input-quantity{
+   width: 400px;
   }
 
   .title-detail {

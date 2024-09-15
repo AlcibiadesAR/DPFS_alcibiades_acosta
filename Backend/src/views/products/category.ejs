@@ -7,12 +7,7 @@
     <%- include('../partials/header', { headerClass: 'header-black'}) %>
     <main>
       <h1 class="title-products"><%= TitleH1Category %></h1>
-      <form action="/search" class="search-form-catalog" method="get">
-        <div class="search-container">
-          <input name="query" placeholder="Buscar..." type="text" />
-          <i class="bx bx-search-alt"></i>
-        </div>
-      </form>
+      
       <section class="container-products">
         <div class="grid-container">
           <% for (let watch of lista) { %>
@@ -33,9 +28,12 @@
               <a href="/products/<%= watch.id %>" class="btn-outline"
                 >Ver Detalles</a
               >
-              <button class="btn-outline">
-                <i class="bx bxs-shopping-bag"></i> Añadir al carrito
-              </button>
+              <form action="/cart/add" method="POST" class="add-to-cart-form">
+                <input type="hidden" name="productId" value="<%= watch.id %>" />
+                <button class="btn-outline" type="submit">
+                  <i class="bx bxs-shopping-bag"></i> Añadir al carrito
+                </button>
+              </form>
             </div>
           </article>
           <% } %>
