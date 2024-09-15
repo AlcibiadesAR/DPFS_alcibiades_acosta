@@ -7,112 +7,66 @@
     <%- include('../partials/header', { headerClass: 'header-black' }) %>
     <main class="page">
       <section class="h-100 gradient-custom">
-        <section class="h-100 gradient-custom">
-          <div class="container py-5">
-            <div class="row d-flex justify-content-center my-4">
-              <div class="col-lg-12">
-                <div class="card mb-2">
-                  <div class="card-header py-2" id="container-title">
-                    <h2 class="mb-0">Carrito de Compras</h2>
-                  </div>
+        <div class="container py-5">
+          <div class="row d-flex justify-content-center my-4">
+            <div class="col-lg-12">
+              <div class="card mb-2">
+                <div class="card-header py-2" id="container-title">
+                  <h2 class="mb-0">Carrito de Compras</h2>
+                </div>
                 <div class="card-body">
                   <% if (cart.cartDetails && cart.cartDetails.length > 0) { %>
-                  <% cart.cartDetails.forEach(function(detail) { %>
-                  <div
-                    class="row mb-4 align-items-center"
-                    id="cart-detail-<%= detail.id %>"
-                  >
-                    <!-- Imagen del producto -->
-                    <div class="col-lg-2 col-md-4 mb-0 mb-lg-0">
-                      <div
-                        class="bg-image hover-overlay hover-zoom ripple rounded"
-                        data-mdb-ripple-color="light"
-                      >
-                        <% if (detail.product.images &&
-                        detail.product.images.length > 0) { %>
-                        <img
-                          src="<%= detail.product.images[0].url %>"
-                          class="product-image"
-                          alt="<%= detail.product.name %>"
-                        />
-                        <% } else { %>
-                        <img
-                          src="/placeholder.svg?height=80&width=80"
-                          class="product-image"
-                          alt="<%= detail.product.name %>"
-                        />
-                        <% } %>
-                        <a href="#!">
-                          <div
-                            class="mask"
-                            style="background-color: rgba(251, 251, 251, 0.2)"
-                          ></div>
-                        </a>
+                    <% cart.cartDetails.forEach(function(detail) { %>
+                      <div class="row mb-4 align-items-center" id="cart-detail-<%= detail.id %>">
+                        <!-- Imagen del producto -->
+                        <div class="col-lg-2 col-md-4 mb-0 mb-lg-0">
+                          <div class="bg-image hover-overlay hover-zoom ripple rounded" data-mdb-ripple-color="light">
+                            <% if (detail.product.images && detail.product.images.length > 0) { %>
+                              <img src="<%= detail.product.images[0].url %>" class="product-image" alt="<%= detail.product.name %>" />
+                            <% } else { %>
+                              <img src="/placeholder.svg?height=80&width=80" class="product-image" alt="<%= detail.product.name %>" />
+                            <% } %>
+                            <a href="#!">
+                              <div class="mask" style="background-color: rgba(251, 251, 251, 0.2)"></div>
+                            </a>
+                          </div>
+                        </div>
+
+                        <!-- Nombre del producto -->
+                        <div class="col-lg-2 col-md-2 mb-2 mb-lg-0">
+                          <p><strong><%= detail.product.name %></strong></p>
+                        </div>
+
+                        <!-- Precio del producto -->
+                        <div class="col-lg-2 col-md-2 mb-6 mb-lg-0">
+                          <p>Precio: <strong>$<%= detail.product.price %></strong></p>
+                        </div>
+
+                        <!-- Cantidad -->
+                        <div class="col-lg-2 col-md-2 mb-1 mb-lg-4">
+                          <input type="number" class="form-control text-center quantity-input" id="quantity-input-<%= detail.id %>" data-price="<%= detail.product.price %>" value="<%= detail.quantity %>" data-row-id="<%= detail.id %>" min="0" />
+                        </div>
+
+                        <!-- Subtotal y descuento -->
+                        <div class="col-lg-2 col-md-2 mb-2 mb-lg-6" id="Subtotal-discount">
+                          <p>Descuento: <strong class="discount"><%= detail.product.discount_percentage %>%</strong></p>
+                          <p>Subtotal: <strong class="result-subtotal">$<%= ((detail.unit_price - (detail.unit_price * (detail.product.discount_percentage / 100))) * detail.quantity).toFixed(2) %></strong></p>
+                        </div>
+
+                        <!-- Botón de eliminar -->
+                        <div class="col-lg-2 col-md-2 mb-4 mb-lg-6">
+                          <button type="button" class="btn-submit remove-btn" data-id="<%= detail.id %>">
+                            <i class="bi bi-trash"></i> Eliminar
+                          </button>
+                        </div>
                       </div>
+                    <% }); %>
+                  <% } else { %>
+                    <!-- Mensaje si el carrito está vacío -->
+                    <div class="text-center">
+                      <i class="bi bi-cart" id="bx-cart"></i>
+                      <p>Tu carrito está vacío.</p>
                     </div>
-
-                    <!-- Nombre del producto -->
-                    <div class="col-lg-2 col-md-2 mb-2 mb-lg-0">
-                      <p><strong><%= detail.product.name %></strong></p>
-                    </div>
-
-                    <!-- Precio del producto -->
-                    <div class="col-lg-2 col-md-2 mb-6 mb-lg-0">
-                      <p>
-                        Precio: <strong>$<%= detail.product.price %></strong>
-                      </p>
-                    </div>
-
-                    <!-- Cantidad -->
-                    <div class="col-lg-2 col-md-2 mb-1 mb-lg-4">
-                      <input
-                        type="number"
-                        class="form-control text-center quantity-input"
-                        id="quantity-input-<%= detail.id %>"
-                        data-price="<%= detail.product.price %>"
-                        value="<%= detail.quantity %>"
-                        data-row-id="<%= detail.id %>"
-                        min="0"
-                      />
-                    </div>
-
-                    <!-- Subtotal y descuento -->
-                    <div
-                      class="col-lg-2 col-md-2 mb-2 mb-lg-6"
-                      id="Subtotal-discount"
-                    >
-                      <p>
-                        Descuento:
-                        <strong
-                          ><%= detail.product.discount_percentage %>%</strong
-                        >
-                      </p>
-                      <p>
-                        Subtotal:<strong class="result-subtotal">
-                          $<%= ((detail.unit_price - (detail.unit_price *
-                          (detail.product.discount_percentage / 100))) *
-                          detail.quantity).toFixed(2)%></strong
-                        >
-                      </p>
-                    </div>
-
-                    <!-- Botón de eliminar -->
-                    <div class="col-lg-2 col-md-2 mb-4 mb-lg-6">
-                      <button
-                        type="button"
-                        class="btn-submit remove-btn"
-                        data-id="<%= detail.id %>"
-                      >
-                        <i class="bi bi-trash"></i> Eliminar
-                      </button>
-                    </div>
-                  </div>
-                  <% }); %> <% } else { %>
-                  <!-- Mensaje si el carrito está vacío -->
-                  <div class="text-center">
-                    <i class="bi bi-cart" id="bx-cart"></i>
-                    <p>Tu carrito está vacío.</p>
-                  </div>
                   <% } %>
                 </div>
               </div>
@@ -127,50 +81,43 @@
                 <div class="card-body">
                   <ul class="list-group list-group-flush">
                     <!-- Total del carrito -->
-                    <li
-                      class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3"
-                    >
+                    <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
                       <strong>Total</strong>
-                      <span
-                        ><strong class="result-total"
-                          >$<%= total.toFixed(2) %></strong
-                        ></span
-                      >
+                      <span><strong class="result-total">$<%= total.toFixed(2) %></strong></span>
                     </li>
                   </ul>
                   <button type="button" class="btn btn-secondary" id="payButton">
                     Pagar <i class="fa fa-angle-right"></i>
-                </button>
+                  </button>
                 </div>
               </div>
             </div>
           </div>
-          <a href="/products" class="btn btn-secondary" id="btn-return-home"
-            >Volver a la tienda</a
-          >
+          <a href="/products" class="btn btn-secondary" id="btn-return-home">Volver a la tienda</a>
         </div>
       </section>
     </main>
 
-      <!-- Modal -->
-      <div class="modal" id="paymentModal" style="display: none;">
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">¡Gracias por su compra!</h5>
-              <button type="button" class="close" id="modalCloseButton">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              Su pago fue exitoso.
-            </div>
+    <!-- Modal -->
+    <div class="modal" id="paymentModal" style="display: none;">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">¡Gracias por su compra!</h5>
+            <button type="button" class="close" id="modalCloseButton">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Su pago fue exitoso.
           </div>
         </div>
       </div>
+    </div>
 
     <%- include('../partials/footer') %>
 
+    <script src="/javascripts/global.js" defer></script>
     <script src="/javascripts/cart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>

@@ -34,31 +34,28 @@ const CartController = {
           unit_price: product.price,
         });
       }
+
+      const totalItemsInCart = await CartDetail.sum('quantity', { where: { cart_id: cart.id } });
+
+      res.json({ success: true, totalItemsInCart, message: "Producto agregado al carrito" });
     } catch (error) {
       console.error("Error al agregar producto al carrito:", error);
-      res
-        .status(500)
-        .json({
-          success: false,
-          message: "Error al agregar producto al carrito.",
-        });
+      res.status(500).json({
+        success: false,
+        message: "Error al agregar producto al carrito.",
+      });
     }
   },
 
   getCart: async (req, res) => {
     try {
-      if (!req.user || !req.user.cartId) {
-        console.log(
-          "No se encontró el carrito del usuario en req.user:",
-          req.user
-        );
-        return res.status(400).send("No se encontró el carrito del usuario.");
+      if (!req.user || !req.user.id) {
+        return res.status(400).send("No se encontró el usuario.");
       }
 
-      const cartId = req.user.cartId;
-      console.log("Cart ID:", cartId);
-
-      const cart = await Cart.findByPk(cartId, {
+      const userId = req.user.id;
+      const cart = await Cart.findOne({
+        where: { user_id: userId },
         include: [
           {
             model: CartDetail,
@@ -118,7 +115,7 @@ const CartController = {
       const result = await CartDetail.destroy({ where: { id: cartDetailId } });
 
       const cart = await Cart.findOne({ where: { user_id: req.user.id } });
-      const totalItemsInCart = cart ? await CartDetail.count({ where: { cart_id: cart.id } }) : 0;
+      const totalItemsInCart = cart ? await CartDetail.sum('quantity', { where: { cart_id: cart.id } }) : 0;
 
       if (result) {
         res.json({ success: true, totalItemsInCart, message: "Producto eliminado del carrito" });
@@ -156,6 +153,17 @@ const CartController = {
     }
   },
 
+  getCartCount: async (req, res) => {
+    try {
+      const userId = req.user.id;
+      const cart = await Cart.findOne({ where: { user_id: userId } });
+      const totalItemsInCart = cart ? await CartDetail.sum('quantity', { where: { cart_id: cart.id } }) : 0;
+      res.json({ success: true, totalItemsInCart });
+    } catch (error) {
+      console.error("Error al obtener el conteo del carrito:", error);
+      res.status(500).json({ success: false, message: "Error al obtener el conteo del carrito." });
+    }
+  },
 };
 
 module.exports = CartController;

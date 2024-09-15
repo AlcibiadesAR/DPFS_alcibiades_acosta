@@ -1,17 +1,13 @@
 document.addEventListener("DOMContentLoaded", function () {
-  console.log("DOM completamente cargado y analizado");
 
-  // Verifica los elementos
   const passwordInputs = document.querySelectorAll('input[type="password"]');
   const eyeIcons = document.querySelectorAll('.eye-icon');
 
-  // Verifica si hay elementos
   if (passwordInputs.length === 0 || eyeIcons.length === 0) {
     console.error("Uno o más elementos no se encuentran en el DOM.");
     return;
   }
 
-  // Agrega listeners a los íconos
   eyeIcons.forEach((eyeIcon, index) => {
     const passwordInput = passwordInputs[index];
     if (!passwordInput || !eyeIcon) {
@@ -46,18 +42,6 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   }
-
-  // Manejo del ícono de búsqueda
-  function submitSearchForm() {
-    console.log('submitSearchForm llamado');
-    const searchForm = document.getElementById('search-form');
-    if (searchForm) {
-      searchForm.submit();
-    } else {
-      console.error('Formulario no encontrado para el ícono de búsqueda');
-    }
-  }
   
-  submitSearchForm();
   
 });
