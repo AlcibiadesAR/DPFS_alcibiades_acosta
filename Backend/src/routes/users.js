@@ -3,6 +3,7 @@ let router = express.Router();
 const usersControllers = require("../Controllers/usersControllers");
 const authMiddlewareControllers = require("../middleware/authMiddleware");
 const upload = require('../middleware/userImage')
+const filterImage = require('../middleware/FilterImage')
 const { validacionesFormLogin, validacionesFormRegister, validacionesFormRecuperacionPassword, validacionesFormResetPassword } = require("../middleware/userValidations");
 
 // Rutas GET
@@ -27,6 +28,7 @@ router.post(
   "/users/register",
   upload.single("avatar"),
   validacionesFormRegister,
+  filterImage,
   usersControllers.procesarFormRegister
 );
 
