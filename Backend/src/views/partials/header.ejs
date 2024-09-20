@@ -34,7 +34,7 @@
               <% } %>
             </ul>
           </div>
-          </div>
+        </div>
 
         <li class="dropdown">
           <a class="link-menu-categories" href="#" data-bs-toggle="dropdown">
@@ -52,11 +52,19 @@
         <li class="dropdown">
           <i class="bx bxs-user" data-bs-toggle="dropdown"></i>
           <ul class="dropdown-menu">
+            <% if (!user) { %> 
+              <!-- Si el usuario no está autenticado, muestra Iniciar Sesión y Registrarse -->
               <li><a class="dropdown-item" href="/users/login">Iniciar Sesión</a></li>
               <li><a class="dropdown-item" href="/users/register">Registrarse</a></li>
+            <% } else { %> 
+              <!-- Si el usuario está autenticado, muestra Mi Cuenta y Cerrar Sesión -->
               <li><a class="dropdown-item" href="/users/Account">Mi Cuenta</a></li>
-              <li><a class="dropdown-item" href="/admi/administrar">Gestión de Productos</a></li>
-              <li><a class="dropdown-item" href="/admiUsers/administrarUsers">Gestión de Usuarios</a></li>
+              <% if (user.type === "Administrador") { %>
+                <li><a class="dropdown-item" href="/admi/administrar">Gestión de Productos</a></li>
+                <li><a class="dropdown-item" href="/admiUsers/administrarUsers">Gestión de Usuarios</a></li>
+              <% } %>
+              <li><a class="dropdown-item" href="/users/logout">Cerrar Sesión</a></li>
+            <% } %>
           </ul>
         </li>
       </ul>
@@ -81,11 +89,17 @@
       <li>
         <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#collapseUsers" aria-expanded="false" aria-controls="collapseUsers">Usuario</a>
         <ul id="collapseUsers" class="collapse list-unstyled">
-          <li><a href="/users/login" class="nav-link">Iniciar Sesión</a></li>
-          <li><a href="/users/register" class="nav-link">Registrarse</a></li>
-          <li><a href="/users/Account" class="nav-link">Mi Cuenta</a></li>
-          <li><a href="/admi/administrar" class="nav-link">Gestión de Productos</a></li>
-          <li><a href="/admiUsers/administrarUsers" class="nav-link">Gestión de Usuarios</a></li>
+          <% if (!user) { %> 
+            <li><a href="/users/login" class="nav-link">Iniciar Sesión</a></li>
+            <li><a href="/users/register" class="nav-link">Registrarse</a></li>
+          <% } else { %>
+            <li><a href="/users/Account" class="nav-link">Mi Cuenta</a></li>
+            <% if (user.type === "Administrador") { %>
+              <li><a href="/admi/administrar" class="nav-link">Gestión de Productos</a></li>
+              <li><a href="/admiUsers/administrarUsers" class="nav-link">Gestión de Usuarios</a></li>
+            <% } %>
+            <li><a href="/users/logout" class="nav-link">Cerrar Sesión</a></li>
+          <% } %>
         </ul>
       </li>
       <li>

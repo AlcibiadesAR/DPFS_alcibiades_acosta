@@ -84,22 +84,22 @@ const validacionesFormRegister = [
     .isIn(["Registrado", "Administrador"])
     .withMessage("Tipo de usuario inválido"),
 
-  check("avatar")
-    .optional()
+    check("avatar")
     .custom((value, { req }) => {
-      if (
-        req.file &&
-        ![".jpg", ".jpeg", ".png", ".gif"].includes(
-          path.extname(req.file.originalname).toLowerCase()
-        )
-      ) {
-        throw new Error(
-          "El archivo debe ser una imagen en formato JPG, JPEG, PNG o GIF."
-        );
+      if (!req.file) {
+        throw new Error("La imagen de perfil es requerida.");
       }
+
+      const allowedExtensions = [".jpg", ".jpeg", ".png", ".gif"];
+      const fileExtension = path.extname(req.file.originalname).toLowerCase();
+
+      if (!allowedExtensions.includes(fileExtension)) {
+        throw new Error("El archivo debe ser una imagen en formato JPG, JPEG, PNG o GIF.");
+      }
+
       return true;
     }),
-
+    
   check("terms")
     .equals("on")
     .withMessage("Debes aceptar los términos y condiciones"),
@@ -121,7 +121,7 @@ const validacionesFormRecuperacionPassword = [
 ];
 
 const validacionesFormResetPassword = [
-    check("password")
+  check("password")
     .notEmpty()
     .withMessage("La contraseña es requerida")
     .isLength({ min: 8 })

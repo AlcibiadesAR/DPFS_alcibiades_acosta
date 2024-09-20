@@ -2,20 +2,8 @@ let express = require("express");
 let router = express.Router();
 const usersControllers = require("../Controllers/usersControllers");
 const authMiddlewareControllers = require("../middleware/authMiddleware");
+const upload = require('../middleware/userImage')
 const { validacionesFormLogin, validacionesFormRegister, validacionesFormRecuperacionPassword, validacionesFormResetPassword } = require("../middleware/userValidations");
-const path = require("path");
-const multer = require("multer");
-
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, path.resolve(__dirname, "../../public/images/users"));
-  },
-  filename: function (req, file, cb) {
-    cb(null, Date.now() + path.extname(file.originalname));
-  },
-});
-
-const upload = multer({ storage: storage });
 
 // Rutas GET
 router.get("/users/register", usersControllers.pageRegister);

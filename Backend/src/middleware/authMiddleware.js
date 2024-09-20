@@ -23,7 +23,6 @@ let authMiddleware = {
         req.session.user = req.user;
         if (req.user.type === "Administrador") {
           const restrictedRoutesForAdmin = [
-            "/users/Account",
             "/cart/pageCart"
           ];
 

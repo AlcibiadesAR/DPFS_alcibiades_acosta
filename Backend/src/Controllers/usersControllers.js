@@ -23,7 +23,6 @@ const usersControllers = {
   procesarFormRegister: async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      console.log("Errores de validación:", errors.mapped());
       return res.render("users/register", {
         title: "Crea tu cuenta / EleganceTimeShop",
         formData: req.body,
@@ -56,11 +55,9 @@ const usersControllers = {
       }
   
       const hashedPassword = bcrypt.hashSync(password, 10);
-      console.log("Contraseña hasheada:", hashedPassword);
       const imageUrl = req.file
         ? `http://localhost:3000/images/users/${req.file.filename}`
         : null;
-      console.log("URL de la imagen:", imageUrl);
   
       const newUser = {
         first_name: firstName,
@@ -213,25 +210,25 @@ const usersControllers = {
       const imageUrl = req.file
         ? `http://localhost:3000/images/users/${req.file.filename}`
         : null;
-
+  
       const user = await db.User.findByPk(userId);
-
+  
       if (!user) {
         return res.status(404).json({ message: "Usuario no encontrado" });
       }
-
+  
       if (req.file) {
         if (user.url) {
           const oldImagePath = path.join(
             __dirname,
-            "../../public",
-            user.url.replace("http://localhost:3000", "")
+            "../../public/images/users",
+            path.basename(user.url) 
           );
           if (fs.existsSync(oldImagePath)) {
-            fs.unlinkSync(oldImagePath);
+            fs.unlinkSync(oldImagePath); 
           }
         }
-
+  
         await user.update({ url: imageUrl });
       }
 
@@ -242,9 +239,11 @@ const usersControllers = {
         email: req.body.email || user.email,
       });
 
-      req.session.user.email = req.body.email;
-
-      res.redirect("/users/myAccount");
+      if (req.body.email) {
+        req.session.user.email = req.body.email;
+      }
+  
+      res.redirect("/users/Account");
     } catch (error) {
       console.error("Error al actualizar el perfil:", error);
       res
@@ -267,8 +266,6 @@ const usersControllers = {
 
   processResetPassword: async (req, res) => {
     const errors = validationResult(req);
-  
-    // Si hay errores de validación, renderiza el formulario de restablecimiento con los errores
     if (!errors.isEmpty()) {
       return res.render('users/resetPassword', {
         title: 'Crear una nueva contraseña',

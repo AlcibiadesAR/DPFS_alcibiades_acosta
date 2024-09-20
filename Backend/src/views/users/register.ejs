@@ -89,6 +89,9 @@
           <div>
             <label for="file-upload">Incluya una foto</label>
             <input type="file" id="avatar" name="avatar"/>
+            <% if (errors && errors.avatar) { %>
+              <span class="error"><%= errors.avatar.msg %></span>
+          <% } %>
           </div>
 
           <label for="userType">Tipo de Usuario:</label>
