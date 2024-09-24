@@ -1,4 +1,4 @@
-const { User, Cart } = require('../../database/models'); // Asegúrate de ajustar la ruta a tu archivo de modelos
+const { User, Cart } = require('../../database/models'); 
 
 let authMiddleware = {
   MiddlewareAuth: async (req, res, next) => {

@@ -11,7 +11,7 @@ router.get("/products", productsController.pageProducts);
 router.get("/products/offers", productsController.pageOffer);
 
 // Ruta para la página de relojes por marcas
-router.get('/products/brands/:brand', productsController.pageBrand);
+router.get('/products/brands/:brand',  authMiddlewareControllers.MiddlewareAuth, productsController.pageBrand);
 
 // Ruta para la página de relojes por categorías
 router.get(

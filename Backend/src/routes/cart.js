@@ -13,4 +13,4 @@ router.post('/cart/vaciarCarrito', authMiddleware.MiddlewareAuth, cartController
 
 router.get('/cart/count', authMiddleware.MiddlewareAuth, cartController.getCartCount);
 
-module.exports = router;
+module.exports = router; 
