@@ -55,17 +55,7 @@ app.use("/", usersRouter);
 app.use("/", admiRouter);
 app.use("/", admiUsersRouter);
 app.use("/", cartRoutes);
-
-// Rutas de la API
-app.use("/api", apisRoutes);
-
-// Servir archivos estáticos de React
-app.use(express.static(path.join(__dirname, "../frontend/build")));
-
-// Maneja las rutas del frontend
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, "../frontend/build", "index.html"));
-});
+app.use("/", apisRoutes);
 
 // Captura 404 y envía al manejador de errores
 app.use(function (req, res, next) {
@@ -83,5 +73,4 @@ app.use((err, req, res, next) => {
     message: "Error interno del servidor",
   });
 });
-
 module.exports = app;
